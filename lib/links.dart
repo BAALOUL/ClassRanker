@@ -20,9 +20,12 @@ class Links {
   static const String sectionsAndServicesView =
       "$server/services/sectionsAndServicesView.php";
 
+// reviews
+  static const String reviewsView = "$server/reviews/reviewsByProvider.php";
+  static const String addReviews = "$server/reviews/addReview.php";
+
   // Providers
   static const String providersView = "$server/providers/view.php";
-  static const String reviewsView = "$server/reviews/reviewsByProvider.php";
   static const String providersByService =
       "$server/providers/providersByService.php";
   static const String providersByIdView = "$server/providers/providerById.php";

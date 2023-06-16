@@ -11,6 +11,7 @@ abstract class ProviderByIdController extends GetxController {
   getData(String pid);
   initData();
   goToBooking(String serviceName, String serviceId);
+  goToReview();
 }
 
 class ProviderByIdControllerImp extends ProviderByIdController {
@@ -71,4 +72,7 @@ class ProviderByIdControllerImp extends ProviderByIdController {
       "serviceId": serviceId
     });
   }
+
+  @override
+  goToReview() {}
 }

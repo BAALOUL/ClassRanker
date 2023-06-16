@@ -4,9 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/providers/providersByServiceController.dart';
 import '../../../core/class/handlingDataView.dart';
-import '../../../links.dart';
 import '../home/titleCustom.dart';
 
 class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
@@ -165,13 +163,15 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                               onPressed: () {
                                                 controller.statusUpdate(
                                                     booking['booking_id'],
-                                                    "completed");
+                                                    "completed",
+                                                    booking[
+                                                        'booking_provider_id']);
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 primary: Colors
                                                     .green, // Set button color to green
                                               ),
-                                              child: Text('Complete'),
+                                              child: const Text('Complete'),
                                             ),
                                           ),
                                           SizedBox(
@@ -180,13 +180,15 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                               onPressed: () {
                                                 controller.statusUpdate(
                                                     booking['booking_id'],
-                                                    "canceled");
+                                                    "canceled",
+                                                    booking[
+                                                        'booking_provider_id']);
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 primary: Colors
                                                     .red, // Set button color to red
                                               ),
-                                              child: Text('Cancel'),
+                                              child: const Text('Cancel'),
                                             ),
                                           ),
                                         ],

@@ -28,110 +28,115 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
   Widget build(BuildContext context) {
     Get.put(ProviderByIdControllerImp());
 
-    return Scaffold(
-      floatingActionButton: FloatingActionButton.large(
-        onPressed: () {
-          controller.goToBooking(controller.serviceName, controller.serviceId);
-        },
-        child: const Text(
-          'Book Now',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.large(
+          onPressed: () {
+            controller.goToBooking(
+                controller.serviceName, controller.serviceId);
+          },
+          child: const Text(
+            'Book Now',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
-      body: GetBuilder<ProviderByIdControllerImp>(
-          builder: (controller) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: ListView(
-                  children: [
-                    TitleCustom(
-                      title:
-                          "${controller.providerModel.providername} - ${controller.providerModel.providernamear}",
-                      //title: "Provider Details",
-                    ),
-                    // section of the service resume and the photo.
-                    const OurServices(),
-                    // spacing
-                    const SpacingBar(),
-                    const RatingSection(),
-                    const SpacingBar(),
+        body: GetBuilder<ProviderByIdControllerImp>(
+            builder: (controller) => Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: ListView(
+                    children: [
+                      TitleCustom(
+                        title:
+                            "${controller.providerModel.providername} - ${controller.providerModel.providernamear}",
+                        //title: "Provider Details",
+                      ),
+                      // section of the service resume and the photo.
+                      const OurServices(),
+                      // spacing
+                      const SpacingBar(),
+                      const RatingSection(),
+                      const SpacingBar(),
 
-                    // the third section
-                    const ProviderContacts(),
-                    const SpacingBar(),
+                      // the third section
+                      const ProviderContacts(),
+                      const SpacingBar(),
 
-                    const ServiceStatics(),
+                      const ServiceStatics(),
 
-                    const SpacingBar(),
+                      const SpacingBar(),
 
-                    // reviews and comments
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.reviewsList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: AssetImage("assets/images/m3.jpg"),
-                                    fit: BoxFit.cover,
+                      // reviews and comments
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.reviewsList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/images/m3.jpg"),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.star,
-                                            color: Colors.yellow, size: 16),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          controller.reviewsList[index]
-                                                  ['review_rating']
-                                              .toString(),
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      controller.reviewsList[index]
-                                              ['review_comment']
-                                          .toString(),
-                                      style: const TextStyle(fontSize: 14),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      controller.reviewsList[index]
-                                              ['review_date']
-                                          .toString(),
-                                      style: const TextStyle(
-                                          fontSize: 12, color: Colors.grey),
-                                    ),
-                                  ],
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.star,
+                                              color: Colors.yellow, size: 16),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            controller.reviewsList[index]
+                                                    ['review_rating']
+                                                .toString(),
+                                            style:
+                                                const TextStyle(fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        controller.reviewsList[index]
+                                                ['review_comment']
+                                            .toString(),
+                                        style: const TextStyle(fontSize: 14),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        controller.reviewsList[index]
+                                                ['review_date']
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontSize: 12, color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    )
-                  ],
-                ),
-              )),
+                              ],
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                )),
+      ),
     );
   }
 }

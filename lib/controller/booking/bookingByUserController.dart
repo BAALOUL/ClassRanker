@@ -1,7 +1,6 @@
 import 'package:ecommerce_store/core/class/statusRequest.dart';
 import 'package:ecommerce_store/core/functions/handingDataController.dart';
 import 'package:ecommerce_store/data/remote/booking/bookingStatusUpdateData.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/constant/consRoutes.dart';
@@ -13,9 +12,10 @@ enum BookingStatus { all, completed, current, canceled, rejcted, pending }
 abstract class BookingsByUserController extends GetxController {
   initData();
   getData();
-  statusUpdate(String bookingId, String status);
+  statusUpdate(String bookingId, String status, String providerid);
   goToBookingMessage();
   onStatusSelected(BookingStatus status);
+  goToReview(String providerId);
 }
 
 class BookingsByUserControllerImp extends BookingsByUserController {
@@ -88,7 +88,7 @@ class BookingsByUserControllerImp extends BookingsByUserController {
   }
 
   @override
-  statusUpdate(bookingId, status) async {
+  statusUpdate(bookingId, status, providerid) async {
     //print("Boooooooking Id : $bookingId \n Status :  $status\n");
     statusRequest = StatusRequest.loading;
     update();
@@ -98,15 +98,23 @@ class BookingsByUserControllerImp extends BookingsByUserController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         getData();
-        Get.defaultDialog(
+        /*Get.defaultDialog(
           title: "Status updated successfully",
           content: const Text(""),
-        );
+        );*/
+        // print('the provider Id : $providerid');
+        goToReview(providerid);
       } else {
         Get.defaultDialog(title: "ُWarning", middleText: "Error");
         statusRequest = StatusRequest.failure;
       }
     }
     update();
+  }
+
+  @override
+  goToReview(providerId) {
+    Get.offAll(ConsRoutes.addReview,
+        arguments: {"userId": userId, "providerId": providerId});
   }
 }

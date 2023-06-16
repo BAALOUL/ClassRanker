@@ -30,6 +30,7 @@ import 'package:ecommerce_store/view/screen/providers/providerDetailView.dart';
 import 'package:ecommerce_store/view/screen/providers/providerSignInOTP.dart';
 import 'package:ecommerce_store/view/screen/providers/providersByServiceView.dart';
 import 'package:ecommerce_store/view/screen/providers/updateLocationScreen.dart';
+import 'package:ecommerce_store/view/screen/reviews/addReviewScreen.dart';
 import 'package:ecommerce_store/view/screen/services/categoryView.dart';
 import 'package:ecommerce_store/view/screen/services/sectionsView.dart';
 import 'package:ecommerce_store/view/screen/services/servicesView.dart';
@@ -100,4 +101,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: ConsRoutes.providerAdd,
       page: () => const ProviderInformationView()),
+  GetPage(name: ConsRoutes.addReview, page: () => AddReviewScreen()),
 ];

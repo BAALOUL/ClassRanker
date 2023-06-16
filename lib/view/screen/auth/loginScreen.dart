@@ -1,4 +1,5 @@
 import 'package:ecommerce_store/data/remote/auth/loginOtpData.dart';
+import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,7 +76,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -100,12 +101,12 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            ElevatedButton(
+            CustomButton(
+              text: 'Login',
               onPressed: () {
                 _loginController.login();
               },
-              child: const Text('Login'),
-            ),
+            )
           ],
         ),
       ),
