@@ -9,7 +9,7 @@ abstract class ProfileTypeController extends GetxController {
 class ProfileTypeControllerImp extends ProfileTypeController {
   @override
   goToProviderTrack() {
-    Get.toNamed(ConsRoutes.loginAsProviderScrren);
+    Get.toNamed(ConsRoutes.loginScrren);
   }
 
   @override

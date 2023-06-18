@@ -1,10 +1,3 @@
-// 1- create the view for the provider details
-// 2- create the controller for the provider details
-// 3- determine the functions for the provider details
-// we have : read details from the database from different tables such as provider and reviews
-// an other function to perform the booking
-
-// ignore_for_file: unnecessary_string_escapes
 import 'package:ecommerce_store/view/screen/home/titleCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,15 +36,35 @@ class BookingDecision extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      const Text(
-                        'Landscaping work',
-                        style: TextStyle(fontSize: 14),
+                      Text(
+                        controller.serviceName,
+                        style: const TextStyle(fontSize: 14),
                       ),
                       //************************************** */
 
                       const SizedBox(
                         height: 20,
                       ),
+
+                      const Text(
+                        'Cutomer name',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        controller.username,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
                       const Text(
                         'Date',
                         style: TextStyle(
@@ -62,9 +75,9 @@ class BookingDecision extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      const Text(
-                        'Sunday 12/01/2023',
-                        style: TextStyle(fontSize: 14),
+                      Text(
+                        controller.bookingDate,
+                        style: const TextStyle(fontSize: 14),
                       ),
                       //****************   */  Location
 
@@ -81,9 +94,9 @@ class BookingDecision extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      const Text(
-                        'Alsad 1021 Doha - Qatar',
-                        style: TextStyle(fontSize: 14),
+                      Text(
+                        controller.bookingAddress,
+                        style: const TextStyle(fontSize: 14),
                       ),
 
                       const SizedBox(
@@ -109,7 +122,7 @@ class BookingDecision extends StatelessWidget {
                             width: 150,
                             child: ElevatedButton(
                               onPressed: () {
-                                // Add code for accepting the request
+                                controller.bookingStatus("current");
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,
@@ -131,7 +144,7 @@ class BookingDecision extends StatelessWidget {
                             width: 150,
                             child: ElevatedButton(
                               onPressed: () {
-                                // Add code for rejecting the request
+                                controller.bookingStatus("rejected");
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.red,

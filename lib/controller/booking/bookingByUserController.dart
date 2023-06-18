@@ -45,8 +45,7 @@ class BookingsByUserControllerImp extends BookingsByUserController {
         return booking['booking_status'] == status.toString().split('.').last;
       }).toList();
     }
-    print("status from DB: $bookingsList['booking_status']\n"
-        "status from DB: ${status.toString()}");
+    //print("status from DB: $bookingsList['booking_status']\n" "status from DB: ${status.toString()}");
     selectedStatus = status;
     update(); // Notify the view to update the displayed bookings
   }

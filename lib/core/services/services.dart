@@ -1,4 +1,6 @@
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,6 +9,7 @@ class MyServices extends GetxService {
 
   Future<MyServices> initServices() async {
     await Firebase.initializeApp();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     sharedPreferences = await SharedPreferences.getInstance();
     return this;
   }
@@ -14,4 +17,11 @@ class MyServices extends GetxService {
 
 initialServices() async {
   await Get.putAsync(() => MyServices().initServices());
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // Handle background messages here
+  print(
+      'Background message received from main//////////: ${message.notification?.body}');
+  //Get.toNamed(ConsRoutes.bookingDecision);
 }

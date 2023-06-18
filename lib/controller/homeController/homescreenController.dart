@@ -1,3 +1,4 @@
+import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/core/services/services.dart';
 import 'package:ecommerce_store/data/remote/auth/tokenUpdateData.dart';
 import 'package:ecommerce_store/view/screen/booking/bookingsByUserView.dart';
@@ -31,7 +32,7 @@ class HomeScreenControllerImp extends HomeScreenController {
     const SettingsView(),
   ];
 
-  List buttonBottomAppBar = ["Home", "Bookings", "Orders", "Settings"];
+  List<String> buttonBottomAppBar = ["Home", "Bookings", "Orders", "Settings"];
   List<IconData> listIconBottomAppBar = [
     Icons.home,
     Icons.book,
@@ -51,26 +52,70 @@ class HomeScreenControllerImp extends HomeScreenController {
     userId = myServices.sharedPreferences.get('userId').toString();
     FirebaseMessaging.instance.subscribeToTopic("users");
     _firebaseMessaging = FirebaseMessaging.instance;
-    getToken(); // Get the initial token
-    configureFCM(); // Configure Firebase Cloud Messaging callbacks
+    getToken();
+    configureFCM();
   }
 
   Future<void> getToken() async {
     String? token = await _firebaseMessaging.getToken();
     myToken = token.toString();
     tokenUpdate();
-    // Do something with the token, such as sending it to your server
   }
 
   void configureFCM() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      // Handle incoming messages when the app is in the foreground
-      ////print('FCM Message received: ${message.notification?.body}');
+      String? pageId = message.data['pageid'];
+      // String? pageId = message.data['pageid'];
+      String? bookingId = message.data['booking_id'];
+      String? bookingProviderId = message.data['booking_provider_id'];
+      String? serviceName = message.data['service_name'];
+      String? username = message.data['username'];
+      String? bookingDate = message.data['booking_date'];
+      String? bookingAddress = message.data['booking_address'];
+
+      // Do something with the received data
+      // For example, navigate to the booking details screen
+      Get.toNamed(
+        ConsRoutes.bookingDecision,
+        arguments: {
+          'booking_id': bookingId,
+          'booking_provider_id': bookingProviderId,
+          'service_name': serviceName,
+          'username': username,
+          'booking_date': bookingDate,
+          'booking_address': bookingAddress,
+        },
+      );
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      // Handle the tap on the notification when the app is in the background or terminated
-      ////print('FCM Message opened: ${message.notification?.body}');
+      // Handle notification when the app is opened from a terminated state or background
+      // String? pageId = message.data['pageid'];
+      // if (pageId == "1") {
+      String? pageId = message.data['pageid'];
+      // String? pageId = message.data['pageid'];
+      String? bookingId = message.data['booking_id'];
+      String? bookingProviderId = message.data['booking_provider_id'];
+      String? serviceName = message.data['service_name'];
+      String? username = message.data['username'];
+      String? bookingDate = message.data['booking_date'];
+      String? bookingAddress = message.data['booking_address'];
+
+      print(bookingAddress);
+      // Do something with the received data
+      // For example, navigate to the booking details screen
+      Get.toNamed(
+        ConsRoutes.bookingDecision,
+        arguments: {
+          'booking_id': bookingId,
+          'booking_provider_id': bookingProviderId,
+          'service_name': serviceName,
+          'username': username,
+          'booking_date': bookingDate,
+          'booking_address': bookingAddress,
+        },
+      );
+      // }
     });
   }
 
@@ -81,8 +126,6 @@ class HomeScreenControllerImp extends HomeScreenController {
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        //categoryList.addAll(response['data']);
-        ////print('the result is : $response');
       } else {
         statusRequest = StatusRequest.failure;
       }
