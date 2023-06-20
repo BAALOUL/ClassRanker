@@ -40,6 +40,16 @@ class HomeScreenControllerImp extends HomeScreenController {
     Icons.settings
   ];
 
+  String? pageId;
+  // String? pageId = message.data['pageid'];
+  late String? bookingId;
+  late String? bookingProviderId;
+  late String? serviceName;
+  late String? username;
+  late String? bookingDate;
+  late String? bookingAddress;
+  late String? demandstatus = "";
+
   @override
   changePage(int i) {
     currentPage = i;
@@ -62,59 +72,75 @@ class HomeScreenControllerImp extends HomeScreenController {
     tokenUpdate();
   }
 
+  void navigateToAppropriateScreen(Map<String, dynamic> arguments) {
+    String? bookingStatus = arguments['booking_status'];
+
+    switch (bookingStatus) {
+      case 'pending':
+        Get.toNamed(ConsRoutes.bookingDecision, arguments: arguments);
+        break;
+      case 'current':
+        Get.toNamed(ConsRoutes.providerAnswer, arguments: arguments);
+        break;
+      case 'rejected':
+        Get.toNamed(ConsRoutes.providerAnswer, arguments: arguments);
+        break;
+      default:
+        Get.toNamed(ConsRoutes.providerAnswer, arguments: arguments);
+        break;
+      // Handle other cases here
+      // Do something else
+    }
+  }
+
   void configureFCM() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       String? pageId = message.data['pageid'];
       // String? pageId = message.data['pageid'];
-      String? bookingId = message.data['booking_id'];
-      String? bookingProviderId = message.data['booking_provider_id'];
-      String? serviceName = message.data['service_name'];
-      String? username = message.data['username'];
-      String? bookingDate = message.data['booking_date'];
-      String? bookingAddress = message.data['booking_address'];
-
+      bookingId = message.data['booking_id'];
+      bookingProviderId = message.data['booking_provider_id'];
+      serviceName = message.data['service_name'];
+      username = message.data['username'];
+      bookingDate = message.data['booking_date'];
+      bookingAddress = message.data['booking_address'];
+      demandstatus = message.data['booking_status'];
+      print('The status onMessage is -----------        : $demandstatus');
       // Do something with the received data
       // For example, navigate to the booking details screen
-      Get.toNamed(
-        ConsRoutes.bookingDecision,
-        arguments: {
-          'booking_id': bookingId,
-          'booking_provider_id': bookingProviderId,
-          'service_name': serviceName,
-          'username': username,
-          'booking_date': bookingDate,
-          'booking_address': bookingAddress,
-        },
-      );
+      navigateToAppropriateScreen({
+        'booking_id': bookingId,
+        'booking_provider_id': bookingProviderId,
+        'service_name': serviceName,
+        'username': username,
+        'booking_date': bookingDate,
+        'booking_address': bookingAddress,
+        'booking_status': demandstatus,
+      });
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      // Handle notification when the app is opened from a terminated state or background
-      // String? pageId = message.data['pageid'];
-      // if (pageId == "1") {
-      String? pageId = message.data['pageid'];
-      // String? pageId = message.data['pageid'];
-      String? bookingId = message.data['booking_id'];
-      String? bookingProviderId = message.data['booking_provider_id'];
-      String? serviceName = message.data['service_name'];
-      String? username = message.data['username'];
-      String? bookingDate = message.data['booking_date'];
-      String? bookingAddress = message.data['booking_address'];
+      pageId = message.data['pageid'];
+      bookingId = message.data['booking_id'];
+      bookingProviderId = message.data['booking_provider_id'];
+      serviceName = message.data['service_name'];
+      username = message.data['username'];
+      bookingDate = message.data['booking_date'];
+      bookingAddress = message.data['booking_address'];
+      demandstatus = message.data['booking_status'];
+      print('The status is        : $demandstatus');
 
       print(bookingAddress);
       // Do something with the received data
       // For example, navigate to the booking details screen
-      Get.toNamed(
-        ConsRoutes.bookingDecision,
-        arguments: {
-          'booking_id': bookingId,
-          'booking_provider_id': bookingProviderId,
-          'service_name': serviceName,
-          'username': username,
-          'booking_date': bookingDate,
-          'booking_address': bookingAddress,
-        },
-      );
+      navigateToAppropriateScreen({
+        'booking_id': bookingId,
+        'booking_provider_id': bookingProviderId,
+        'service_name': serviceName,
+        'username': username,
+        'booking_date': bookingDate,
+        'booking_address': bookingAddress,
+        'booking_status': demandstatus,
+      });
       // }
     });
   }
@@ -123,6 +149,7 @@ class HomeScreenControllerImp extends HomeScreenController {
   tokenUpdate() async {
     statusRequest = StatusRequest.loading;
     var response = await tokenUpdateData.postTokenUpdate(userId, myToken);
+    print(myToken);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

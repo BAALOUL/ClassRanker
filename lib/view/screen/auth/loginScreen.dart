@@ -83,24 +83,43 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: _loginController.phoneNumberController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Phone Number',
+            const Text(
+              "Sign in",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: TextField(
+                controller: _loginController.phoneNumberController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  suffixIcon: const Icon(Icons.phone),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  labelText: 'Phone number',
+                ),
               ),
             ),
-            const SizedBox(height: 16.0),
-            TextField(
-              controller: _loginController.otpController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'OTP',
+            const SizedBox(height: 5.0),
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: TextField(
+                controller: _loginController.otpController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  suffixIcon: const Icon(Icons.arrow_forward),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  labelText: 'OTP',
+                ),
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 20.0),
             CustomButton(
               text: 'Login',
               onPressed: () {

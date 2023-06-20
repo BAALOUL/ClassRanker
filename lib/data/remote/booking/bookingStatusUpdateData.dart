@@ -5,10 +5,12 @@ class BookingStatusUpdateData {
   Crud crud;
   BookingStatusUpdateData(this.crud);
 
-  postBookingStatusUpdate(String bookingId, String bookingStatus) async {
+  postBookingStatusUpdate(
+      String bookingId, String bookingStatus, String reason) async {
     var response = await crud.postData(Links.bookingStatusUpdate, {
       "booking_id": bookingId,
       "booking_status": bookingStatus,
+      "booking_reason": reason
     });
     return response.fold((l) => l, (r) => r);
   }

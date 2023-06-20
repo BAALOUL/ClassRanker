@@ -15,7 +15,7 @@ enum OrderStatus { all, completed, current, canceled, rejected, pending }
 abstract class OrdersByProviderController extends GetxController {
   initData();
   getData();
-  statusUpdate(String bookingId, String status);
+  statusUpdate(String bookingId, String status, String selectedReason);
   goToBookingMessage();
   onStatusSelected(OrderStatus status);
 }
@@ -90,21 +90,21 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
   }
 
   @override
-  statusUpdate(bookingId, status) async {
-    //print("Boooooooking Id : $bookingId \n Status :  $status\n");
+  statusUpdate(bookingId, status, selectedReason) async {
     statusRequest = StatusRequest.loading;
-    update();
+    //update();
     var response = await bookingStatusUpdateData.postBookingStatusUpdate(
-        bookingId, status);
+        bookingId, status, selectedReason);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         //getData();
         onStatusSelected(selectedStatus);
-        Get.defaultDialog(
+        /*Get.defaultDialog(
           title: "Status $status successfully",
           content: const Text("Custom Content"),
-        );
+        );*/
+        Get.offAllNamed(ConsRoutes.homescreen);
       } else {
         Get.defaultDialog(title: "ُWarning", middleText: "Error");
         statusRequest = StatusRequest.failure;

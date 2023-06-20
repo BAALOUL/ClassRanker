@@ -34,6 +34,7 @@ class ConsRoutes {
   static const String bookingDecision = "/bookingdecision";
   static const String bookingsByUser = "/bookingsbyuser";
   static const String problemDescriptionScreen = "/problemdescriptionscreen";
+  static const String providerAnswer = "/provideranswer";
 
   static const String addReview = "/addreviewscreen";
 

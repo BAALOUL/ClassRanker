@@ -1,4 +1,5 @@
 import 'package:ecommerce_store/controller/booking/bookingByUserController.dart';
+import 'package:ecommerce_store/view/screen/booking/rejectionDialog.dart';
 import 'package:ecommerce_store/view/widgets/spacingBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,17 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
   const BookingsByUserView({
     Key? key,
   }) : super(key: key);
+
+  void _showRejectionDialog(
+      BuildContext context, String bookingId, String status, String provId) {
+    RejectionDialog.show(context, (selectedReason) {
+      BookingsByUserControllerImp controller =
+          Get.find<BookingsByUserControllerImp>();
+      print(
+          "Boooooooking Id : $bookingId \n Status :  $status \n provId: $provId \n reason: $selectedReason");
+      controller.statusUpdate(bookingId, status, provId, selectedReason);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +177,8 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                                     booking['booking_id'],
                                                     "completed",
                                                     booking[
-                                                        'booking_provider_id']);
+                                                        'booking_provider_id'],
+                                                    "");
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 primary: Colors
@@ -178,7 +191,8 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                             width: 90,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                controller.statusUpdate(
+                                                _showRejectionDialog(
+                                                    context,
                                                     booking['booking_id'],
                                                     "canceled",
                                                     booking[

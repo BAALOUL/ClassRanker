@@ -12,7 +12,8 @@ enum BookingStatus { all, completed, current, canceled, rejcted, pending }
 abstract class BookingsByUserController extends GetxController {
   initData();
   getData();
-  statusUpdate(String bookingId, String status, String providerid);
+  statusUpdate(String bookingId, String status, String providerid,
+      String selectedReason);
   goToBookingMessage();
   onStatusSelected(BookingStatus status);
   goToReview(String providerId);
@@ -29,6 +30,7 @@ class BookingsByUserControllerImp extends BookingsByUserController {
   late String userId;
   List bookingsList = [];
   List<dynamic> filteredBookings = [];
+  //late String selectedreason = "";
 
   // Selected status property
   BookingStatus selectedStatus = BookingStatus.all;
@@ -87,22 +89,24 @@ class BookingsByUserControllerImp extends BookingsByUserController {
   }
 
   @override
-  statusUpdate(bookingId, status, providerid) async {
-    //print("Boooooooking Id : $bookingId \n Status :  $status\n");
+  statusUpdate(bookingId, status, providerid, selectedReason) async {
+    print(
+        "Boooooooking Id : $bookingId \n Status :  $status \n provId: $providerid \n reason: $selectedReason");
     statusRequest = StatusRequest.loading;
     update();
     var response = await bookingStatusUpdateData.postBookingStatusUpdate(
-        bookingId, status);
+        bookingId, status, selectedReason);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        getData();
+        //getData();
         /*Get.defaultDialog(
           title: "Status updated successfully",
           content: const Text(""),
         );*/
         // print('the provider Id : $providerid');
-        goToReview(providerid);
+        //goToReview(providerid);
+        Get.offAllNamed(ConsRoutes.homescreen);
       } else {
         Get.defaultDialog(title: "ُWarning", middleText: "Error");
         statusRequest = StatusRequest.failure;
@@ -113,7 +117,7 @@ class BookingsByUserControllerImp extends BookingsByUserController {
 
   @override
   goToReview(providerId) {
-    Get.offAll(ConsRoutes.addReview,
+    Get.toNamed(ConsRoutes.addReview,
         arguments: {"userId": userId, "providerId": providerId});
   }
 }

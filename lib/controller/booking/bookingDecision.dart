@@ -2,10 +2,10 @@ import 'package:ecommerce_store/core/class/statusRequest.dart';
 import 'package:ecommerce_store/data/remote/booking/bookingStatusUpdateData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../core/constant/consRoutes.dart';
 import '../../core/functions/handingDataController.dart';
 
 abstract class BookingDecisionController extends GetxController {
-  //bookingStatusUpdate(String bookingId, String status, String providerid);
   bookingStatus(String status);
   initData();
 }
@@ -21,12 +21,14 @@ class BookingDecisionControllerImp extends BookingDecisionController {
   late String username = "";
   late String bookingDate = "";
   late String bookingAddress = "";
+  late String demandStatus = "";
+  late String selectedReason = '';
 
   @override
   bookingStatus(status) async {
     statusRequest = StatusRequest.loading;
     var response = await bookingStatusUpdateData.postBookingStatusUpdate(
-        bookingId, status);
+        bookingId, status, selectedReason);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -37,10 +39,13 @@ class BookingDecisionControllerImp extends BookingDecisionController {
             backgroundColor: const Color.fromARGB(255, 62, 185, 84),
           );
         } else if (status == 'rejected') {
-          Get.snackbar('Service demand rejected',
-              'The service demand has been rejected.',
-              backgroundColor: const Color.fromARGB(255, 185, 62, 62));
+          Get.snackbar(
+            'Service demand rejected',
+            'The service demand has been rejected.',
+            backgroundColor: const Color.fromARGB(255, 185, 62, 62),
+          );
         }
+        Get.offAllNamed(ConsRoutes.homescreen);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -64,6 +69,8 @@ class BookingDecisionControllerImp extends BookingDecisionController {
       username = arguments['username'];
       bookingDate = arguments['booking_date'];
       bookingAddress = arguments['booking_address'];
+      demandStatus = arguments['booking_status'];
+      print("Id: $bookingId, date: $bookingDate, status: $demandStatus");
     }
   }
 }

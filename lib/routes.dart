@@ -10,6 +10,7 @@ import 'package:ecommerce_store/view/screen/booking/bookingMessage.dart';
 import 'package:ecommerce_store/view/screen/booking/bookingSummray.dart';
 import 'package:ecommerce_store/view/screen/booking/bookingsByUserView.dart';
 import 'package:ecommerce_store/view/screen/booking/problemDescriptionScreen.dart';
+import 'package:ecommerce_store/view/screen/booking/providerAnswer.dart';
 import 'package:ecommerce_store/view/screen/forgetPassword/forgetPassWord.dart';
 import 'package:ecommerce_store/view/screen/auth/langugeChange.dart';
 import 'package:ecommerce_store/view/screen/auth/login.dart';
@@ -64,8 +65,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: ConsRoutes.bookingSummary, page: () => const BookingSummary()),
   GetPage(
       name: ConsRoutes.bookingsByUser, page: () => const BookingsByUserView()),
-  GetPage(
-      name: ConsRoutes.bookingDecision, page: () => const BookingDecision()),
+  GetPage(name: ConsRoutes.bookingDecision, page: () => BookingDecision()),
   GetPage(
       name: ConsRoutes.problemDescriptionScreen,
       page: () => const ProblemDescriptionScreen()),
@@ -102,4 +102,5 @@ List<GetPage<dynamic>>? routes = [
       name: ConsRoutes.providerAdd,
       page: () => const ProviderInformationView()),
   GetPage(name: ConsRoutes.addReview, page: () => AddReviewScreen()),
+  GetPage(name: ConsRoutes.providerAnswer, page: () => const ProviderAnswer()),
 ];

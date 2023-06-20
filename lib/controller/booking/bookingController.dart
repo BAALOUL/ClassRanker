@@ -77,7 +77,7 @@ class BookingControllerImp extends BookingController {
     provName = providerModel.providername!;
     serviceName = Get.arguments['serviceName'];
     servId = Get.arguments['serviceId'];
-    status = "current";
+    status = "pending";
   }
 
   @override
