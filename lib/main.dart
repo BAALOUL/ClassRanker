@@ -1,6 +1,7 @@
 import 'package:ecommerce_store/bindings/initialBinding.dart';
 import 'package:ecommerce_store/core/localization/localization.dart';
 import 'package:ecommerce_store/core/localization/localizationController.dart';
+import 'package:ecommerce_store/view/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       translations: MyLocalization(),
       title: 'Flutter Demo'.tr,
       locale: controller.language,
-      theme: ThemeData(
+      theme: theme(),
+      /*theme: ThemeData(
         fontFamily: "Cairo",
         textTheme: const TextTheme(
             headline1: TextStyle(
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
                 color: ConsColors.black),
             bodyText1: TextStyle(fontSize: 15, color: ConsColors.grey)),
         primarySwatch: Colors.blue,
-      ),
+      )*/
       initialBinding: InitialBinding(),
       getPages: routes,
     );

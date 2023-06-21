@@ -61,8 +61,8 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
                       const SpacingBar(),
 
                       // the third section
-                      const ProviderContacts(),
-                      const SpacingBar(),
+                      // const ProviderContacts(),
+                      //const SpacingBar(),
 
                       const ServiceStatics(),
 

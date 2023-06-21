@@ -47,4 +47,6 @@ class ConsRoutes {
   static const String contactUsScreen = "/contactusscreen";
 
   static const String ordersByProvider = "/orderbyprovider";
+
+  static const String otpScreen = "/otpscreen";
 }

@@ -24,6 +24,7 @@ import 'package:ecommerce_store/view/screen/home/homeUser.dart';
 import 'package:ecommerce_store/view/screen/home/profileType.dart';
 import 'package:ecommerce_store/view/screen/onboadring.dart';
 import 'package:ecommerce_store/view/screen/orders/ordersByProviderView.dart';
+import 'package:ecommerce_store/view/screen/otp/otp_screen.dart';
 import 'package:ecommerce_store/view/screen/propertie/propertie.dart';
 import 'package:ecommerce_store/view/screen/propertie/propertiesDetails.dart';
 import 'package:ecommerce_store/view/screen/providers/providerAdd.dart';
@@ -103,4 +104,5 @@ List<GetPage<dynamic>>? routes = [
       page: () => const ProviderInformationView()),
   GetPage(name: ConsRoutes.addReview, page: () => AddReviewScreen()),
   GetPage(name: ConsRoutes.providerAnswer, page: () => const ProviderAnswer()),
+  GetPage(name: ConsRoutes.otpScreen, page: () => const OtpScreen()),
 ];
