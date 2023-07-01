@@ -17,9 +17,11 @@ class ServicesControllerImp extends ServicesController {
   List servicesList = [];
   late String serviceName;
   late String sectid;
+  late String sectionName;
   @override
   initData() {
     sectid = Get.arguments['sectionId'];
+    sectionName = Get.arguments['sectionName'];
     getData(sectid);
   }
 

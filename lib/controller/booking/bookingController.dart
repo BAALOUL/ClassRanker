@@ -223,6 +223,7 @@ class BookingControllerImp extends BookingController {
       // Handle any errors
       // //print('Error: $e');
     }
+    update();
   }
 
 // choose Location from the map
@@ -260,6 +261,7 @@ class BookingControllerImp extends BookingController {
         duration: Duration(seconds: 3),
       );
     }
+    update();
   }
 
   // continue to the next screen

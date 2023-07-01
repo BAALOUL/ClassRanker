@@ -1,3 +1,4 @@
+import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,71 @@ class ShowSections extends GetView<SectionsControllerImp> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: SingleChildScrollView(
+        child: GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.sectionsList.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.8, // Adjust the aspect ratio as needed
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 8,
+          ),
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                controller.goToServices(
+                  controller.sectionsList[index]['section_id'],
+                  controller.sectionsList[index]['section_name'],
+                );
+              },
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 110,
+                      width: 130,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: const BorderSide(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(30),
+                          child: Image.network(
+                            '${Links.sections}/${controller.sectionsList[index]['section_image']}',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      "${controller.sectionsList[index]['section_name']}",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: ConsColors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+
+    /*Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -70,6 +136,6 @@ class ShowSections extends GetView<SectionsControllerImp> {
           );
         },
       ),
-    );
+    );*/
   }
 }

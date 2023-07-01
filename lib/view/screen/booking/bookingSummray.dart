@@ -6,10 +6,17 @@
 
 // ignore_for_file: unnecessary_string_escapes
 import 'package:ecommerce_store/controller/booking/bookingController.dart';
+import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:ecommerce_store/view/screen/booking/bookingButton.dart';
+import 'package:ecommerce_store/view/screen/booking/components/radiusSimpleText.dart';
 import 'package:ecommerce_store/view/screen/home/titleCustom.dart';
+import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../widgets/auth/customButton.dart';
+import '../../widgets/simpleTextField.dart';
+import '../../widgets/titleCustomBig.dart';
 
 class BookingSummary extends StatelessWidget {
   //final List<Review> reviewList;
@@ -21,144 +28,85 @@ class BookingSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(BookingControllerImp());
     return Scaffold(
+      appBar: AppBar(
+        title: const FirstRowBackArrow(),
+        backgroundColor: ConsColors.blueWhite,
+        elevation: 0.0,
+        automaticallyImplyLeading: false,
+      ),
       body: GetBuilder<BookingControllerImp>(
           builder: (controller) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: ListView(
-                  children: [
-                    const TitleCustom(
-                      title: "Booking Summary",
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      'The service',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      color: ConsColors.blueWhite,
+                      height: 150,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SizedBox(height: 8),
+                          Text(
+                            'Booking summary',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: ConsColors.blue),
+                          ),
+                          SizedBox(height: 8),
+                        ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.serviceName,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    //************************************** */
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'The provider',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    margin: const EdgeInsets.only(top: 60),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40),
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.provName,
-                      style: const TextStyle(fontSize: 14),
-                    ), //*************************************  */
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'The Customer',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.customerName,
-                      style: const TextStyle(fontSize: 14),
-                    ), //*************************************  */
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Date',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.dateSelected,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    //****************   */  Location
-
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Location',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.adress,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Problem description',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.description,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-
-                    const SizedBox(
-                      height: 60,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: ListView(
                       children: [
-                        const SizedBox(
-                          width: 1,
+                        const TitleCustomBig(title: "The service"),
+                        RadiusSimpleText(text: controller.serviceName),
+                        const TitleCustomBig(title: "The provider"),
+                        RadiusSimpleText(text: controller.provName),
+                        const TitleCustomBig(title: "The customer"),
+                        RadiusSimpleText(text: controller.customerName),
+                        const TitleCustomBig(title: "Date"),
+                        RadiusSimpleText(text: controller.dateSelected),
+                        const TitleCustomBig(title: "Location"),
+                        RadiusSimpleText(text: controller.adress),
+                        const TitleCustomBig(title: "Problem description"),
+                        RadiusSimpleText(
+                          text: controller.description,
+                          height: 70,
                         ),
-                        BookingButton(
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 50.0, right: 50, top: 20, bottom: 15),
+                          child: CustomButton(
                             text: "Submit",
                             onPressed: () {
                               controller.booking();
-                            }),
-                        const SizedBox(
-                          width: 1,
+                            },
+                            fontWeight: FontWeight.bold,
+                            size: 20,
+                          ),
                         ),
                       ],
-                    )
-                  ],
-                ),
-              )),
+                    ),
+                  ),
+                ],
+              ))),
     );
   }
 }

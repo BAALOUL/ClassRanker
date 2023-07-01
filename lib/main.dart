@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
       translations: MyLocalization(),
       title: 'Flutter Demo'.tr,
       locale: controller.language,
-      theme: theme(),
-      /*theme: ThemeData(
-        fontFamily: "Cairo",
+      //theme: theme(),
+      theme: ThemeData(
+        fontFamily: "Poppins",
         textTheme: const TextTheme(
             headline1: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                 color: ConsColors.black),
             bodyText1: TextStyle(fontSize: 15, color: ConsColors.grey)),
         primarySwatch: Colors.blue,
-      )*/
+      ),
       initialBinding: InitialBinding(),
       getPages: routes,
     );

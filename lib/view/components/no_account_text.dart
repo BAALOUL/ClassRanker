@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constant/consColors.dart';
 import '../constants.dart';
 import '../size_config.dart';
 
@@ -22,8 +23,9 @@ class NoAccountText extends StatelessWidget {
           child: Text(
             "Sign Up",
             style: TextStyle(
-                fontSize: getProportionateScreenWidth(16),
-                color: kPrimaryColor),
+              fontSize: getProportionateScreenWidth(16),
+              color: ConsColors.blue,
+            ),
           ),
         ),
       ],

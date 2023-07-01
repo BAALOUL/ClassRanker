@@ -1,3 +1,9 @@
+import 'package:ecommerce_store/core/constant/consColors.dart';
+import 'package:ecommerce_store/view/screen/home/titleCustom.dart';
+import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:ecommerce_store/view/widgets/radiusText.dart';
+import 'package:ecommerce_store/view/widgets/spacingBar.dart';
+import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,13 +23,25 @@ class SelectDate extends GetView<BookingControllerImp> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: 150,
-              height: 36,
+              width: 160,
+              height: 45,
               child: DropdownSearch<String>(
+                dropdownSearchDecoration: const InputDecoration(
+                  //labelText: 'Select Date',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    borderSide:
+                        BorderSide(color: ConsColors.yellow, width: 2.0),
+                  ),
+                  filled: true,
+                  fillColor: ConsColors.blueWhite,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                ),
                 mode: Mode.MENU,
                 items: const [
                   "Today",
-                  "Tommorow",
+                  "Tomorrow",
                   "This week",
                   "Next week",
                   "Next month",
@@ -33,18 +51,16 @@ class SelectDate extends GetView<BookingControllerImp> {
                   print('Selected item: $selectedItem');
                   controller.updateDate(selectedItem!);
                 },
-                selectedItem: "Tommorow",
+                selectedItem: "Tomorrow",
               ),
-            ),
-            // text or
-
-            const Text(
-              'or',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
 
             // picker date
-            ElevatedButton(
+            SizedBox(
+              width: 160,
+              height: 45,
+              child: CustomButton(
+                text: "Pick a date",
                 onPressed: () {
                   showDatePicker(
                     context: context,
@@ -62,34 +78,14 @@ class SelectDate extends GetView<BookingControllerImp> {
                     }
                   });
                 },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 148, 64, 72)),
-                child: const Text('Pick a date')),
+              ),
+            ),
           ],
         ),
         const SizedBox(
           height: 30,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              controller.dateSelected,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 17, 159, 39),
-                fontFamily: 'Cairo', // Use the 'Cairo' font family
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            )
-          ],
-        ),
+        RadiusText(text: controller.dateSelected),
         const SizedBox(height: 16.0),
       ],
     );

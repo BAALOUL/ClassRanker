@@ -1,7 +1,9 @@
+import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/booking/bookingController.dart';
+import '../../../widgets/radiusText.dart';
 
 class GetLocation extends GetView<BookingControllerImp> {
   const GetLocation({super.key});
@@ -11,47 +13,34 @@ class GetLocation extends GetView<BookingControllerImp> {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              width: 35,
-              height: 35,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.yellow,
-              ),
-              child: const CircleAvatar(
-                backgroundColor: Colors.transparent,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '2',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
+            CustomButton(
+              text: "Current",
+              onPressed: () {
+                controller.getCurrentLocation();
+              },
+              iconAssetPath: 'assets/screens/booking/gps.png',
             ),
-            const SizedBox(
-              width: 8,
-            ),
-            const Text(
-              'Select your Location:',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
+            CustomButton(
+              text: "Map",
+              onPressed: () {
+                controller.chooseLocationFromMap();
+              },
+              iconAssetPath: 'assets/screens/booking/map.png',
             ),
           ],
         ),
-        const SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ElevatedButton.icon(
+        const SizedBox(
+          height: 30,
+        ),
+        RadiusText(text: "Location: ${controller.adress}")
+      ],
+    );
+  }
+}
+
+ /*ElevatedButton.icon(
                 onPressed: () {
                   // Add code to get current position
                   controller.getCurrentLocation();
@@ -68,12 +57,8 @@ class GetLocation extends GetView<BookingControllerImp> {
                 icon: const Icon(Icons.my_location),
                 label: const Text('Current'),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 148, 64, 72))),
-            const Text(
-              'or',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton.icon(
+                    backgroundColor: Color.fromARGB(255, 148, 64, 72))),*/
+            /*ElevatedButton.icon(
               onPressed: () {
                 // Add code to choose from map
                 controller.chooseLocationFromMap();
@@ -83,9 +68,4 @@ class GetLocation extends GetView<BookingControllerImp> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 148, 64, 72)),
             )
-          ],
-        ),
-      ],
-    );
-  }
-}
+          */

@@ -1,27 +1,57 @@
+import 'dart:ffi';
+
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final Function()? onPressed;
   final String text;
-  const CustomButton({super.key, required this.text, this.onPressed});
+  final String? iconAssetPath;
+  final FontWeight fontWeight;
+  final double height;
+  final double size;
+
+  const CustomButton({
+    Key? key,
+    required this.text,
+    this.onPressed,
+    this.iconAssetPath,
+    this.fontWeight = FontWeight.normal,
+    this.height = 50.0,
+    this.size = 18.0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+      height: height,
+      width: 160,
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: ConsColors.primary,
+        color: ConsColors.yellow,
       ),
       child: MaterialButton(
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: const TextStyle(
-              color: ConsColors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (iconAssetPath != null) // Render the icon only if it is provided
+              Image.asset(
+                iconAssetPath!,
+                width: 24, // Adjust the width as per your requirement
+                height: 24, // Adjust the height as per your requirement
+              ),
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: TextStyle(
+                color: ConsColors.blue,
+                fontSize: size,
+                fontWeight: fontWeight,
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,9 +16,9 @@ class ServiceStatics extends GetView<ProviderByIdControllerImp> {
         const Text(
           'Services statistics',
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: ConsColors.blue),
         ),
         const SizedBox(
           height: 8,

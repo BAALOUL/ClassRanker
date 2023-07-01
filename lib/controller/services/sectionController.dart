@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 abstract class SectionsController extends GetxController {
   getData();
   goToCategories(String sectionId);
-  goToServices(String sectID);
+  goToServices(String sectID, String sectionName);
 }
 
 class SectionsControllerImp extends SectionsController {
@@ -51,9 +51,8 @@ class SectionsControllerImp extends SectionsController {
   initData() {}
 
   @override
-  goToServices(String sectID) {
-    Get.toNamed(ConsRoutes.servicesView, arguments: {
-      "sectionId": sectID,
-    });
+  goToServices(sectID, sectionName) {
+    Get.toNamed(ConsRoutes.servicesView,
+        arguments: {"sectionId": sectID, "sectionName": sectionName});
   }
 }

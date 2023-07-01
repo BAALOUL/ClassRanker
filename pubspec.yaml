@@ -115,6 +115,11 @@ flutter:
     - assets/images/
     - assets/lottie/
     - assets/icons/
+    - assets/screens/sections/
+    - assets/screens/services/
+    - assets/screens/booking/
+    - assets/screens/description/
+    - assets/screens/bookingMessage/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -140,6 +145,11 @@ flutter:
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
           weight: 700
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+          weight: 700      
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

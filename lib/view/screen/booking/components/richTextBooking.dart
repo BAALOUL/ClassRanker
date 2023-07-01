@@ -9,6 +9,7 @@ class RichTextBooking extends GetView<BookingControllerImp> {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      textAlign: TextAlign.center,
       text: TextSpan(
         style: TextStyle(
           fontSize: 16,

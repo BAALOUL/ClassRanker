@@ -1,3 +1,4 @@
+import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
 
 class TitleCustom extends StatelessWidget {
@@ -10,13 +11,13 @@ class TitleCustom extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 15,
+          height: 10,
         ),
         Text(
           title,
           style: const TextStyle(
-            color: Color.fromARGB(255, 255, 114, 7),
-            fontSize: 18,
+            color: ConsColors.blue,
+            fontSize: 26,
             fontWeight: FontWeight.bold,
           ),
         ),

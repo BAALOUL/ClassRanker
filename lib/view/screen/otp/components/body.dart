@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_store/view/constants.dart';
 import 'package:ecommerce_store/view/size_config.dart';
+import 'package:get/get.dart';
 
+import '../../../../controller/auth/loginOTPController.dart';
+import '../../../../core/constant/consColors.dart';
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
+  final loginController = Get.put(LoginOTPControllerIMP());
+
+  Body({super.key});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,20 +21,20 @@ class Body extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: SizeConfig.screenHeight * 0.05),
+              SizedBox(height: SizeConfig.screenHeight * 0.08),
               Text(
                 "OTP Verification",
                 style: headingStyle,
               ),
-              Text("We sent your code to +1 898 860 ***"),
+              const Text("We sent your code to +974 4455 ***"),
               buildTimer(),
               OtpForm(),
-              SizedBox(height: SizeConfig.screenHeight * 0.1),
+              SizedBox(height: SizeConfig.screenHeight * 0.03),
               GestureDetector(
                 onTap: () {
                   // OTP code resend
                 },
-                child: Text(
+                child: const Text(
                   "Resend OTP Code",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
@@ -44,13 +50,15 @@ class Body extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("This code will expired in "),
+        const Text("This code will expired in "),
         TweenAnimationBuilder(
           tween: Tween(begin: 30.0, end: 0.0),
-          duration: Duration(seconds: 30),
+          duration: const Duration(seconds: 60),
           builder: (_, dynamic value, child) => Text(
             "00:${value.toInt()}",
-            style: TextStyle(color: kPrimaryColor),
+            style: const TextStyle(
+              color: ConsColors.yellow,
+            ),
           ),
         ),
       ],
