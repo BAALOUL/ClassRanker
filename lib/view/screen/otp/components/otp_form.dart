@@ -1,7 +1,9 @@
 import 'package:ecommerce_store/controller/auth/loginOTPController.dart';
+import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constant/consRoutes.dart';
 import '../../../components/default_button.dart';
 import '../../../size_config.dart';
 import '../../../constants.dart';
@@ -47,10 +49,16 @@ class OtpForm extends GetWidget<LoginOTPControllerIMP> {
                 ),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight * 0.1),
-          DefaultButton(
-            text: "Continue",
-            press: () => controller.login(),
+          SizedBox(height: SizeConfig.screenHeight * 0.07),
+          SizedBox(
+            width: 250,
+            child: CustomButton(
+                text: "Continue",
+                fontWeight: FontWeight.bold,
+                onPressed: () async {
+                  await controller.login();
+                  Get.offNamed(ConsRoutes.homescreen);
+                }),
           ),
         ],
       ),

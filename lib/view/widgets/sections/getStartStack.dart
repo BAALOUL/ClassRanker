@@ -36,6 +36,8 @@ class GetStartStack extends StatelessWidget {
                   TitleCustomSecond(title: 'Hi! ${controller.username}'),
                   const TitleCustomBig(
                     title: 'What service do \n you need?',
+                    size: 24,
+                    fontWeight: FontWeight.bold,
                   ),
                   ElevatedButton(
                     onPressed: () {

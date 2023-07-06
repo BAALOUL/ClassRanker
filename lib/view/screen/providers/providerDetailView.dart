@@ -81,7 +81,7 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
                       ),
                       Container(
                         padding: const EdgeInsets.all(15),
-                        margin: const EdgeInsets.only(top: 170),
+                        margin: const EdgeInsets.only(top: 180),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(

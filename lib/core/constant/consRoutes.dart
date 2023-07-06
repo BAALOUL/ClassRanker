@@ -21,7 +21,8 @@ class ConsRoutes {
   static const String providersView = "/providersview";
   static const String providerDetailView = "/providerdetailview";
   static const String providerSignInView = "/providersigninview";
-  static const String providerAdd = "/provideradd";
+  static const String providerServicesUpdateScreen =
+      "/ProviderServicesUpdateScreen";
 
   static const String servicesView = "/servicesview";
   static const String sectionsView = "/sectionsview";
@@ -49,4 +50,7 @@ class ConsRoutes {
   static const String ordersByProvider = "/orderbyprovider";
 
   static const String otpScreen = "/otpscreen";
+
+  static const String providerInfosScreen = "/providerinfosscreen";
+  static const String providerImageZoneScreen = "/providerimagezonescreen";
 }

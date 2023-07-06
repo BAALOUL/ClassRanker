@@ -35,42 +35,39 @@ class ShowServices extends GetView<ServicesControllerImp> {
                   controller.servicesList[index]['service_name'],
                 );
               },
-              child: Container(
-                child: ListView(
-                  children: [
-                    Container(
-                      height: 100,
-                      child: Card(
-                        color: ConsColors.blueWhite,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(
-                            color: ConsColors.grey,
-                          ), // Set the border color to yellow
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(28),
-                          child: Image.network(
-                            '${Links.services}/${controller.servicesList[index]['service_image']}',
-                            fit: BoxFit.fill,
-                          ),
+              child: ListView(
+                children: [
+                  SizedBox(
+                    height: 100,
+                    child: Card(
+                      color: ConsColors.blueWhite,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: const BorderSide(
+                          color: ConsColors.grey,
+                        ), // Set the border color to yellow
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(28),
+                        child: Image.network(
+                          '${Links.services}/${controller.servicesList[index]['service_image']}',
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    const SizedBox(
-                        height:
-                            8), // Add spacing between the image and the text
-                    Text(
-                      "${controller.servicesList[index]['service_name']}",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: ConsColors.blue,
-                      ),
+                  ),
+                  const SizedBox(
+                      height: 8), // Add spacing between the image and the text
+                  Text(
+                    "${controller.servicesList[index]['service_name']}",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: ConsColors.blue,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },

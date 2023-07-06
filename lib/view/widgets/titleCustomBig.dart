@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 
 class TitleCustomBig extends StatelessWidget {
   final title;
-  final double? size; // Change type to double?
+  final double? size;
+  final FontWeight fontWeight; // Change type to double?
 
-  const TitleCustomBig({Key? key, required this.title, this.size})
-      : super(key: key);
+  const TitleCustomBig({
+    Key? key,
+    required this.title,
+    this.size,
+    this.fontWeight = FontWeight.normal,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,11 @@ class TitleCustomBig extends StatelessWidget {
         ),
         Text(
           title,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: ConsColors.blue,
             fontSize: size ?? 22, // Use size if it's not null, otherwise use 22
-            //fontWeight: FontWeight.bold,
+            fontWeight: fontWeight,
             height: 1.9, // Adjust the height value as needed
           ),
         ),

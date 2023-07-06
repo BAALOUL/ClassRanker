@@ -1,37 +1,61 @@
-import 'dart:ffi';
-
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+// ignore: must_be_immutable
+class CustomButtonReaction extends StatelessWidget {
   final Function()? onPressed;
-  final String text;
+  String text;
   final String? iconAssetPath;
   final FontWeight fontWeight;
   final double height;
-  final double width;
   final double size;
+  final String status;
 
-  const CustomButton({
+  CustomButtonReaction({
     Key? key,
-    required this.text,
+    this.text = 'button',
     this.onPressed,
     this.iconAssetPath,
     this.fontWeight = FontWeight.normal,
-    this.height = 50.0,
-    this.width = 200.0,
-    this.size = 18.0,
+    this.height = 35.0,
+    this.size = 12.0,
+    this.status = "complete",
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Color borderColor = ConsColors.yellow;
+    Color backgroundColor = Colors.white;
+
+    if (status == "cancel") {
+      borderColor = ConsColors.yellow;
+      backgroundColor = Colors.white;
+      text = "canceled";
+    } else if (status == "complete") {
+      borderColor = ConsColors.yellow;
+      backgroundColor = ConsColors.yellow;
+      text = "Complete";
+    } else if (status == "accept") {
+      borderColor = Colors.green;
+      backgroundColor = Color.fromARGB(255, 152, 236, 87);
+      text = "Accept";
+    } else if (status == "reject") {
+      borderColor = Colors.red;
+      backgroundColor = Colors.white;
+      text = "Reject";
+    }
+
     return Container(
       height: height,
-      width: width,
+      width: 160,
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: ConsColors.yellow,
+        color: backgroundColor,
+        border: Border.all(
+          color: borderColor,
+          width: 2,
+        ),
       ),
       child: MaterialButton(
         onPressed: onPressed,

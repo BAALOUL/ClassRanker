@@ -1,3 +1,4 @@
+import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,20 +24,30 @@ class ProviderAnswer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color:
-                        controller.accepted == true ? Colors.green : Colors.red,
+                    color: controller.answer == "Completed" ||
+                            controller.answer == "Current"
+                        ? Colors.green
+                        : Colors.red,
                   ),
+                ),
+                const SizedBox(
+                  height: 6,
                 ),
                 Text(
                   controller.answerDetail,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 12),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                CustomButton(
-                  text: controller.buttonText,
+                SizedBox(
+                  width: 280,
+                  child: CustomButton(
+                    text: controller.buttonText,
+                    size: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -66,6 +77,10 @@ class ProviderAnswerController extends GetxController {
     init();
   }
 
+  void goToReview() {
+    Get.offAllNamed(ConsRoutes.addReview);
+  }
+
   void init() {
     var arguments = Get.arguments;
     if (arguments != null && arguments is Map<String, dynamic>) {
@@ -84,7 +99,7 @@ class ProviderAnswerController extends GetxController {
           buttonText = 'Pending';
           break;
         case 'current':
-          answer = 'current';
+          answer = 'Current';
           answerDetail = 'Your demand has been accepted';
           buttonText = 'Click to contact the provider';
           break;

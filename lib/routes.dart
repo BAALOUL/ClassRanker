@@ -27,7 +27,9 @@ import 'package:ecommerce_store/view/screen/orders/ordersByProviderView.dart';
 import 'package:ecommerce_store/view/screen/otp/otp_screen.dart';
 import 'package:ecommerce_store/view/screen/propertie/propertie.dart';
 import 'package:ecommerce_store/view/screen/propertie/propertiesDetails.dart';
-import 'package:ecommerce_store/view/screen/providers/providerAdd.dart';
+import 'package:ecommerce_store/view/screen/providers/providerImageZoneScreen.dart';
+import 'package:ecommerce_store/view/screen/providers/widgets/providerInfosScreen.dart';
+import 'package:ecommerce_store/view/screen/providers/providerServicesUpdateScreen.dart';
 import 'package:ecommerce_store/view/screen/providers/providerDetailView.dart';
 import 'package:ecommerce_store/view/screen/providers/providerSignInOTP.dart';
 import 'package:ecommerce_store/view/screen/providers/providersByServiceView.dart';
@@ -100,9 +102,17 @@ List<GetPage<dynamic>>? routes = [
       name: ConsRoutes.ordersByProvider,
       page: () => const OrdersByProviderView()),
   GetPage(
-      name: ConsRoutes.providerAdd,
-      page: () => const ProviderInformationView()),
+      name: ConsRoutes.providerServicesUpdateScreen,
+      page: () => const ProviderServicesUpdateScreen()),
   GetPage(name: ConsRoutes.addReview, page: () => AddReviewScreen()),
   GetPage(name: ConsRoutes.providerAnswer, page: () => const ProviderAnswer()),
   GetPage(name: ConsRoutes.otpScreen, page: () => OtpScreen()),
+
+  ///// to delete
+  GetPage(
+      name: ConsRoutes.providerInfosScreen,
+      page: () => const ProviderInfosScreen()),
+  GetPage(
+      name: ConsRoutes.providerImageZoneScreen,
+      page: () => ProviderImageZoneScreen()),
 ];

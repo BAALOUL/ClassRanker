@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/providers/providerByIDController.dart';
+import '../../../../core/constant/consColors.dart';
 
 class RatingSection extends GetView<ProviderByIdControllerImp> {
   //final ProviderModel providerModel;
@@ -33,10 +34,13 @@ class RatingSection extends GetView<ProviderByIdControllerImp> {
           ],
         ),
         //const SizedBox(width: 10),
-        const SizedBox(
+        SizedBox(
           child: Text(
-            'The services completed are 109.',
-            style: TextStyle(fontSize: 14),
+            'The services completed: ${controller.providerModel.providercompleted}.',
+            style: const TextStyle(
+                fontSize: 14,
+                color: ConsColors.blue,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ],

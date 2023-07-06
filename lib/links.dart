@@ -29,6 +29,10 @@ class Links {
   static const String providersByService =
       "$server/providers/providersByService.php";
   static const String providersByIdView = "$server/providers/providerById.php";
+  static const String providersPhotoUpdate =
+      "$server/providers/photoUpdateProvider.php";
+  static const String isProvider = "$server/providers/isProvider.php";
+  static const String providerUpdate = "$server/providers/providerUpdate.php";
 
   //service provider
   static const String serviceProviderUpdate =

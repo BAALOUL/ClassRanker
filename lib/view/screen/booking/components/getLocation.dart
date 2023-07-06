@@ -21,6 +21,8 @@ class GetLocation extends GetView<BookingControllerImp> {
                 controller.getCurrentLocation();
               },
               iconAssetPath: 'assets/screens/booking/gps.png',
+              height: 45,
+              width: 160,
             ),
             CustomButton(
               text: "Map",
@@ -28,6 +30,8 @@ class GetLocation extends GetView<BookingControllerImp> {
                 controller.chooseLocationFromMap();
               },
               iconAssetPath: 'assets/screens/booking/map.png',
+              height: 45,
+              width: 160,
             ),
           ],
         ),

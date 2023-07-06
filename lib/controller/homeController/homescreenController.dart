@@ -1,6 +1,7 @@
 import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/core/services/services.dart';
 import 'package:ecommerce_store/data/remote/auth/tokenUpdateData.dart';
+import 'package:ecommerce_store/data/remote/providers/isProviderData.dart';
 import 'package:ecommerce_store/view/screen/booking/bookingsByUserView.dart';
 import 'package:ecommerce_store/view/screen/orders/ordersByProviderView.dart';
 import 'package:ecommerce_store/view/screen/services/sectionsView.dart';
@@ -15,10 +16,13 @@ import '../../core/functions/handingDataController.dart';
 abstract class HomeScreenController extends GetxController {
   changePage(int currentpage);
   tokenUpdate();
+  isProvider(String user);
 }
 
 class HomeScreenControllerImp extends HomeScreenController {
   TokenUpdateData tokenUpdateData = TokenUpdateData(Get.find());
+  IsProviderData isProviderData = IsProviderData(Get.find());
+
   MyServices myServices = Get.find();
   late StatusRequest statusRequest;
   late FirebaseMessaging _firebaseMessaging;
@@ -64,6 +68,7 @@ class HomeScreenControllerImp extends HomeScreenController {
     _firebaseMessaging = FirebaseMessaging.instance;
     getToken();
     configureFCM();
+    isProvider(userId);
   }
 
   Future<void> getToken() async {
@@ -104,7 +109,7 @@ class HomeScreenControllerImp extends HomeScreenController {
       bookingDate = message.data['booking_date'];
       bookingAddress = message.data['booking_address'];
       demandstatus = message.data['booking_status'];
-      print('The status onMessage is -----------        : $demandstatus');
+      //print('The status onMessage is -----------        : $demandstatus');
       // Do something with the received data
       // For example, navigate to the booking details screen
       navigateToAppropriateScreen({
@@ -127,9 +132,9 @@ class HomeScreenControllerImp extends HomeScreenController {
       bookingDate = message.data['booking_date'];
       bookingAddress = message.data['booking_address'];
       demandstatus = message.data['booking_status'];
-      print('The status is        : $demandstatus');
+      //print('The status is        : $demandstatus');
 
-      print(bookingAddress);
+      //print(bookingAddress);
       // Do something with the received data
       // For example, navigate to the booking details screen
       navigateToAppropriateScreen({
@@ -149,10 +154,24 @@ class HomeScreenControllerImp extends HomeScreenController {
   tokenUpdate() async {
     statusRequest = StatusRequest.loading;
     var response = await tokenUpdateData.postTokenUpdate(userId, myToken);
-    print(myToken);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+
+  @override
+  isProvider(String user) async {
+    statusRequest = StatusRequest.loading;
+    var response = await isProviderData.getIsProviderData(userId);
+    statusRequest = handingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        print("Provider id is : ${response['provider_id']}");
       } else {
         statusRequest = StatusRequest.failure;
       }

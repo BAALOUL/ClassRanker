@@ -24,7 +24,7 @@ class SectionsView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: ListView(
                     children: [
-                      const FirstRow(),
+                      //const FirstRow(),
                       const GetStartStack(),
                       //************************** search service********************** */
                       Container(

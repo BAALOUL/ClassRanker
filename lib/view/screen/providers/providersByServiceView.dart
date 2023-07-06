@@ -120,10 +120,11 @@ class ProvidersByServiceView extends GetView<ProviderByServiceControllerImp> {
                                               ),
                                             ),
                                             Row(
-                                              children: const [
-                                                Icon(Icons.star,
+                                              children: [
+                                                const Icon(Icons.star,
                                                     color: Colors.yellow),
-                                                Text("5.0"),
+                                                Text(
+                                                    "${provider['provider_rating']}"),
                                               ],
                                             ),
                                           ],

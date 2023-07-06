@@ -4,11 +4,10 @@ import 'package:ecommerce_store/core/class/statusRequest.dart';
 import 'package:ecommerce_store/core/functions/handingDataController.dart';
 import 'package:ecommerce_store/data/remote/booking/bookingStatusUpdateData.dart';
 import 'package:ecommerce_store/data/remote/orders/ordersByProviderData.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce_store/core/services/services.dart';
 import 'package:get/get.dart';
 
 import '../../core/constant/consRoutes.dart';
-import '../../core/services/services.dart';
 
 enum OrderStatus { all, completed, current, canceled, rejected, pending }
 
@@ -18,6 +17,7 @@ abstract class OrdersByProviderController extends GetxController {
   statusUpdate(String bookingId, String status, String selectedReason);
   goToBookingMessage();
   onStatusSelected(OrderStatus status);
+  Future<void> refreshData();
 }
 
 class OrdersByProviderControllerImp extends OrdersByProviderController {
@@ -39,18 +39,14 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
   @override
   void onStatusSelected(OrderStatus status) {
     if (status == OrderStatus.all) {
-      // If "All" status is selected, show all bookings
       filteredOrders = ordersList;
     } else {
-      // Filter bookings based on selected status
       filteredOrders = ordersList.where((booking) {
         return booking['booking_status'] == status.toString().split('.').last;
       }).toList();
     }
 
-    //getData();
-    selectedStatus = status;
-    update(); // Notify the view to update the displayed bookings
+    update();
   }
 
   @override
@@ -92,24 +88,23 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
   @override
   statusUpdate(bookingId, status, selectedReason) async {
     statusRequest = StatusRequest.loading;
-    //update();
     var response = await bookingStatusUpdateData.postBookingStatusUpdate(
         bookingId, status, selectedReason);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        //getData();
         onStatusSelected(selectedStatus);
-        /*Get.defaultDialog(
-          title: "Status $status successfully",
-          content: const Text("Custom Content"),
-        );*/
         Get.offAllNamed(ConsRoutes.homescreen);
       } else {
-        Get.defaultDialog(title: "ُWarning", middleText: "Error");
+        Get.defaultDialog(title: "Warning", middleText: "Error");
         statusRequest = StatusRequest.failure;
       }
     }
     update();
+  }
+
+  @override
+  Future<void> refreshData() async {
+    await getData(); // Call the existing `getData()` method to refresh the data
   }
 }

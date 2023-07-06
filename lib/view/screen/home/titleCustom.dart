@@ -17,13 +17,10 @@ class TitleCustom extends StatelessWidget {
           title,
           style: const TextStyle(
             color: ConsColors.blue,
-            fontSize: 26,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(
-          height: 10,
-        )
       ],
     );
   }

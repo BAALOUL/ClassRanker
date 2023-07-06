@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/consRoutes.dart';
+import '../../../core/services/services.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -34,9 +37,7 @@ class SettingsView extends StatelessWidget {
             Get.toNamed(ConsRoutes.problemDescriptionScreen, arguments: {});
           }),
           const Divider(),
-          _buildTile(Icons.star, 'Rate Us povider Add', () {
-            Get.toNamed(ConsRoutes.providerAdd, arguments: {});
-          }),
+          _buildTile(Icons.star, 'Rate Us', () {}),
           const Divider(),
           _buildTile(Icons.description, 'Terms of Service', () {
             // Handle tile tap
@@ -47,7 +48,7 @@ class SettingsView extends StatelessWidget {
           }),
           const Divider(),
           _buildTile(Icons.question_answer, 'FAQs', () {
-            // Handle tile tap
+            Get.toNamed(ConsRoutes.providerImageZoneScreen, arguments: {});
           }),
           const Divider(),
           _buildTile(Icons.info, 'About Us', () {
@@ -59,7 +60,11 @@ class SettingsView extends StatelessWidget {
           }),
           const Divider(),
           _buildTile(Icons.logout, 'Logout', () {
-            // Handle tile tap
+            myServices.sharedPreferences.setString("providerImg", "");
+            myServices.sharedPreferences.setString("providerId", "");
+            SystemNavigator.pop();
+            //Get.offAllNamed(ConsRoutes.loginScrren);
+            //Get.toNamed(ConsRoutes.loginScrren);
           }),
         ],
       ),

@@ -28,7 +28,7 @@ class Body extends StatelessWidget {
               ),
               const Text("We sent your code to +974 4455 ***"),
               buildTimer(),
-              OtpForm(),
+              const OtpForm(),
               SizedBox(height: SizeConfig.screenHeight * 0.03),
               GestureDetector(
                 onTap: () {

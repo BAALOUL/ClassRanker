@@ -3,7 +3,6 @@ import 'package:ecommerce_store/core/class/handlingDataView.dart';
 import 'package:ecommerce_store/core/shared/appBarCustom.dart';
 import 'package:ecommerce_store/view/screen/home/offerZoneCustom.dart';
 import 'package:ecommerce_store/view/screen/home/titleCustom.dart';
-import 'package:ecommerce_store/view/screen/services/showSections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

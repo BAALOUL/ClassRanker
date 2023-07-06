@@ -1,8 +1,4 @@
 import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/view/screen/providers/controllers/imageHandler.dart';
-import 'package:ecommerce_store/view/screen/providers/widgets/imageZoneProvider.dart';
-import 'package:ecommerce_store/view/screen/providers/widgets/providerInfos.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/servicesChosingProvider.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
@@ -10,16 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/providers/providerServicesUpdateController.dart';
 import '../../widgets/sections/firstRowBackArrow.dart';
-import '../../widgets/spacingBar.dart';
 
-class ProviderInformationView
+class ProviderServicesUpdateScreen
     extends GetView<ProviderServicesUpdateControllerImp> {
-  const ProviderInformationView({Key? key}) : super(key: key);
+  const ProviderServicesUpdateScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ImageHandlerImp imageController = Get.put(ImageHandlerImp());
-
     Get.put(ProviderServicesUpdateControllerImp());
     return SafeArea(
       child: Scaffold(
@@ -40,7 +33,7 @@ class ProviderInformationView
                 color: ConsColors.blueWhite,
                 height: 150,
                 child: const TitleCustomBig(
-                  title: "Add provider",
+                  title: "Choose services",
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -61,20 +54,18 @@ class ProviderInformationView
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        const ProviderInfos(),
-                        const SizedBox(height: 16),
-                        const ImageZoneProvider(),
-                        const SpacingBar(),
+                        //const ProviderInfos(),
+                        //const ProviderInfosScreen(),
+                        //const SizedBox(height: 16),
+                        //const ImageZoneProvider(),
+                        //const SpacingBar(),
                         const ServicesChosingProvider(),
                         CustomButton(
-                          text: "Save me",
+                          text: "Save",
                           fontWeight: FontWeight.bold,
                           onPressed: () {
-                            print("photo being saved");
-                            //controller.saveProviderInformation();
-                            print("photo being updated");
-                            //await imageController.photoUpdate();
-                            print("photo update completed");
+                            controller.saveProviderServices();
+
                             //Get.offAllNamed(ConsRoutes.homescreen);
                           },
                         ),

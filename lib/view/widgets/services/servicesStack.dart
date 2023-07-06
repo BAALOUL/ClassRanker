@@ -35,6 +35,8 @@ class ServicesStack extends StatelessWidget {
                     width: Get.size.width * 0.5,
                     child: TitleCustomBig(
                       title: "${controller.sectionName} services",
+                      size: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox()

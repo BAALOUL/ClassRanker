@@ -15,4 +15,10 @@ class LoginScreenControllerIMP extends LoginScreenController {
   toOTPscreen(String ph) {
     Get.offAllNamed(ConsRoutes.otpScreen, arguments: {'phone': ph});
   }
+
+  @override
+  void onInit() {
+    phoneNumberController.text = '44';
+    super.onInit();
+  }
 }
