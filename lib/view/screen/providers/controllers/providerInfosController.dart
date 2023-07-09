@@ -89,6 +89,8 @@ class ProviderInfosControllerImp extends ProviderInfosController {
   @override
   savePersonalInformations(provId, name, nameAr, whatsapp, website) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await providerUpdateData.postProviderUpdateData(
         provId, name, nameAr, whatsapp, website);
     statusRequest = handingData(response);
@@ -126,6 +128,8 @@ class ProviderInfosControllerImp extends ProviderInfosController {
   @override
   getProviderById(prov) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await providerByIDViewData.getProviderDetailViewData(prov);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {

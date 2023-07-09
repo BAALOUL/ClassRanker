@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/consColors.dart';
+import '../../../links.dart';
 import '../../widgets/spacingBar.dart';
 
 class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
@@ -33,19 +34,6 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
 
     return SafeArea(
       child: Scaffold(
-        /*floatingActionButton: FloatingActionButton.large(
-          onPressed: () {
-            controller.goToBooking(
-                controller.serviceName, controller.serviceId);
-          },
-          child: const Text(
-            'Book Now',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),*/
         body: GetBuilder<ProviderByIdControllerImp>(
             builder: (controller) => Container(
                   padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -105,11 +93,16 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
                               fontWeight: FontWeight.bold,
                             ),
                             const SpacingBar(),
-                            const RatingSection(),
+                            controller.providerModel.providerrating == "0"
+                                ? const Text("This customer has not rated yet.")
+                                : const RatingSection(),
                             const SpacingBar(),
                             const ServiceStatics(),
                             const SpacingBar(),
-                            const Reviews()
+                            controller.reviewsList.isEmpty
+                                ? const Center(
+                                    child: Text("No reviews currently"))
+                                : const Reviews()
                           ],
                         ),
                       ),
@@ -123,10 +116,11 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
                             shape: BoxShape.circle,
                             color: Colors.grey[300],
                           ),
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 80,
-                            backgroundImage:
-                                AssetImage('assets/images/person.png'),
+                            backgroundImage: NetworkImage(
+                              '${Links.providers}/${controller.providerModel.providerimage}',
+                            ),
                           ),
                         ),
                       ),

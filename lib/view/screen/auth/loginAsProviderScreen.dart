@@ -46,7 +46,7 @@ class LoginAsProviderController extends GetxController {
               .setString("phone", response['data']['phone']);
           //myServices.sharedPreferences.setString("step", "2");
           //data.addAll(response['data']);
-          Get.offNamed(ConsRoutes.homescreen);
+          Get.offNamed(ConsRoutes.homeProvider);
           //Get.offNamed(ConsRoutes.verefyCode);}
           //print(' provider **** ${response['data']['provider_user_id']}');
         } else {

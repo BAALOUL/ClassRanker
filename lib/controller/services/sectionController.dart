@@ -21,6 +21,8 @@ class SectionsControllerImp extends SectionsController {
   @override
   getData() async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await sectionsView.getSectionsListData();
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {

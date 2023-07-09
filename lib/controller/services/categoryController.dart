@@ -26,6 +26,8 @@ class CategoryControllerImp extends CategoryController {
   @override
   getData(sectionId) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await categoryView.getCategoryViewData(sectionId);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {

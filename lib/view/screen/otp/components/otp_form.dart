@@ -3,8 +3,6 @@ import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/constant/consRoutes.dart';
-import '../../../components/default_button.dart';
 import '../../../size_config.dart';
 import '../../../constants.dart';
 
@@ -57,8 +55,11 @@ class OtpForm extends GetWidget<LoginOTPControllerIMP> {
                 fontWeight: FontWeight.bold,
                 onPressed: () async {
                   await controller.login();
-                  Get.offNamed(ConsRoutes.homescreen);
                 }),
+            /*onPressed: () async {
+                  await controller.login();
+                  Get.offNamed(ConsRoutes.homescreen);
+                }),*/
           ),
         ],
       ),

@@ -1,12 +1,13 @@
+import 'package:ecommerce_store/controller/auth/testController.dart';
 import 'package:ecommerce_store/data/remote/auth/loginOtpData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/class/statusRequest.dart';
-import '../../../core/constant/consRoutes.dart';
 import '../../../core/functions/handingDataController.dart';
 import '../../../core/services/services.dart';
 import '../../../data/remote/providers/getProviderIdData.dart';
+import '../../core/constant/consRoutes.dart';
 
 abstract class LoginOTPController extends GetxController {
   getProviderId(String userId);
@@ -16,6 +17,7 @@ abstract class LoginOTPController extends GetxController {
 
 class LoginOTPControllerIMP extends GetxController
     implements LoginOTPController {
+  TestController testController = Get.put(TestController());
   LoginOtpData loginOtpData = LoginOtpData(Get.find());
   GetProviderIdData getProviderIdData = GetProviderIdData(Get.find());
 
@@ -26,8 +28,8 @@ class LoginOTPControllerIMP extends GetxController
   List<FocusNode> otpFocusNodes = List.generate(4, (_) => FocusNode());
 
   MyServices myServices = Get.find();
-  late String providerid;
-  late String providerImg;
+  late String providerid = '';
+  late String providerImg = '';
   String phoneNumber = '';
   String otp = '';
 
@@ -61,24 +63,16 @@ class LoginOTPControllerIMP extends GetxController
   Future<void> getProviderId(String userId) async {
     try {
       statusRequest = StatusRequest.loading;
+      update();
       var response = await getProviderIdData.getProviderIdData(userId);
       statusRequest = handingData(response);
+      print("step 2 initiat the shared");
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           providerid = response['data'][0]['provider_id'];
           providerImg = response['data'][0]['provider_image'];
-
-          if (providerid != "") {
-            myServices.sharedPreferences.setString("providerId", providerid);
-            myServices.sharedPreferences.setString("providerImg", providerImg);
-          } else {
-            myServices.sharedPreferences.setString("providerId", "");
-            myServices.sharedPreferences.setString("providerImg", "");
-          }
-          String providerImgSh =
-              myServices.sharedPreferences.get('providerImg').toString();
-          print(
-              "provider Id : $providerid + and his photo is : $providerImg \n and the shared is : $providerImgSh \n-- in loginOTPController");
+          print("provider Id is : $providerid     loginOTP");
+          await initShared(providerid);
         } else {
           statusRequest = StatusRequest.failure;
         }
@@ -91,6 +85,25 @@ class LoginOTPControllerIMP extends GetxController
     }
   }
 
+  Future<void> initShared(String prov) async {
+    if (prov != "") {
+      myServices.sharedPreferences.setString("mode", "providerMode");
+      myServices.sharedPreferences.setString("providerId", providerid);
+      myServices.sharedPreferences.setString("providerImg", providerImg);
+    } else {
+      myServices.sharedPreferences.setString("mode", "userMode");
+      myServices.sharedPreferences.setString("providerId", "");
+      myServices.sharedPreferences.setString("providerImg", "");
+    }
+    String providerImgSh =
+        myServices.sharedPreferences.get('providerImg').toString();
+
+    print(
+        " step 3 : the mode is : ${myServices.sharedPreferences.get('mode').toString()}");
+    print(
+        "provider Id : $providerid + and his photo is : $providerImg \n and the shared is : $providerImgSh \n-- in loginOTPController");
+  }
+
   @override
   Future<void> login() async {
     statusRequest = StatusRequest.loading;
@@ -99,6 +112,7 @@ class LoginOTPControllerIMP extends GetxController
     var response = await loginOtpData.postuser(phoneNumber, otp);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
+      print("step 1 response : $response");
       if (response['status'] == "success") {
         //print(response);
         myServices.sharedPreferences
@@ -111,6 +125,10 @@ class LoginOTPControllerIMP extends GetxController
             .setString("phone", response['data']['phone']);
 
         await getProviderId(response['data']['id']);
+        await initShared(providerid);
+        print("step 4 going to home screen");
+        testController.printToken('Hi Ali BAALOUL');
+        Get.offNamed(ConsRoutes.homeProvider);
       } else {
         statusRequest = StatusRequest.failure;
       }

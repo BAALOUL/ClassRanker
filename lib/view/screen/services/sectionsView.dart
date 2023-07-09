@@ -1,6 +1,5 @@
 import 'package:ecommerce_store/core/class/handlingDataView.dart';
 import 'package:ecommerce_store/view/screen/services/showSections.dart';
-import 'package:ecommerce_store/view/widgets/sections/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/textFieldCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

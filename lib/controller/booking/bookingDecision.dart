@@ -27,6 +27,8 @@ class BookingDecisionControllerImp extends BookingDecisionController {
   @override
   bookingStatus(status) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await bookingStatusUpdateData.postBookingStatusUpdate(
         bookingId, status, selectedReason);
     statusRequest = handingData(response);
@@ -45,7 +47,7 @@ class BookingDecisionControllerImp extends BookingDecisionController {
             backgroundColor: const Color.fromARGB(255, 185, 62, 62),
           );
         }
-        Get.offAllNamed(ConsRoutes.homescreen);
+        Get.offAllNamed(ConsRoutes.homeProvider);
       } else {
         statusRequest = StatusRequest.failure;
       }

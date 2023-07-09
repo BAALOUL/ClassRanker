@@ -11,6 +11,7 @@ class Links {
   static const String verifyOTP = "$server/auth/verifyOTP.php";
   static const String tokenUpdate = "$server/auth/tokenUpdate.php";
   static const String getProviderId = "$server/auth/getProviderId.php";
+  static const String signupOTP = "$server/auth/signupOTP.php";
 
   // Services
   static const String servicesView = "$server/services/servicesSelect.php";
@@ -33,6 +34,7 @@ class Links {
       "$server/providers/photoUpdateProvider.php";
   static const String isProvider = "$server/providers/isProvider.php";
   static const String providerUpdate = "$server/providers/providerUpdate.php";
+  static const String providerCreate = "$server/providers/add.php";
 
   //service provider
   static const String serviceProviderUpdate =

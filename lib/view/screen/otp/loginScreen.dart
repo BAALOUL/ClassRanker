@@ -13,6 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(LoginScreenControllerIMP());
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -88,9 +89,7 @@ class LoginScreen extends StatelessWidget {
                     text: 'SEND OTP',
                     fontWeight: FontWeight.bold,
                     onPressed: () {
-                      String ph = '';
-                      ph = loginController.phoneNumberController.text;
-                      loginController.toOTPscreen(ph);
+                      loginController.signUp();
                     },
                   )
                 ],

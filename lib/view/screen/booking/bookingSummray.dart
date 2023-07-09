@@ -7,15 +7,12 @@
 // ignore_for_file: unnecessary_string_escapes
 import 'package:ecommerce_store/controller/booking/bookingController.dart';
 import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/view/screen/booking/bookingButton.dart';
 import 'package:ecommerce_store/view/screen/booking/components/radiusSimpleText.dart';
-import 'package:ecommerce_store/view/screen/home/titleCustom.dart';
 import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/auth/customButton.dart';
-import '../../widgets/simpleTextField.dart';
 import '../../widgets/titleCustomBig.dart';
 
 class BookingSummary extends StatelessWidget {
@@ -75,17 +72,41 @@ class BookingSummary extends StatelessWidget {
                     ),
                     child: ListView(
                       children: [
-                        const TitleCustomBig(title: "The service"),
+                        const TitleCustomBig(
+                          title: "Service",
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         RadiusSimpleText(text: controller.serviceName),
-                        const TitleCustomBig(title: "The provider"),
+                        const TitleCustomBig(
+                          title: "Provider",
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         RadiusSimpleText(text: controller.provName),
-                        const TitleCustomBig(title: "The customer"),
+                        const TitleCustomBig(
+                          title: "Customer",
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         RadiusSimpleText(text: controller.customerName),
-                        const TitleCustomBig(title: "Date"),
+                        const TitleCustomBig(
+                          title: "Date",
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         RadiusSimpleText(text: controller.dateSelected),
-                        const TitleCustomBig(title: "Location"),
+                        const TitleCustomBig(
+                          title: "Location",
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         RadiusSimpleText(text: controller.adress),
-                        const TitleCustomBig(title: "Problem description"),
+                        const TitleCustomBig(
+                          title: "Problem description",
+                          size: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         RadiusSimpleText(
                           text: controller.description,
                           height: 70,

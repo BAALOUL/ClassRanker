@@ -57,6 +57,8 @@ class BookingsByUserControllerImp extends BookingsByUserController {
     bookingsList.clear();
     filteredBookings.clear();
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await bookingByUserData.getBookingsByUserListData(userId);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -106,7 +108,7 @@ class BookingsByUserControllerImp extends BookingsByUserController {
         );*/
         // print('the provider Id : $providerid');
         //goToReview(providerid);
-        Get.offAllNamed(ConsRoutes.homescreen);
+        Get.offAllNamed(ConsRoutes.homeProvider);
       } else {
         Get.defaultDialog(title: "ُWarning", middleText: "Error");
         statusRequest = StatusRequest.failure;

@@ -94,7 +94,7 @@ class BookingMessage extends StatelessWidget {
                             child: CustomButton(
                               text: "Go Home",
                               onPressed: () {
-                                Get.offAllNamed(ConsRoutes.homescreen,
+                                Get.offAllNamed(ConsRoutes.homeProvider,
                                     arguments: {});
                               },
                               fontWeight: FontWeight.bold,

@@ -1,4 +1,5 @@
 import 'package:ecommerce_store/bindings/initialBinding.dart';
+import 'package:ecommerce_store/controller/localController.dart';
 import 'package:ecommerce_store/core/localization/localization.dart';
 import 'package:ecommerce_store/core/localization/localizationController.dart';
 import 'package:ecommerce_store/view/theme.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LocalizationController controller = Get.put(LocalizationController());
+    LocalController localController = Get.put(LocalController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: MyLocalization(),

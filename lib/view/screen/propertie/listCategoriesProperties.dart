@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/controller/homeController/homeController.dart';
+import 'package:ecommerce_store/controller/homeController/homeUserController.dart';
 import 'package:ecommerce_store/controller/properties/propertiesController.dart';
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:ecommerce_store/links.dart';

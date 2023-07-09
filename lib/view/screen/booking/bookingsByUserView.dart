@@ -6,6 +6,7 @@ import 'package:ecommerce_store/view/widgets/spacingBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../../../core/class/handlingDataView.dart';
 import '../home/titleCustom.dart';
@@ -54,7 +55,7 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                 style: TextStyle(color: ConsColors.blue),
                               ),
                               BookingStatus.completed: Text(
-                                ' Completed ',
+                                'Finished',
                                 style: TextStyle(color: ConsColors.blue),
                               ),
                               BookingStatus.current: Text(
@@ -62,7 +63,11 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                 style: TextStyle(color: ConsColors.blue),
                               ),
                               BookingStatus.canceled: Text(
-                                '  Canceled  ',
+                                'Canceled ',
+                                style: TextStyle(color: ConsColors.blue),
+                              ),
+                              BookingStatus.pending: Text(
+                                '  Pending  ',
                                 style: TextStyle(color: ConsColors.blue),
                               ),
                             },
@@ -134,7 +139,9 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                             ),
                                           ),
                                           Text(
-                                            "Done: ${booking['booking_savetime']}",
+                                            //  "Done: ${Jiffy(booking['booking_savetime'], "yyyy/MM/dd").format("MMMM do yyyy, h:mm:ss a")}",
+                                            Jiffy(booking['booking_savetime'])
+                                                .fromNow(),
                                             style: const TextStyle(
                                               fontSize: 14,
                                             ),
@@ -172,6 +179,17 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.red,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    if (booking['booking_status'] == 'pending')
+                                      const Center(
+                                        child: Text(
+                                          'Pending',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: ConsColors.yellow,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),

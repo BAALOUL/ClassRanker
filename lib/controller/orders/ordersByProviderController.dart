@@ -54,6 +54,8 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
     ordersList.clear();
     filteredOrders.clear();
     statusRequest = StatusRequest.loading;
+    update();
+
     var response =
         await ordersByProviderData.getOrdersByProviderListData(provId);
     statusRequest = handingData(response);
@@ -88,13 +90,15 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
   @override
   statusUpdate(bookingId, status, selectedReason) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await bookingStatusUpdateData.postBookingStatusUpdate(
         bookingId, status, selectedReason);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         onStatusSelected(selectedStatus);
-        Get.offAllNamed(ConsRoutes.homescreen);
+        Get.offAllNamed(ConsRoutes.homeProvider);
       } else {
         Get.defaultDialog(title: "Warning", middleText: "Error");
         statusRequest = StatusRequest.failure;

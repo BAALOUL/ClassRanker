@@ -70,8 +70,9 @@ class BookingControllerImp extends BookingController {
   @override
   initData() {
     userId = myServices.sharedPreferences.getString("userId").toString();
-    customerName =
+    String customer =
         myServices.sharedPreferences.getString("username").toString();
+    customer == "" ? customerName = "Customer$userId" : customerName = customer;
     ProviderModel providerModel = Get.arguments['provider_model'];
     provId = providerModel.providerid!;
     provName = providerModel.providername!;

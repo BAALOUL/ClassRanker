@@ -36,7 +36,8 @@ class CustomButton extends StatelessWidget {
       child: MaterialButton(
         onPressed: onPressed,
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          //mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (iconAssetPath != null) // Render the icon only if it is provided
               Image.asset(

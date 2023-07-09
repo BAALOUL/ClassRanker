@@ -47,6 +47,22 @@ class ProviderAnswer extends StatelessWidget {
                     text: controller.buttonText,
                     size: 14,
                     fontWeight: FontWeight.bold,
+                    onPressed: () {
+                      if (controller.demandStatus == 'pending') {
+                        Get.offAndToNamed(ConsRoutes.providerContactsView);
+                      }
+                      if (controller.demandStatus == 'current') {
+                        Get.toNamed(ConsRoutes.providerContactsView);
+                      }
+                      if (controller.demandStatus == 'rejected' ||
+                          controller.demandStatus == 'canceled') {
+                        Get.toNamed(ConsRoutes.homeProvider);
+                      }
+                      if (controller.demandStatus == 'completed') {
+                        Get.toNamed(ConsRoutes.addReview);
+                      }
+                      //Get.toNamed(ConsRoutes.providerContactsView);
+                    },
                   ),
                 ),
               ],
@@ -72,14 +88,60 @@ class ProviderAnswerController extends GetxController {
   late String bookingAddress = "";
   late String demandStatus = "";
 
-  @override
-  void onInit() {
-    init();
+  void goToReview() {
+    Get.toNamed(ConsRoutes.addReview);
   }
 
-  void goToReview() {
-    Get.offAllNamed(ConsRoutes.addReview);
+  void goToContact() {
+    Get.toNamed(ConsRoutes.providerContactsView);
   }
+
+  void goToHomeProvider() {
+    Get.toNamed(ConsRoutes.homeProvider);
+  }
+
+  void screenChoosing() {
+    print("status is : ----- $demandStatus");
+    if (demandStatus == 'pending') {
+      goToContact();
+    }
+    if (demandStatus == 'current') {
+      goToContact();
+    }
+    if (demandStatus == 'rejected' || demandStatus == 'canceled') {
+      goToHomeProvider();
+    }
+    if (demandStatus == 'completed') {
+      goToContact();
+    }
+  }
+  /* print("I am here 33333333333333 $demandStatus");
+    switch (demandStatus) {
+      case 'pending':
+        Get.offAllNamed(ConsRoutes.addReview);
+        break;
+      case 'current':
+        // Go to contacts
+        Get.offAllNamed(ConsRoutes.providerContactsView);
+        break;
+      case 'rejected':
+        // choose an other provider
+        Get.offAllNamed(ConsRoutes.homeProvider);
+        break;
+      case 'canceled':
+        // choose an other provider
+        Get.offAllNamed(ConsRoutes.homeProvider);
+        break;
+      // rate
+      case 'completed':
+        Get.offAllNamed(ConsRoutes.addReview);
+
+        break;
+      default:
+        break;
+      // Handle other cases here
+      // Do something else
+    }*/
 
   void init() {
     var arguments = Get.arguments;
@@ -129,5 +191,11 @@ class ProviderAnswerController extends GetxController {
     } else {
       accepted = false;
     }
+  }
+
+  @override
+  void onInit() {
+    init();
+    super.onInit();
   }
 }

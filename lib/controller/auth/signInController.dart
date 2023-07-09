@@ -85,6 +85,6 @@ class SinInControllerImp extends SignInController {
 
   @override
   toHome() {
-    Get.offAllNamed(ConsRoutes.homescreen);
+    Get.offAllNamed(ConsRoutes.homeProvider);
   }
 }

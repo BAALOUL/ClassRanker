@@ -83,8 +83,10 @@ class ProviderImageZoneScreen extends StatelessWidget {
                           Icons.camera_alt,
                           color: ConsColors.blue,
                         ),
-                        onPressed: () {
-                          _pickImage();
+                        onPressed: () async {
+                          print("start to pick");
+                          await _pickImage();
+                          print("picked file");
                         },
                       ),
                     ),
@@ -99,9 +101,9 @@ class ProviderImageZoneScreen extends StatelessWidget {
                 size: 18,
                 width: 120,
                 height: 40,
-                onPressed: () {
-                  imageController.photoUpdate();
-                  Get.snackbar("Saved with success", "");
+                onPressed: () async {
+                  await imageController.photoUpdate("new");
+                  print(" go back test");
                 },
               ),
             ],
@@ -111,13 +113,14 @@ class ProviderImageZoneScreen extends StatelessWidget {
     );
   }
 
-  void _pickImage() async {
+  Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final PickedFile? image =
         await picker.getImage(source: ImageSource.gallery);
-
+    print(" image picked : $image");
     if (image != null) {
       final File file = File(image.path);
+      print(" file picked : $file");
       imageController.providerImage.value = file;
     }
   }

@@ -30,6 +30,8 @@ class ProviderByServiceControllerImp extends ProviderByServiceController {
   @override
   getData(serid) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response =
         await providersByServiceViewData.getProvidersByServiceListData(serid);
     statusRequest = handingData(response);

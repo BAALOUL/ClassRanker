@@ -17,6 +17,8 @@ class BookingSummaryControllerImp extends BookingSummaryController {
   @override
   getData() async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await bookingSummaryViewData.getBookingSummary();
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {

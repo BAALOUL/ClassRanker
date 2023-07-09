@@ -13,22 +13,24 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import '../../core/class/statusRequest.dart';
 import '../../core/functions/handingDataController.dart';
 
-abstract class HomeScreenController extends GetxController {
+abstract class HomeUserController extends GetxController {
   changePage(int currentpage);
   tokenUpdate();
   isProvider(String user);
 }
 
-class HomeScreenControllerImp extends HomeScreenController {
+class HomeUserControllerImp extends HomeUserController {
   TokenUpdateData tokenUpdateData = TokenUpdateData(Get.find());
   IsProviderData isProviderData = IsProviderData(Get.find());
 
   MyServices myServices = Get.find();
+  late String mode;
   late StatusRequest statusRequest;
   late FirebaseMessaging _firebaseMessaging;
   late String userId;
   late String myToken = '';
   int currentPage = 0;
+
   List<Widget> listPages = [
     const SectionsView(),
     const BookingsByUserView(),
@@ -36,11 +38,16 @@ class HomeScreenControllerImp extends HomeScreenController {
     const SettingsView(),
   ];
 
-  List<String> buttonBottomAppBar = ["Home", "Bookings", "Orders", "Settings"];
+  List<String> buttonBottomAppBar = [
+    "Home",
+    "Bookings",
+    "Messages",
+    "Settings"
+  ];
   List<IconData> listIconBottomAppBar = [
     Icons.home,
     Icons.book,
-    Icons.person,
+    Icons.message,
     Icons.settings
   ];
 
@@ -63,9 +70,13 @@ class HomeScreenControllerImp extends HomeScreenController {
   @override
   void onInit() {
     super.onInit();
+    print("step1");
+    mode = myServices.sharedPreferences.get('mode').toString();
     userId = myServices.sharedPreferences.get('userId').toString();
     FirebaseMessaging.instance.subscribeToTopic("users");
+    print("step2");
     _firebaseMessaging = FirebaseMessaging.instance;
+    print("step3");
     getToken();
     configureFCM();
     isProvider(userId);
@@ -167,6 +178,8 @@ class HomeScreenControllerImp extends HomeScreenController {
   @override
   isProvider(String user) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await isProviderData.getIsProviderData(userId);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {

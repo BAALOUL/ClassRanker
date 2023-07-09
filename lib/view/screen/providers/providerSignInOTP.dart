@@ -18,7 +18,7 @@ class ProviderSignInView extends StatelessWidget {
     loading.value = true;
     if (otpVerified) {
       // navigate to home screen
-      Get.toNamed(ConsRoutes.homescreen); //offallnamed
+      Get.toNamed(ConsRoutes.homeProvider); //offallnamed
     } else {
       Get.snackbar('Error', 'Invalid OTP');
     }

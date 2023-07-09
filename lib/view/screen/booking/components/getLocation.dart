@@ -38,7 +38,9 @@ class GetLocation extends GetView<BookingControllerImp> {
         const SizedBox(
           height: 30,
         ),
-        RadiusText(text: "Location: ${controller.adress}")
+        GetBuilder<BookingControllerImp>(
+            builder: ((controller) =>
+                RadiusText(text: "Location: ${controller.adress}")))
       ],
     );
   }

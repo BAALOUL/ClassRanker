@@ -14,7 +14,7 @@ class ConsRoutes {
   static const String testView = "/testview";
   static const String successSignUp = "/successSignUp";
   static const String home = "/home";
-  static const String homescreen = "/homescreen";
+  static const String homeProvider = "/homeprovider";
   static const String properties = "/properties";
   static const String propertiesDetails = "/propertiesDetails";
 
@@ -23,6 +23,12 @@ class ConsRoutes {
   static const String providerSignInView = "/providersigninview";
   static const String providerServicesUpdateScreen =
       "/ProviderServicesUpdateScreen";
+  static const String providerInfosScreen = "/providerinfosscreen";
+  static const String providerImageZoneScreen = "/providerimagezonescreen";
+  static const String providerContactsView = "/providercontacstview";
+  static const String providerAcountWelcome = "/provideracountwelcome";
+  static const String providerInfosCreateScreen = "/providerInfosCreateScreen";
+  static const String providerPhotoCreateScreen = "/providerPhotoCreateScreen";
 
   static const String servicesView = "/servicesview";
   static const String sectionsView = "/sectionsview";
@@ -50,7 +56,4 @@ class ConsRoutes {
   static const String ordersByProvider = "/orderbyprovider";
 
   static const String otpScreen = "/otpscreen";
-
-  static const String providerInfosScreen = "/providerinfosscreen";
-  static const String providerImageZoneScreen = "/providerimagezonescreen";
 }

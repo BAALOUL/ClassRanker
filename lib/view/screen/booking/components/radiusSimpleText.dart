@@ -9,7 +9,7 @@ class RadiusSimpleText extends StatelessWidget {
   const RadiusSimpleText({
     Key? key,
     required this.text,
-    this.height = 45,
+    this.height = 40,
     this.fontWeight = FontWeight.normal,
   }) : super(key: key);
 
@@ -29,7 +29,7 @@ class RadiusSimpleText extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: ConsColors.black,
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: fontWeight,
           ),
         ),

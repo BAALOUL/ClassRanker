@@ -81,10 +81,12 @@ class ProvidersByServiceView extends GetView<ProviderByServiceControllerImp> {
                               final provider = controller.providersList[index];
 
                               return InkWell(
-                                onTap: () {
+                                onTap: () async {
+                                  print("step 1 prov");
                                   controller.providerModel =
                                       ProviderModel.fromJson(
                                           controller.providersList[index]);
+                                  print("step 2 detail");
                                   controller.goToProviderDetails(
                                       controller.providerModel,
                                       controller.serviceName);
@@ -123,10 +125,15 @@ class ProvidersByServiceView extends GetView<ProviderByServiceControllerImp> {
                                               children: [
                                                 const Icon(Icons.star,
                                                     color: Colors.yellow),
-                                                Text(
-                                                    "${provider['provider_rating']}"),
+                                                Text(provider['provider_rating']
+                                                            .toString() ==
+                                                        "0"
+                                                    ? "-"
+                                                    : provider[
+                                                            'provider_rating']
+                                                        .toString()),
                                               ],
-                                            ),
+                                            )
                                           ],
                                         ),
                                         subtitle: Column(

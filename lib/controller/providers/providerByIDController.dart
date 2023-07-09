@@ -22,6 +22,7 @@ class ProviderByIdControllerImp extends ProviderByIdController {
   List reviewsList = [];
 
   late String provId;
+  late String currentRoute;
   late String userId;
   late String serviceId;
   late ProviderModel providerModel;
@@ -30,13 +31,15 @@ class ProviderByIdControllerImp extends ProviderByIdController {
   @override
   getData(pid) async {
     statusRequest = StatusRequest.loading;
+    update();
     var response =
         await reviewsByProviderViewData.getReviewsByProviderViewData(pid);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         reviewsList.addAll(response['data']);
-        //print("list of revies : $reviewsList");
+        print("list of revies +++++++++++++++++++++: $reviewsList");
+        update();
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -53,6 +56,7 @@ class ProviderByIdControllerImp extends ProviderByIdController {
   @override
   initData() {
     // get the user id
+    print("step 1 init");
     userId = myServices.sharedPreferences.get('userId').toString();
     providerModel = Get.arguments['provider_model'];
     serviceName = Get.arguments['serviceName'];
@@ -60,6 +64,8 @@ class ProviderByIdControllerImp extends ProviderByIdController {
 
     provId = providerModel.providerid!;
 
+    currentRoute = Get.currentRoute;
+    print("step 2 current route $currentRoute");
     getData(provId);
   }
 

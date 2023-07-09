@@ -35,6 +35,8 @@ class ServicesControllerImp extends ServicesController {
   getData(sect) async {
     servicesList.clear();
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await servicesCatViewData.getServicesCatViewData(sect);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {

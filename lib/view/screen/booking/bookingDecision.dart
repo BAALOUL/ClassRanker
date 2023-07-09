@@ -3,9 +3,128 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/booking/bookingDecision.dart';
+import '../../../core/constant/consColors.dart';
+import '../../widgets/customButtonReaction.dart';
+import '../../widgets/titleCustomBig.dart';
+import 'components/radiusSimpleText.dart';
 
 class BookingDecision extends StatelessWidget {
   BookingDecision({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put<BookingDecisionControllerImp>(BookingDecisionControllerImp());
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                color: ConsColors.blueWhite,
+                height: 150,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    SizedBox(height: 25),
+                    Text(
+                      'You have new request',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: ConsColors.blue),
+                    ),
+                    SizedBox(height: 8),
+                  ],
+                ),
+              ),
+            ),
+            GetBuilder<BookingDecisionControllerImp>(
+              builder: (controller) => SafeArea(
+                child: Container(
+                  padding: const EdgeInsets.all(25),
+                  margin: const EdgeInsets.only(top: 80),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                  ),
+                  child: ListView(
+                    children: [
+                      const TitleCustomBig(
+                        title: "Service",
+                        size: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      RadiusSimpleText(text: controller.serviceName),
+                      const TitleCustomBig(
+                        title: "Customer",
+                        size: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      RadiusSimpleText(text: controller.username),
+                      const TitleCustomBig(
+                        title: "Date",
+                        size: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      RadiusSimpleText(text: controller.bookingDate),
+                      const TitleCustomBig(
+                        title: "Location",
+                        size: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      RadiusSimpleText(text: controller.bookingAddress),
+
+                      //************************************** */
+
+                      const SizedBox(height: 60),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            child: CustomButtonReaction(
+                              text: "Accept",
+                              status: "accept",
+                              height: 45,
+                              size: 18,
+                              fontWeight: FontWeight.bold,
+                              onPressed: () {
+                                controller.bookingStatus("current");
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 150,
+                            child: CustomButtonReaction(
+                              text: "Reject",
+                              status: "reject",
+                              height: 45,
+                              size: 18,
+                              fontWeight: FontWeight.bold,
+                              onPressed: () {
+                                _showRejectionDialog(context);
+                              },
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   void _showRejectionDialog(BuildContext context) {
     showDialog(
@@ -93,141 +212,6 @@ class BookingDecision extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Get.put<BookingDecisionControllerImp>(BookingDecisionControllerImp());
-    return Scaffold(
-      body: GetBuilder<BookingDecisionControllerImp>(
-        builder: (controller) => SafeArea(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: ListView(
-              children: [
-                const TitleCustom(
-                  title: "You have a new request",
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'The service',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  controller.serviceName,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                //************************************** */
-                const SizedBox(height: 20),
-                const Text(
-                  'Customer name',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  controller.username,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Date',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  controller.bookingDate,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                //****************   */  Location
-                const SizedBox(height: 20),
-                const Text(
-                  'Location',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  controller.bookingAddress,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                const SizedBox(height: 60),
-                const Text(
-                  'The customer can cancel the request in the event of no response within half an hour from the time of receiving the request',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Color.fromARGB(255, 173, 36, 36),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 60),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      width: 150,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          controller.bookingStatus("current");
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: const Text(
-                          'Accept',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 150,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _showRejectionDialog(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: const Text(
-                          'Reject',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

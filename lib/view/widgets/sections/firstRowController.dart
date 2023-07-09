@@ -9,6 +9,7 @@ abstract class FirstRowController extends GetxController {
 class FirstRowControllerImp extends FirstRowController {
   MyServices myServices = Get.find();
   late String providerImg;
+  late String mode;
 
   @override
   getDataFromShared() {
@@ -17,7 +18,9 @@ class FirstRowControllerImp extends FirstRowController {
 
   @override
   initData() {
+    print("S4 from image update : ");
     providerImg = myServices.sharedPreferences.get('providerImg').toString();
+    mode = myServices.sharedPreferences.get('mode').toString();
     update();
     print("In the FirstRow the image is : $providerImg");
   }

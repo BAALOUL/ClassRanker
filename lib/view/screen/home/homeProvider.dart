@@ -1,18 +1,19 @@
-import 'package:ecommerce_store/controller/homeController/homescreenController.dart';
+import 'package:ecommerce_store/controller/homeController/homeProviderController.dart';
 import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/view/screen/home/buttonForBottomBar.dart';
+import 'package:ecommerce_store/view/screen/providers/controllers/providerInfosController.dart';
+import 'package:ecommerce_store/view/screen/providers/providerInfosScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/sections/firstRow.dart';
+import '../../widgets/firstRow.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeProvider extends StatelessWidget {
+  const HomeProvider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeScreenControllerImp());
+    Get.put(HomeProviderControllerImp());
     return Scaffold(
       appBar: AppBar(
         title: const FirstRow(),
@@ -20,14 +21,22 @@ class HomeScreen extends StatelessWidget {
         elevation: 0.0,
         automaticallyImplyLeading: false,
       ),
-      body: GetBuilder<HomeScreenControllerImp>(
+      body: GetBuilder<HomeProviderControllerImp>(
           builder: (controller) => Scaffold(
               floatingActionButton: FloatingActionButton(
-                backgroundColor: ConsColors.yellow,
+                backgroundColor: ConsColors.blueWhite,
                 onPressed: () {
-                  Get.toNamed(ConsRoutes.addReview);
+                  Get.to(() => const ProviderInfosScreen(),
+                      binding: BindingsBuilder(() {
+                    Get.put(ProviderInfosControllerImp());
+                  }));
                 },
-                child: const Icon(Icons.shopping_basket_sharp),
+                child: Image.asset(
+                  'assets/screens/sections/switch.png',
+                  width: 45,
+                  height: 45,
+                  fit: BoxFit.contain,
+                ),
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,

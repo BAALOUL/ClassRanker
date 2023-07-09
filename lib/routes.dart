@@ -18,8 +18,7 @@ import 'package:ecommerce_store/view/screen/forgetPassword/resetPassWord.dart';
 import 'package:ecommerce_store/view/screen/auth/signUp.dart';
 import 'package:ecommerce_store/view/screen/auth/successSignUp.dart';
 import 'package:ecommerce_store/view/screen/auth/verefyCode.dart';
-import 'package:ecommerce_store/view/screen/home/home.dart';
-import 'package:ecommerce_store/view/screen/home/homeScreen.dart';
+import 'package:ecommerce_store/view/screen/home/homeProvider.dart';
 import 'package:ecommerce_store/view/screen/home/homeUser.dart';
 import 'package:ecommerce_store/view/screen/home/profileType.dart';
 import 'package:ecommerce_store/view/screen/onboadring.dart';
@@ -27,8 +26,11 @@ import 'package:ecommerce_store/view/screen/orders/ordersByProviderView.dart';
 import 'package:ecommerce_store/view/screen/otp/otp_screen.dart';
 import 'package:ecommerce_store/view/screen/propertie/propertie.dart';
 import 'package:ecommerce_store/view/screen/propertie/propertiesDetails.dart';
+import 'package:ecommerce_store/view/screen/providers/ProviderContactView.dart';
+import 'package:ecommerce_store/view/screen/providers/providerAccountWelcome.dart';
 import 'package:ecommerce_store/view/screen/providers/providerImageZoneScreen.dart';
-import 'package:ecommerce_store/view/screen/providers/widgets/providerInfosScreen.dart';
+import 'package:ecommerce_store/view/screen/providers/providerInfosCreateScreen.dart';
+import 'package:ecommerce_store/view/screen/providers/providerInfosScreen.dart';
 import 'package:ecommerce_store/view/screen/providers/providerServicesUpdateScreen.dart';
 import 'package:ecommerce_store/view/screen/providers/providerDetailView.dart';
 import 'package:ecommerce_store/view/screen/providers/providerSignInOTP.dart';
@@ -85,8 +87,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: ConsRoutes.test, page: () => const Test()),
   GetPage(name: ConsRoutes.testView, page: () => const TestView()),
   GetPage(name: ConsRoutes.successSignUp, page: () => const SuccessSignUp()),
-  GetPage(name: ConsRoutes.home, page: () => const Home()),
-  GetPage(name: ConsRoutes.homescreen, page: () => const HomeScreen()),
+  GetPage(name: ConsRoutes.homeProvider, page: () => const HomeProvider()),
   GetPage(name: ConsRoutes.properties, page: () => const Properties()),
   GetPage(
       name: ConsRoutes.propertiesDetails,
@@ -115,4 +116,16 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: ConsRoutes.providerImageZoneScreen,
       page: () => ProviderImageZoneScreen()),
+
+  GetPage(
+      name: ConsRoutes.providerContactsView,
+      page: () => const ProviderContactView()),
+
+  GetPage(
+      name: ConsRoutes.providerAcountWelcome,
+      page: () => const ProviderAccountWelcomeScreen()),
+
+  GetPage(
+      name: ConsRoutes.providerInfosCreateScreen,
+      page: () => const ProviderInfosCreateScreen()),
 ];

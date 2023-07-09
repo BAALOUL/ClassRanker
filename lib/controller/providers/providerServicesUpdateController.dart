@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/class/statusRequest.dart';
+import '../../core/constant/consRoutes.dart';
 import '../../core/functions/handingDataController.dart';
 import '../../core/services/services.dart';
 import '../../data/remote/providers/providerDetailViewData.dart';
@@ -80,6 +81,8 @@ class ProviderServicesUpdateControllerImp
   @override
   void fetchSectionsAndServices() async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response = await sectionsServicesView.getSectionsAndServicesData();
 
     statusRequest = handingData(response);
@@ -115,6 +118,7 @@ class ProviderServicesUpdateControllerImp
           }
           sections.assignAll(fetchedSections);
           update(); // Trigger an update to refresh the screen
+          print("step 3 the sections: $sections");
         }
       } else {
         statusRequest = StatusRequest.failure;
@@ -143,12 +147,14 @@ class ProviderServicesUpdateControllerImp
   @override
   void saveProviderServices() async {
     statusRequest = StatusRequest.loading;
+    update();
+    print("s1 saving: $statusRequest");
     String slectServices = selectedServices
         .map((service) => service.serviceid)
         .toList()
         .toString();
 
-    //print('Selected Services ****: $slectServices');
+    print('s2 Selected Services ****: $slectServices');
     var response = await serviceProviderUpdateData
         .postServiceProviderUpdateDataUpdate(providerId, slectServices);
     statusRequest = handingData(response);
@@ -160,6 +166,8 @@ class ProviderServicesUpdateControllerImp
           backgroundColor: Colors.lime,
           snackPosition: SnackPosition.BOTTOM,
         );
+        Get.offAllNamed(ConsRoutes.homeProvider);
+        print("s3 saved: $statusRequest");
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -176,27 +184,29 @@ class ProviderServicesUpdateControllerImp
   }
 
   @override
-  initData() {
+  initData() async {
     userId = myServices.sharedPreferences.get('userId').toString();
 
     providerId = myServices.sharedPreferences.get('providerId').toString();
-    print("step1 provId : $providerId and user  $userId");
-    getServicesByProvider(providerId);
-    print("step2 get services :");
+    print("step 1 provId : $providerId and user  $userId");
+    await getServicesByProvider(providerId);
+    print("step 3 get services :");
     fetchSectionsAndServices();
-    print("step3 fetch services : ");
+    print("step 4 fetch services : ");
   }
 
   @override
-  getServicesByProvider(prov) async {
+  Future getServicesByProvider(prov) async {
     statusRequest = StatusRequest.loading;
+    update();
+
     var response =
         await selectServicesByProvider.getSelectServicesByProviderData(prov);
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         servicesByProvider = response['data'] ?? [];
-        // print('the 3 services by $providerId are: $servicesByProvider');
+        print('Step 2 the 3 services by $providerId are: $servicesByProvider');
       } else {
         statusRequest = StatusRequest.failure;
       }
