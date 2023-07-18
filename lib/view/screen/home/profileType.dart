@@ -1,5 +1,7 @@
-// ignore: file_names
 import 'package:ecommerce_store/controller/profileTypeController.dart';
+import 'package:ecommerce_store/core/constant/consColors.dart';
+import 'package:ecommerce_store/core/constant/consRoutes.dart';
+import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +17,8 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            const Text(
-              'Choose a profile type',
+            Text(
+              'Choose a profile type'.tr,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
@@ -24,12 +26,14 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
               ),
             ),
             const SizedBox(height: 10),
-            const Text('Are you looking for services or providing them?',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                )),
-            const SizedBox(height: 70),
+            Text(
+              'Are you looking for services \n or providing them?'.tr,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -38,10 +42,10 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                     controller.goToCustomerTrack();
                   },
                   child: Column(
-                    children: const [
+                    children: [
                       CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.blue,
+                        radius: 45,
+                        backgroundColor: ConsColors.yellow,
                         child: Icon(
                           Icons.person,
                           color: Colors.white,
@@ -51,7 +55,7 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                       Padding(
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
-                          "Customer",
+                          "Customer".tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -66,10 +70,10 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                     controller.goToProviderTrack();
                   },
                   child: Column(
-                    children: const [
+                    children: [
                       CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.green,
+                        radius: 45,
+                        backgroundColor: ConsColors.blue,
                         child: Icon(
                           Icons.business_center,
                           color: Colors.white,
@@ -79,7 +83,7 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                       Padding(
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
-                          "Provider",
+                          "Provider".tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -91,6 +95,19 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 50,
+            ),
+            CustomButton(
+              text: "Continue as Guest".tr,
+              size: 12,
+              height: 40,
+              width: 170,
+              fontWeight: FontWeight.bold,
+              onPressed: () {
+                Get.offAllNamed(ConsRoutes.homeGuest);
+              },
+            )
           ],
         ),
       ),

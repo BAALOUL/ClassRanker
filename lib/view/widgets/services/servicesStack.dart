@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/services/servicesController.dart';
+import '../../../core/services/services.dart';
 import '../titleCustomBig.dart';
 
 class ServicesStack extends StatelessWidget {
@@ -8,6 +9,8 @@ class ServicesStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
     final ServicesControllerImp controller = Get.put(ServicesControllerImp());
     return SizedBox(
       height: 250, // Adjust the height as needed
@@ -34,8 +37,10 @@ class ServicesStack extends StatelessWidget {
                   SizedBox(
                     width: Get.size.width * 0.5,
                     child: TitleCustomBig(
-                      title: "${controller.sectionName} services",
-                      size: 24,
+                      title: savedLang == "en"
+                          ? controller.sectionName + "services".tr
+                          : "services".tr + controller.sectionNameAr,
+                      size: savedLang == "en" ? 24 : 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

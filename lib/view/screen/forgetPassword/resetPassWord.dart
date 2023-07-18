@@ -1,10 +1,7 @@
 import 'package:ecommerce_store/controller/auth/signInController.dart';
 import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/core/functions/validinput.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
-import 'package:ecommerce_store/view/widgets/auth/customForgetPassword.dart';
-import 'package:ecommerce_store/view/widgets/auth/customTextSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +27,7 @@ class ResetPassWord extends StatelessWidget {
               ))
         ],
         title: Text(
-          "Reset password",
+          "Reset password".tr,
           style: Theme.of(context)
               .textTheme
               .headline1
@@ -42,12 +39,13 @@ class ResetPassWord extends StatelessWidget {
         child: ListView(
           children: [
             Text(
-              "Create new password",
+              "Create new password".tr,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             ),
             Text(
-              "Your new password must be different from previous used passwords.",
+              "Your new password must be different from previous used passwords."
+                  .tr,
               style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.center,
             ),
@@ -59,8 +57,8 @@ class ResetPassWord extends StatelessWidget {
               valid: (val) {
                 return validInput(val!, 5, 30, "password");
               },
-              hintText: 'Enter your new password',
-              labelText: "Password",
+              hintText: 'Enter your new password'.tr,
+              labelText: "Password".tr,
               iconData: Icons.email_outlined,
               mycontroller: controller.email,
             ),
@@ -72,19 +70,19 @@ class ResetPassWord extends StatelessWidget {
               valid: (val) {
                 return validInput(val!, 5, 30, "password");
               },
-              hintText: 'Confirm password',
-              labelText: "Password",
+              hintText: 'Confirm password'.tr,
+              labelText: "Password".tr,
               iconData: Icons.lock_outline,
               mycontroller: controller.password,
             ),
             const SizedBox(
               height: 20,
             ),
-            const Text("Both passwords must match."),
+            Text("Both passwords must match.".tr),
             const SizedBox(
               height: 40,
             ),
-            CustomButton(text: "Reset Password", onPressed: () {}),
+            CustomButton(text: "Reset Password".tr, onPressed: () {}),
           ],
         ),
       ),

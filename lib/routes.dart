@@ -3,6 +3,8 @@
 import 'package:ecommerce_store/core/middleware/myMiddleware.dart';
 import 'package:ecommerce_store/test.dart';
 import 'package:ecommerce_store/view/screen/auth/loginAsProviderScreen.dart';
+import 'package:ecommerce_store/view/screen/home/homeGuest.dart';
+import 'package:ecommerce_store/view/screen/home/splash.dart';
 import 'package:ecommerce_store/view/screen/otp/loginScreen.dart';
 import 'package:ecommerce_store/view/screen/booking/booking.dart';
 import 'package:ecommerce_store/view/screen/booking/bookingDecision.dart';
@@ -128,4 +130,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: ConsRoutes.providerInfosCreateScreen,
       page: () => const ProviderInfosCreateScreen()),
+  GetPage(name: ConsRoutes.splash, page: () => const SplashScreen()),
+
+  GetPage(name: ConsRoutes.homeGuest, page: () => const HomeGuest()),
 ];

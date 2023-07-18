@@ -10,7 +10,7 @@ import '../../data/model/providerModel.dart';
 abstract class ProviderByIdController extends GetxController {
   getData(String pid);
   initData();
-  goToBooking(String serviceName, String serviceId);
+  goToBooking(String serviceName, String serviceNameAr, String serviceId);
   goToReview();
 }
 
@@ -27,6 +27,7 @@ class ProviderByIdControllerImp extends ProviderByIdController {
   late String serviceId;
   late ProviderModel providerModel;
   late String serviceName;
+  late String serviceNameAr;
 
   @override
   getData(pid) async {
@@ -60,6 +61,7 @@ class ProviderByIdControllerImp extends ProviderByIdController {
     userId = myServices.sharedPreferences.get('userId').toString();
     providerModel = Get.arguments['provider_model'];
     serviceName = Get.arguments['serviceName'];
+    serviceNameAr = Get.arguments['serviceNameAr'];
     serviceId = Get.arguments['serviceId'];
 
     provId = providerModel.providerid!;
@@ -70,11 +72,12 @@ class ProviderByIdControllerImp extends ProviderByIdController {
   }
 
   @override
-  goToBooking(serviceName, serviceId) {
+  goToBooking(serviceName, serviceNameAr, serviceId) {
     Get.toNamed(ConsRoutes.booking, arguments: {
       "provider_model": providerModel,
       "userId": userId,
       "serviceName": serviceName,
+      "serviceNameAr": serviceNameAr,
       "serviceId": serviceId
     });
   }

@@ -16,7 +16,7 @@ class GetLocation extends GetView<BookingControllerImp> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomButton(
-              text: "Current",
+              text: "CurrentLocation".tr,
               onPressed: () {
                 controller.getCurrentLocation();
               },
@@ -25,7 +25,7 @@ class GetLocation extends GetView<BookingControllerImp> {
               width: 160,
             ),
             CustomButton(
-              text: "Map",
+              text: "Map".tr,
               onPressed: () {
                 controller.chooseLocationFromMap();
               },
@@ -40,7 +40,7 @@ class GetLocation extends GetView<BookingControllerImp> {
         ),
         GetBuilder<BookingControllerImp>(
             builder: ((controller) =>
-                RadiusText(text: "Location: ${controller.adress}")))
+                RadiusText(text: "Location:".tr + controller.adress)))
       ],
     );
   }

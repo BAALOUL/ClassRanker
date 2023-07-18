@@ -21,7 +21,7 @@ class DotOnBoarding extends StatelessWidget {
                           width: controller.currentPage == index ? 20 : 5,
                           height: 6,
                           decoration: BoxDecoration(
-                              color: ConsColors.primary,
+                              color: ConsColors.yellow,
                               borderRadius: BorderRadius.circular(10)),
                         ))
               ],

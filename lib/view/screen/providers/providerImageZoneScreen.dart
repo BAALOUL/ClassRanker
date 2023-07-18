@@ -26,8 +26,8 @@ class ProviderImageZoneScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TitleCustomBig(
-                title: "Choose a photo \n from your gallery",
+              TitleCustomBig(
+                title: "Choose a photo \n from your gallery".tr,
                 size: 14,
                 fontWeight: FontWeight.bold,
               ),
@@ -84,9 +84,7 @@ class ProviderImageZoneScreen extends StatelessWidget {
                           color: ConsColors.blue,
                         ),
                         onPressed: () async {
-                          print("start to pick");
                           await _pickImage();
-                          print("picked file");
                         },
                       ),
                     ),
@@ -97,13 +95,12 @@ class ProviderImageZoneScreen extends StatelessWidget {
                 height: 20,
               ),
               CustomButton(
-                text: "Save ",
+                text: "Save".tr,
                 size: 18,
                 width: 120,
                 height: 40,
                 onPressed: () async {
                   await imageController.photoUpdate("new");
-                  print(" go back test");
                 },
               ),
             ],

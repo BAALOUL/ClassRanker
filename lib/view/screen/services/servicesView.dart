@@ -45,7 +45,7 @@ class ServicesView extends StatelessWidget {
                       // First Container
                       Container(
                         padding: const EdgeInsets.all(15),
-                        margin: EdgeInsets.only(top: 315),
+                        margin: const EdgeInsets.only(top: 315),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -56,11 +56,11 @@ class ServicesView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.all(15),
+                            Padding(
+                              padding: const EdgeInsets.all(15),
                               child: Text(
-                                "Select service",
-                                style: TextStyle(
+                                "Select service".tr,
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: ConsColors.blue,

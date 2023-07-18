@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:ecommerce_store/core/class/statusRequest.dart';
 import 'package:ecommerce_store/core/functions/handingDataController.dart';
 import 'package:ecommerce_store/data/remote/booking/bookingStatusUpdateData.dart';
@@ -9,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../../core/constant/consRoutes.dart';
 
-enum OrderStatus { all, completed, current, canceled, rejected, pending }
+enum OrderStatus { all, completed, current, canceled, pending }
 
 abstract class OrdersByProviderController extends GetxController {
   initData();
@@ -45,7 +43,7 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
         return booking['booking_status'] == status.toString().split('.').last;
       }).toList();
     }
-
+    selectedStatus = status;
     update();
   }
 
@@ -100,7 +98,7 @@ class OrdersByProviderControllerImp extends OrdersByProviderController {
         onStatusSelected(selectedStatus);
         Get.offAllNamed(ConsRoutes.homeProvider);
       } else {
-        Get.defaultDialog(title: "Warning", middleText: "Error");
+        Get.defaultDialog(title: "Warning".tr, middleText: "Error".tr);
         statusRequest = StatusRequest.failure;
       }
     }

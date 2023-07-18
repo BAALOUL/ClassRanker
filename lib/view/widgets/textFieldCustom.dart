@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../core/services/services.dart';
 
 class TextFieldCustom extends StatelessWidget {
-  const TextFieldCustom({super.key});
+  final TextEditingController myController;
+  final void Function(String)? onChanged;
+  final void Function()? onPressed;
+  TextFieldCustom(
+      {super.key, this.onChanged, this.onPressed, required this.myController});
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.yellow),
@@ -12,12 +22,14 @@ class TextFieldCustom extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: TextField(
+              controller: myController,
+              onChanged: onChanged,
               decoration: InputDecoration(
-                hintText: 'Search service',
+                hintText: 'Search service'.tr,
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
           ),
@@ -25,17 +37,19 @@ class TextFieldCustom extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Colors.amber[600],
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(18),
-                bottomRight: Radius.circular(18),
+              borderRadius: BorderRadius.only(
+                topRight: savedLang == 'en' ? Radius.circular(18) : Radius.zero,
+                topLeft: savedLang == 'en' ? Radius.zero : Radius.circular(18),
+                bottomRight:
+                    savedLang == 'en' ? Radius.circular(18) : Radius.zero,
+                bottomLeft:
+                    savedLang == 'en' ? Radius.zero : Radius.circular(18),
               ),
             ),
             child: IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               color: Colors.white,
-              onPressed: () {
-                // Add your onPressed logic here
-              },
+              onPressed: onPressed,
             ),
           ),
         ],

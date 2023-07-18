@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RejectionDialog {
   static void show(BuildContext context, Function(String) onReject) {
@@ -8,45 +9,46 @@ class RejectionDialog {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Reason for Rejection'),
+          title: Text('Reason for Rejection'.tr),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               // List of choices
               ListTile(
+                title: Text('Provider is fully booked with other demands.'.tr),
+                onTap: () {
+                  selectedReason =
+                      'Provider is fully booked with other demands.'.tr;
+                },
+              ),
+              ListTile(
+                title: Text('Provider is on vacation/holiday'.tr),
+                onTap: () {
+                  selectedReason = 'Provider is on vacation/holiday'.tr;
+                },
+              ),
+              ListTile(
+                title: Text(
+                    'Provider is unable to travel to the requested location'
+                        .tr),
+                onTap: () {
+                  selectedReason =
+                      'Provider is unable to travel to the requested location'
+                          .tr;
+                },
+              ),
+              ListTile(
                 title:
-                    const Text('Provider is fully booked with other demands.'),
+                    Text('Provider is experiencing technical difficulties'.tr),
                 onTap: () {
                   selectedReason =
-                      'Provider is fully booked with other demands.';
+                      'Provider is experiencing technical difficulties'.tr;
                 },
               ),
               ListTile(
-                title: const Text('Provider is on vacation/holiday'),
+                title: Text('Provider is currently unavailable'.tr),
                 onTap: () {
-                  selectedReason = 'Provider is on vacation/holiday';
-                },
-              ),
-              ListTile(
-                title: const Text(
-                    'Provider is unable to travel to the requested location'),
-                onTap: () {
-                  selectedReason =
-                      'Provider is unable to travel to the requested location';
-                },
-              ),
-              ListTile(
-                title: const Text(
-                    'Provider is experiencing technical difficulties'),
-                onTap: () {
-                  selectedReason =
-                      'Provider is experiencing technical difficulties';
-                },
-              ),
-              ListTile(
-                title: const Text('Provider is currently unavailable'),
-                onTap: () {
-                  selectedReason = 'Provider is currently unavailable';
+                  selectedReason = 'Provider is currently unavailable'.tr;
                 },
               ),
               // Text field for custom reason
@@ -54,7 +56,7 @@ class RejectionDialog {
                 onChanged: (value) {
                   selectedReason = value;
                 },
-                decoration: const InputDecoration(labelText: 'Other reason'),
+                decoration: InputDecoration(labelText: 'Other reason'.tr),
               ),
             ],
           ),
@@ -63,7 +65,7 @@ class RejectionDialog {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: Text('Cancel'.tr),
             ),
             TextButton(
               onPressed: () {
@@ -71,7 +73,7 @@ class RejectionDialog {
                   onReject(selectedReason);
                 }
               },
-              child: const Text('Reject'),
+              child: Text('Reject'.tr),
             ),
           ],
         );

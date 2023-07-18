@@ -28,7 +28,7 @@ class ForgetPassWord extends StatelessWidget {
               ))
         ],
         title: Text(
-          "Sign in",
+          "Sign in".tr,
           style: Theme.of(context)
               .textTheme
               .headline1
@@ -40,7 +40,7 @@ class ForgetPassWord extends StatelessWidget {
         child: ListView(
           children: [
             Text(
-              "Reset password",
+              "Reset password".tr,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             ),
@@ -48,7 +48,8 @@ class ForgetPassWord extends StatelessWidget {
               height: 15,
             ),
             Text(
-              "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
+              "Enter the email associated with your account and we'll send an email with instructions to reset your password."
+                  .tr,
               style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.center,
             ),
@@ -60,8 +61,8 @@ class ForgetPassWord extends StatelessWidget {
               valid: (val) {
                 return validInput(val!, 5, 30, "email");
               },
-              hintText: 'your email',
-              labelText: "Email address",
+              hintText: 'your email'.tr,
+              labelText: "Email address".tr,
               iconData: Icons.email_outlined,
               mycontroller: controller.email,
             ),
@@ -69,7 +70,7 @@ class ForgetPassWord extends StatelessWidget {
               height: 20,
             ),
             CustomButton(
-                text: "Send Instructions",
+                text: "Send Instructions".tr,
                 onPressed: () {
                   controller.toVerefyCode();
                 }),

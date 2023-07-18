@@ -36,22 +36,21 @@ class SelectDate extends GetView<BookingControllerImp> {
                   filled: true,
                   fillColor: ConsColors.blueWhite,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                 ),
                 mode: Mode.MENU,
-                items: const [
-                  "Today",
-                  "Tomorrow",
-                  "This week",
-                  "Next week",
-                  "Next month",
+                items: [
+                  "Today".tr,
+                  "Tomorrow".tr,
+                  "This week".tr,
+                  "Next week".tr,
+                  "Next month".tr,
                 ],
                 popupItemDisabled: (String s) => s.startsWith('I'),
                 onChanged: (selectedItem) {
-                  print('Selected item: $selectedItem');
                   controller.updateDate(selectedItem!);
                 },
-                selectedItem: "Tomorrow",
+                selectedItem: "Tomorrow".tr,
               ),
             ),
 
@@ -60,7 +59,7 @@ class SelectDate extends GetView<BookingControllerImp> {
               width: 160,
               height: 45,
               child: CustomButton(
-                text: "Pick a date",
+                text: "Pick a date".tr,
                 onPressed: () {
                   showDatePicker(
                     context: context,

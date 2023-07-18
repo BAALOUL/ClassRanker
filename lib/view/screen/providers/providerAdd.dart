@@ -5,6 +5,7 @@ import 'package:ecommerce_store/view/screen/providers/widgets/imageZoneProvider.
 import 'package:ecommerce_store/view/screen/providers/widgets/providerInfos.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/servicesChosingProvider.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

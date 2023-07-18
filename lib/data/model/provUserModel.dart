@@ -3,7 +3,7 @@
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myRootNode = Root.fromJson(map);
 */
-class ProviderModel {
+class ProvUserModel {
   String? providerid;
   String? providername;
   String? providernamear;
@@ -20,7 +20,6 @@ class ProviderModel {
   String? providerrejected;
   String? providerlatitude;
   String? providerlongitude;
-  String? providerbio;
   String? id;
   String? username;
   String? phone;
@@ -30,9 +29,8 @@ class ProviderModel {
   String? confirmed;
   String? createdtime;
   String? usertoken;
-  String? distance;
 
-  ProviderModel(
+  ProvUserModel(
       {this.providerid,
       this.providername,
       this.providernamear,
@@ -49,7 +47,6 @@ class ProviderModel {
       this.providerrejected,
       this.providerlatitude,
       this.providerlongitude,
-      this.providerbio,
       this.id,
       this.username,
       this.phone,
@@ -58,10 +55,9 @@ class ProviderModel {
       this.code,
       this.confirmed,
       this.createdtime,
-      this.usertoken,
-      this.distance});
+      this.usertoken});
 
-  ProviderModel.fromJson(Map<String, dynamic> json) {
+  ProvUserModel.fromJson(Map<String, dynamic> json) {
     providerid = json['provider_id'];
     providername = json['provider_name'];
     providernamear = json['provider_name_ar'];
@@ -78,7 +74,6 @@ class ProviderModel {
     providerrejected = json['provider_rejected'];
     providerlatitude = json['provider_latitude'];
     providerlongitude = json['provider_longitude'];
-    providerbio = json['provider_bio'];
     id = json['id'];
     username = json['username'];
     phone = json['phone'];
@@ -108,7 +103,6 @@ class ProviderModel {
     data['provider_rejected'] = providerrejected;
     data['provider_latitude'] = providerlatitude;
     data['provider_longitude'] = providerlongitude;
-    data['provider_bio'] = providerbio;
     data['id'] = id;
     data['username'] = username;
     data['phone'] = phone;

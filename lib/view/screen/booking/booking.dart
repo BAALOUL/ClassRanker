@@ -2,6 +2,7 @@ import 'package:ecommerce_store/controller/booking/bookingController.dart';
 import 'package:ecommerce_store/view/screen/booking/components/richTextBooking.dart';
 import 'package:ecommerce_store/view/screen/booking/components/selectDate.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/simpleTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,17 +38,17 @@ class BookingView extends StatelessWidget {
                     height: 300,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        FirstRowBackArrow(),
+                      children: [
+                        const FirstRowBackArrow(),
                         Text(
-                          'Booking',
-                          style: TextStyle(
+                          'Booking'.tr,
+                          style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               color: ConsColors.blue),
                         ),
-                        SizedBox(height: 8),
-                        RichTextBooking(),
+                        const SizedBox(height: 8),
+                        const RichTextBooking(),
                       ],
                     ),
                   ),
@@ -64,7 +65,7 @@ class BookingView extends StatelessWidget {
                   ),
                   child: ListView(
                     children: [
-                      const TitleCustomBig(title: "Select a date"),
+                      TitleCustomBig(title: "Select a date".tr),
                       const SizedBox(
                         height: 20,
                       ),
@@ -73,34 +74,34 @@ class BookingView extends StatelessWidget {
                         height: 10,
                       ),
                       const SpacingBar(),
-                      const TitleCustomBig(
-                        title: "Select your location",
+                      TitleCustomBig(
+                        title: "Select your location".tr,
                       ),
                       const GetLocation(),
-                      const TitleCustomBig(
-                        title: "Additional informatios",
+                      TitleCustomBig(
+                        title: "Additional informatios".tr,
                         size: 18,
                       ),
-                      const TitleCustomBig(
-                        title: "Appartment",
+                      TitleCustomBig(
+                        title: "Appartment".tr,
                         size: 15,
                       ),
-                      const SimpleTextFieldCustom(typeT: "appartment"),
-                      const TitleCustomBig(
-                        title: "Floor",
+                      SimpleTextFieldCustom(typeT: "appartment".tr),
+                      TitleCustomBig(
+                        title: "Floor".tr,
                         size: 15,
                       ),
-                      const SimpleTextFieldCustom(typeT: "floor"),
-                      const TitleCustomBig(
-                        title: "House N°",
+                      SimpleTextFieldCustom(typeT: "floor".tr),
+                      TitleCustomBig(
+                        title: "House N°".tr,
                         size: 15,
                       ),
-                      const SimpleTextFieldCustom(typeT: "houseN"),
+                      SimpleTextFieldCustom(typeT: "houseN".tr),
                       const SizedBox(
                         height: 20,
                       ),
                       CustomButton(
-                        text: "Continue",
+                        text: "Continue".tr,
                         onPressed: () {
                           controller.goToProblemDescription();
                         },

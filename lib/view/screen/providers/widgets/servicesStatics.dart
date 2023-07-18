@@ -13,9 +13,9 @@ class ServiceStatics extends GetView<ProviderByIdControllerImp> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //padding: EdgeInsets.symmetric(vertical: 10),
-        const Text(
-          'Services statistics',
-          style: TextStyle(
+        Text(
+          'Services statistics'.tr,
+          style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: ConsColors.blue),
@@ -38,9 +38,9 @@ class ServiceStatics extends GetView<ProviderByIdControllerImp> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'Completed successfuly',
-                    style: TextStyle(fontSize: 14),
+                  Text(
+                    'Completed successfuly'.tr,
+                    style: const TextStyle(fontSize: 14),
                   ),
                   const SizedBox(width: 10),
                   Text(
@@ -64,9 +64,9 @@ class ServiceStatics extends GetView<ProviderByIdControllerImp> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'In progression',
-                    style: TextStyle(fontSize: 14),
+                  Text(
+                    'In progression'.tr,
+                    style: const TextStyle(fontSize: 14),
                   ),
                   const SizedBox(width: 10),
                   Text(
@@ -90,9 +90,9 @@ class ServiceStatics extends GetView<ProviderByIdControllerImp> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'Canceled',
-                    style: TextStyle(fontSize: 14),
+                  Text(
+                    'Canceled'.tr,
+                    style: const TextStyle(fontSize: 14),
                   ),
                   const SizedBox(width: 10),
                   Text(

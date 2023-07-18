@@ -34,10 +34,10 @@ class SimpleTextFieldCustom extends GetView<BookingControllerImp> {
               break;
           }
         },
-        decoration: const InputDecoration(
-          hintText: "Type here",
+        decoration: InputDecoration(
+          hintText: "Type here".tr,
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         ),
       ),
     );

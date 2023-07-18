@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../core/class/handlingDataView.dart';
+import '../../../core/services/services.dart';
 import '../home/titleCustom.dart';
 
 class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
@@ -29,6 +30,8 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
     Get.put(BookingsByUserControllerImp());
     //
     return Scaffold(
@@ -41,41 +44,11 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                     children: [
                       Column(
                         children: [
-                          const TitleCustom(
-                            title: "Bookings",
+                          TitleCustom(
+                            title: "Bookings".tr,
                           ),
                           // Segmented Control
-                          CupertinoSegmentedControl<BookingStatus>(
-                            selectedColor: ConsColors.yellow,
-                            borderColor: ConsColors.yellow,
-                            //unselectedColor: ConsColors.blue,
-                            children: const {
-                              BookingStatus.all: Text(
-                                ' All ',
-                                style: TextStyle(color: ConsColors.blue),
-                              ),
-                              BookingStatus.completed: Text(
-                                'Finished',
-                                style: TextStyle(color: ConsColors.blue),
-                              ),
-                              BookingStatus.current: Text(
-                                '  Current  ',
-                                style: TextStyle(color: ConsColors.blue),
-                              ),
-                              BookingStatus.canceled: Text(
-                                'Canceled ',
-                                style: TextStyle(color: ConsColors.blue),
-                              ),
-                              BookingStatus.pending: Text(
-                                '  Pending  ',
-                                style: TextStyle(color: ConsColors.blue),
-                              ),
-                            },
-                            groupValue: controller.selectedStatus,
-                            onValueChanged: (status) {
-                              controller.onStatusSelected(status);
-                            },
-                          ),
+                          bookingsFilter(controller),
                         ],
                       ),
                       const SizedBox(
@@ -98,7 +71,9 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                 title: Column(
                                   children: [
                                     Text(
-                                      "${booking['service_name']}",
+                                      savedLang == "en"
+                                          ? "${booking['service_name']}"
+                                          : "${booking['service_name_ar']}",
                                       style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
@@ -118,14 +93,14 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Date: ${booking['booking_date']}",
+                                            "${"Date".tr} : ${booking['booking_date']}",
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           Text(
-                                            "City: ${booking['booking_adress']}",
+                                            "${"Location".tr} : ${booking['booking_adress']}",
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontStyle: FontStyle.italic,
@@ -133,7 +108,7 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                             maxLines: null,
                                           ),
                                           Text(
-                                            "Provider: ${booking['provider_name']}",
+                                            "${"Provider".tr} : ${booking['provider_name']}",
                                             style: const TextStyle(
                                               fontSize: 14,
                                             ),
@@ -151,44 +126,44 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                     ),
                                     if (booking['booking_status'] ==
                                         'completed')
-                                      const Center(
+                                      Center(
                                         child: Text(
-                                          'Completed',
+                                          'Completed'.tr,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     if (booking['booking_status'] == 'canceled')
-                                      const Center(
+                                      Center(
                                         child: Text(
-                                          'canceled',
+                                          'Canceled'.tr,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     if (booking['booking_status'] == 'rejected')
-                                      const Center(
+                                      Center(
                                         child: Text(
-                                          'rejected',
+                                          'Rejected'.tr,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     if (booking['booking_status'] == 'pending')
-                                      const Center(
+                                      Center(
                                         child: Text(
-                                          'Pending',
+                                          'Pending'.tr,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: ConsColors.yellow,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -204,7 +179,8 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                               child: CustomButtonReaction(
                                                 status: 'complete',
                                                 height: 35,
-                                                size: 12,
+                                                size:
+                                                    savedLang == 'en' ? 13 : 15,
                                                 onPressed: () {
                                                   controller.statusUpdate(
                                                       booking['booking_id'],
@@ -222,7 +198,8 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                                               child: CustomButtonReaction(
                                                 status: 'cancel',
                                                 height: 35,
-                                                size: 12,
+                                                size:
+                                                    savedLang == 'en' ? 13 : 15,
                                                 onPressed: () {
                                                   _showRejectionDialog(
                                                       context,
@@ -247,6 +224,58 @@ class BookingsByUserView extends GetView<BookingsByUserControllerImp> {
                     ],
                   ),
                 ))));
+  }
+
+  CupertinoSegmentedControl<BookingStatus> bookingsFilter(
+      BookingsByUserControllerImp controller) {
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString('lang');
+    return CupertinoSegmentedControl<BookingStatus>(
+      selectedColor: ConsColors.yellow,
+      borderColor: ConsColors.yellow,
+      //unselectedColor: ConsColors.blue,
+      children: {
+        BookingStatus.all: Text(
+          'All'.tr,
+          style: TextStyle(
+            color: ConsColors.blue,
+            fontSize: savedLang == 'en' ? 13 : 15,
+          ),
+        ),
+        BookingStatus.completed: Text(
+          'Finished'.tr,
+          style: TextStyle(
+            color: ConsColors.blue,
+            fontSize: savedLang == 'en' ? 13 : 15,
+          ),
+        ),
+        BookingStatus.current: Text(
+          'Current'.tr,
+          style: TextStyle(
+            color: ConsColors.blue,
+            fontSize: savedLang == 'en' ? 13 : 15,
+          ),
+        ),
+        BookingStatus.canceled: Text(
+          'Canceled'.tr,
+          style: TextStyle(
+            color: ConsColors.blue,
+            fontSize: savedLang == 'en' ? 13 : 15,
+          ),
+        ),
+        BookingStatus.pending: Text(
+          'Pending'.tr,
+          style: TextStyle(
+            color: ConsColors.blue,
+            fontSize: savedLang == 'en' ? 13 : 15,
+          ),
+        ),
+      },
+      groupValue: controller.selectedStatus,
+      onValueChanged: (status) {
+        controller.onStatusSelected(status);
+      },
+    );
   }
 }
 

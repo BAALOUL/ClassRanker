@@ -11,7 +11,7 @@ class FirstRowBackArrow extends StatelessWidget {
     MyServices myServices = Get.find();
     String providerImg =
         myServices.sharedPreferences.get('providerImg').toString();
-
+    String mode = myServices.sharedPreferences.get('mode').toString();
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -39,13 +39,10 @@ class FirstRowBackArrow extends StatelessWidget {
                 border: Border.all(color: Colors.grey, width: 1),
               ),
               child: CircleAvatar(
-                backgroundImage: providerImg.isEmpty
-                    ? const AssetImage(
-                        'assets/screens/sections/account.png',
-                      )
-                    : NetworkImage(
-                        '${Links.providers}/$providerImg',
-                      ) as ImageProvider<Object>?,
+                backgroundImage: providerImg.isEmpty || mode == ""
+                    ? const AssetImage('assets/screens/sections/account.png')
+                    : NetworkImage('${Links.providers}/$providerImg')
+                        as ImageProvider<Object>?,
               ),
             ),
           ),

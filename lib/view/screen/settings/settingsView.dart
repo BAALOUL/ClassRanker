@@ -1,5 +1,5 @@
+import 'package:ecommerce_store/core/functions/logout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/consRoutes.dart';
@@ -11,60 +11,58 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MyServices myServices = Get.find();
+    String mode = myServices.sharedPreferences.get('mode').toString();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
       body: ListView(
         children: [
-          _buildTile(Icons.person_add, 'Connect as Provider', () {
-            Get.toNamed(ConsRoutes.provaiderLocationUpdate, arguments: {});
+          _buildTile(Icons.person_add, 'Connect as Provider'.tr, () {
+            //Get.toNamed(ConsRoutes.provaiderLocationUpdate, arguments: {});
+            mode == ""
+                ? Get.toNamed(ConsRoutes.loginScrren)
+                : Get.toNamed(ConsRoutes.providerAcountWelcome);
           }),
           const Divider(),
-          _buildTile(Icons.language, 'Change Language', () {
-            // Handle tile tap
+          _buildTile(Icons.language, 'Change Language'.tr, () {
+            Get.toNamed(ConsRoutes.language);
           }),
           const Divider(),
-          _buildTile(Icons.credit_card, 'Add Payment Card', () {
+          _buildTile(Icons.credit_card, 'Add Payment Card'.tr, () {
             Get.toNamed(ConsRoutes.addPaymentCard, arguments: {});
           }),
           const Divider(),
-          _buildTile(Icons.mail, 'Contact Us', () {
+          _buildTile(Icons.mail, 'Contact Us'.tr, () {
             Get.toNamed(ConsRoutes.contactUsScreen, arguments: {});
           }),
           const Divider(),
-          _buildTile(Icons.share, 'Share Al3amel', () {
+          _buildTile(Icons.share, 'Share Al3amel'.tr, () {
             Get.toNamed(ConsRoutes.problemDescriptionScreen, arguments: {});
           }),
           const Divider(),
-          _buildTile(Icons.star, 'Rate Us', () {}),
+          _buildTile(Icons.star, 'Rate Us'.tr, () {}),
           const Divider(),
-          _buildTile(Icons.description, 'Terms of Service', () {
+          _buildTile(Icons.description, 'Terms of Service'.tr, () {
             // Handle tile tap
           }),
           const Divider(),
-          _buildTile(Icons.lock, 'Privacy Policy', () {
+          _buildTile(Icons.lock, 'Privacy Policy'.tr, () {
             // Handle tile tap
           }),
           const Divider(),
-          _buildTile(Icons.question_answer, 'FAQs', () {
+          _buildTile(Icons.question_answer, 'FAQs'.tr, () {
             Get.toNamed(ConsRoutes.providerImageZoneScreen, arguments: {});
           }),
           const Divider(),
-          _buildTile(Icons.info, 'About Us', () {
+          _buildTile(Icons.info, 'About Us'.tr, () {
             // Handle tile tap
           }),
           const Divider(),
-          _buildTile(Icons.lock_open, 'Change Password', () {
+          _buildTile(Icons.lock_open, 'Change Password'.tr, () {
             // Handle tile tap
           }),
           const Divider(),
-          _buildTile(Icons.logout, 'Logout', () {
-            myServices.sharedPreferences.setString("providerImg", "");
-            myServices.sharedPreferences.setString("providerId", "");
-            SystemNavigator.pop();
-            //Get.offAllNamed(ConsRoutes.loginScrren);
-            //Get.toNamed(ConsRoutes.loginScrren);
+          _buildTile(Icons.logout, 'Logout'.tr, () async {
+            await logout();
+            Get.offAllNamed(ConsRoutes.profileType);
           }),
         ],
       ),

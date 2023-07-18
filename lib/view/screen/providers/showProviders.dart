@@ -9,9 +9,9 @@ class ShowProviders extends GetView<ProviderByServiceController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Providers'),
+        title: Text('Providers'.tr),
       ),
-      body: const Text('Providers'),
+      body: Text('Providers'.tr),
 
       /* ListView.separated(
           separatorBuilder: (context, index) {

@@ -10,53 +10,57 @@ class ProviderAccountWelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome to Provider Account Creation'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Welcome!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'To create your provider account, please follow these steps:',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 30),
-            _buildStepItem(
-              stepNumber: 1,
-              stepTitle: 'Fill in Personal Information',
-              stepDescription: 'Provide your personal details for the account.',
-            ),
-            const SizedBox(height: 20),
-            _buildStepItem(
-              stepNumber: 2,
-              stepTitle: 'Create a Photo',
-              stepDescription: 'Upload a photo for your provider profile.',
-            ),
-            const SizedBox(height: 20),
-            _buildStepItem(
-              stepNumber: 3,
-              stepTitle: 'Choose Services',
-              stepDescription:
-                  'Select the services you will offer as a provider.',
-            ),
-            const SizedBox(height: 30),
-            CustomButton(
-              text: 'Get Started',
-              width: 180,
-              fontWeight: FontWeight.bold,
-              onPressed: () {
-                Get.toNamed(ConsRoutes.providerInfosCreateScreen);
-              },
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Welcome!'.tr,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'To create your provider account, please follow these steps:'
+                    .tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 30),
+              _buildStepItem(
+                stepNumber: 1,
+                stepTitle: 'Fill in Personal Information'.tr,
+                stepDescription:
+                    'Provide your personal details for the account.'.tr,
+              ),
+              const SizedBox(height: 20),
+              _buildStepItem(
+                stepNumber: 2,
+                stepTitle: 'Create a Photo'.tr,
+                stepDescription: 'Upload a photo for your provider profile.'.tr,
+              ),
+              const SizedBox(height: 20),
+              _buildStepItem(
+                stepNumber: 3,
+                stepTitle: 'Choose Services'.tr,
+                stepDescription:
+                    'Select the services you will offer as a provider.'.tr,
+              ),
+              const SizedBox(height: 30),
+              CustomButton(
+                text: 'Get Started provider'.tr,
+                width: 180,
+                fontWeight: FontWeight.bold,
+                onPressed: () {
+                  Get.toNamed(ConsRoutes.providerInfosCreateScreen);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

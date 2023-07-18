@@ -1,5 +1,6 @@
 import 'package:ecommerce_store/view/screen/providers/controllers/providerInfosController.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/textFieldCustomProvider.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constant/consColors.dart';

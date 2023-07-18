@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/consColors.dart';
+import '../../../core/services/services.dart';
 import '../../../links.dart';
 
 class ShowServices extends GetView<ServicesControllerImp> {
@@ -10,7 +11,8 @@ class ShowServices extends GetView<ServicesControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    // //print("view");
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
     return Container(
       height: Get.size.height,
       decoration: BoxDecoration(
@@ -33,6 +35,7 @@ class ShowServices extends GetView<ServicesControllerImp> {
                 controller.geToProviders(
                   controller.servicesList[index]['service_id'],
                   controller.servicesList[index]['service_name'],
+                  controller.servicesList[index]['service_name_ar'],
                 );
               },
               child: ListView(
@@ -59,7 +62,9 @@ class ShowServices extends GetView<ServicesControllerImp> {
                   const SizedBox(
                       height: 8), // Add spacing between the image and the text
                   Text(
-                    "${controller.servicesList[index]['service_name']}",
+                    savedLang == "en"
+                        ? "${controller.servicesList[index]['service_name']}"
+                        : "${controller.servicesList[index]['service_name_ar']}",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 12,

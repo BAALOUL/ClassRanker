@@ -1,4 +1,4 @@
-class Services {
+class ServicesModel {
   String? serviceid;
   String? servicename;
   String? servicenamear;
@@ -6,7 +6,7 @@ class Services {
   String? servicedescription;
   String? price;
 
-  Services(
+  ServicesModel(
       {this.serviceid,
       this.servicename,
       this.servicenamear,
@@ -14,7 +14,7 @@ class Services {
       this.servicedescription,
       this.price});
 
-  Services.fromJson(Map<String, dynamic> json) {
+  ServicesModel.fromJson(Map<String, dynamic> json) {
     serviceid = json['service_id'];
     servicename = json['service_name'];
     servicenamear = json['service_name_ar'];

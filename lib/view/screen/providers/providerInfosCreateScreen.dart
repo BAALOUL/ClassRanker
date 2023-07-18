@@ -3,15 +3,17 @@ import 'package:ecommerce_store/core/class/statusRequest.dart';
 import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/view/screen/providers/controllers/providerInfosCreateController.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/constant/consColors.dart';
 import '../../widgets/sections/firstRowBackArrow.dart';
 
 class ProviderInfosCreateScreen
     extends GetView<ProviderInfosCreatControllerImp> {
-  const ProviderInfosCreateScreen({super.key});
+  const ProviderInfosCreateScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,8 @@ class ProviderInfosCreateScreen
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 color: ConsColors.blueWhite,
                 height: 150,
-                child: const TitleCustomBig(
-                  title: "Provider Informations",
+                child: TitleCustomBig(
+                  title: 'Provider Informations'.tr,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -57,8 +59,8 @@ class ProviderInfosCreateScreen
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const TitleCustomBig(
-                              title: "Arabic name",
+                            TitleCustomBig(
+                              title: 'Arabic name'.tr,
                               size: 18,
                             ),
                             Container(
@@ -79,8 +81,8 @@ class ProviderInfosCreateScreen
                             ),
                             // Rest of the code...
 
-                            const TitleCustomBig(
-                              title: "Name",
+                            TitleCustomBig(
+                              title: 'Name'.tr,
                               size: 18,
                             ),
                             Container(
@@ -99,8 +101,8 @@ class ProviderInfosCreateScreen
                                 ),
                               ),
                             ),
-                            const TitleCustomBig(
-                              title: "Whatsapp",
+                            TitleCustomBig(
+                              title: 'Whatsapp'.tr,
                               size: 18,
                             ),
                             Container(
@@ -119,8 +121,8 @@ class ProviderInfosCreateScreen
                                 ),
                               ),
                             ),
-                            const TitleCustomBig(
-                              title: "Website",
+                            TitleCustomBig(
+                              title: 'Website'.tr,
                               size: 18,
                             ),
                             Container(
@@ -146,7 +148,7 @@ class ProviderInfosCreateScreen
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CustomButton(
-                                  text: "Save     ",
+                                  text: 'Save     '.tr,
                                   onPressed: () async {
                                     await controller.createProvider();
                                     Get.toNamed(
@@ -158,7 +160,7 @@ class ProviderInfosCreateScreen
                             Obx(() {
                               // Show error message if form is invalid
                               if (controller.showErrorMessage.value) {
-                                return const Text('Please fill all fields.');
+                                return Text('Please fill all fields.'.tr);
                               }
                               return const SizedBox.shrink();
                             }),

@@ -28,16 +28,16 @@ class BookingDecision extends StatelessWidget {
                 height: 150,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(height: 25),
+                  children: [
+                    const SizedBox(height: 25),
                     Text(
-                      'You have new request',
-                      style: TextStyle(
+                      'You have new request'.tr,
+                      style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: ConsColors.blue),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                   ],
                 ),
               ),
@@ -56,26 +56,26 @@ class BookingDecision extends StatelessWidget {
                   ),
                   child: ListView(
                     children: [
-                      const TitleCustomBig(
-                        title: "Service",
+                      TitleCustomBig(
+                        title: "Service".tr,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
                       RadiusSimpleText(text: controller.serviceName),
-                      const TitleCustomBig(
-                        title: "Customer",
+                      TitleCustomBig(
+                        title: "Customer".tr,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
                       RadiusSimpleText(text: controller.username),
-                      const TitleCustomBig(
-                        title: "Date",
+                      TitleCustomBig(
+                        title: "Date".tr,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
                       RadiusSimpleText(text: controller.bookingDate),
-                      const TitleCustomBig(
-                        title: "Location",
+                      TitleCustomBig(
+                        title: "Location".tr,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -90,7 +90,7 @@ class BookingDecision extends StatelessWidget {
                           SizedBox(
                             width: 150,
                             child: CustomButtonReaction(
-                              text: "Accept",
+                              text: "Accept".tr,
                               status: "accept",
                               height: 45,
                               size: 18,
@@ -103,7 +103,7 @@ class BookingDecision extends StatelessWidget {
                           SizedBox(
                             width: 150,
                             child: CustomButtonReaction(
-                              text: "Reject",
+                              text: "Reject".tr,
                               status: "reject",
                               height: 45,
                               size: 18,
@@ -133,49 +133,50 @@ class BookingDecision extends StatelessWidget {
         String selectedReason = '';
 
         return AlertDialog(
-          title: const Text('Reason for Rejection'),
+          title: Text('Reason for Rejection'.tr),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               // List of choices
               ListTile(
+                title: Text('Provider is fully booked with other demands.'.tr),
+                onTap: () {
+                  selectedReason =
+                      'Provider is fully booked with other demands.'.tr;
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Provider is on vacation/holiday'.tr),
+                onTap: () {
+                  selectedReason = 'Provider is on vacation/holiday'.tr;
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text(
+                    'Provider is unable to travel to the requested location'
+                        .tr),
+                onTap: () {
+                  selectedReason =
+                      'Provider is unable to travel to the requested location'
+                          .tr;
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
                 title:
-                    const Text('Provider is fully booked with other demands.'),
+                    Text('Provider is experiencing technical difficulties'.tr),
                 onTap: () {
                   selectedReason =
-                      'Provider is fully booked with other demands.';
+                      'Provider is experiencing technical difficulties'.tr;
                   //Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: const Text('Provider is on vacation/holiday'),
+                title: Text('Provider is currently unavailable'.tr),
                 onTap: () {
-                  selectedReason = 'Provider is on vacation/holiday';
-                  //Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text(
-                    'Provider is unable to travel to the requested location'),
-                onTap: () {
-                  selectedReason =
-                      'Provider is unable to travel to the requested location';
-                  //Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text(
-                    'Provider is experiencing technical difficulties'),
-                onTap: () {
-                  selectedReason =
-                      'Provider is experiencing technical difficulties';
-                  //Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('Provider is currently unavailable'),
-                onTap: () {
-                  selectedReason = 'Provider is currently unavailable';
+                  selectedReason = 'Provider is currently unavailable'.tr;
                   //Navigator.pop(context);
                 },
               ),
@@ -184,7 +185,7 @@ class BookingDecision extends StatelessWidget {
                 onChanged: (value) {
                   selectedReason = value;
                 },
-                decoration: const InputDecoration(labelText: 'Other reason'),
+                decoration: InputDecoration(labelText: 'Other reason'.tr),
               ),
             ],
           ),
@@ -193,7 +194,7 @@ class BookingDecision extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: Text('Cancel'.tr),
             ),
             TextButton(
               onPressed: () {
@@ -207,7 +208,7 @@ class BookingDecision extends StatelessWidget {
                 }
                 //Navigator.pop(context);
               },
-              child: const Text('Reject'),
+              child: Text('Reject'.tr),
             ),
           ],
         );

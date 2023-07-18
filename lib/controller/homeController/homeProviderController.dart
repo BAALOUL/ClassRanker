@@ -12,8 +12,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../core/class/statusRequest.dart';
 import '../../core/functions/handingDataController.dart';
-import '../../view/screen/providers/ProviderContactView.dart';
-import '../../view/screen/settings/contactUsScreen.dart';
 
 abstract class HomeProviderController extends GetxController {
   changePage(int currentpage);
@@ -40,7 +38,12 @@ class HomeProviderControllerImp extends HomeProviderController {
     const SettingsView(),
   ];
 
-  List<String> buttonBottomAppBar = ["Home", "Bookings", "Orders", "Settings"];
+  List<String> buttonBottomAppBar = [
+    "Home".tr,
+    "Bookings".tr,
+    "Orders".tr,
+    "Settings".tr
+  ];
   List<IconData> listIconBottomAppBar = [
     Icons.home,
     Icons.book,
@@ -60,8 +63,13 @@ class HomeProviderControllerImp extends HomeProviderController {
 
   @override
   changePage(int i) {
-    currentPage = i;
-    update();
+    if (currentPage == i) {
+      // If the current page is the same as the selected page, reset the screen
+      Get.offAndToNamed(ConsRoutes.homeProvider);
+    } else {
+      currentPage = i;
+      update();
+    }
   }
 
   @override

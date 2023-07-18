@@ -20,7 +20,7 @@ class ProviderSignInView extends StatelessWidget {
       // navigate to home screen
       Get.toNamed(ConsRoutes.homeProvider); //offallnamed
     } else {
-      Get.snackbar('Error', 'Invalid OTP');
+      Get.snackbar('Error'.tr, 'Invalid OTP'.tr);
     }
   }
 
@@ -28,7 +28,7 @@ class ProviderSignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Provider Sign In'),
+        title: Text('Provider Sign In'.tr),
       ),
       body: SafeArea(
         child: Column(
@@ -42,14 +42,14 @@ class ProviderSignInView extends StatelessWidget {
                   TextFormField(
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
-                    decoration: const InputDecoration(
-                      labelText: 'Phone Number',
-                      hintText: 'Enter your phone number',
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number'.tr,
+                      hintText: 'Enter your phone number'.tr,
                       prefixIcon: Icon(Icons.phone),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Phone number is required';
+                        return 'Phone number is required'.tr;
                       }
                       return null;
                     },
@@ -58,14 +58,14 @@ class ProviderSignInView extends StatelessWidget {
                   TextFormField(
                     controller: otpController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'OTP',
-                      hintText: 'Enter OTP received via SMS',
+                      hintText: 'Enter OTP received via SMS'.tr,
                       prefixIcon: Icon(Icons.lock),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'OTP is required';
+                        return 'OTP is required'.tr;
                       }
                       return null;
                     },
@@ -86,7 +86,7 @@ class ProviderSignInView extends StatelessWidget {
                       }, // SignIn button
                       child: Obx(() => loading.value
                           ? const CircularProgressIndicator()
-                          : const Text('Sign In')),
+                          : Text('Sign In'.tr)),
                     ),
                   ),
                 ],

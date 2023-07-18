@@ -33,13 +33,13 @@ class PageViewer extends GetView<OnBoardingControllerImp> {
                   alignment: Alignment.center,
                   child: Text("${onboardingList[i].title}",
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline1),
+                      style: Theme.of(context).textTheme.headline2),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 Text("${onboardingList[i].content}",
-                    style: Theme.of(context).textTheme.bodyText1),
+                    style: Theme.of(context).textTheme.bodyText2),
               ],
             )));
   }

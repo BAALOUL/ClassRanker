@@ -1,5 +1,6 @@
 import 'package:ecommerce_store/core/constant/consRoutes.dart';
 import 'package:ecommerce_store/core/localization/localizationController.dart';
+import 'package:ecommerce_store/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,8 @@ class LangugeChange extends GetView<LocalizationController> {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+    String? mode = myServices.sharedPreferences.getString("mode");
     return Scaffold(
       body: Container(
         height: 1000,
@@ -29,7 +32,18 @@ class LangugeChange extends GetView<LocalizationController> {
                 InkWell(
                   onTap: () {
                     controller.changeLanguage("en");
-                    Get.toNamed(ConsRoutes.onBoarding);
+                    switch (mode) {
+                      case "":
+                        Get.offAllNamed(ConsRoutes.homeGuest);
+                        break;
+                      case "userMode":
+                        Get.offAllNamed(ConsRoutes.homeUser);
+                        break;
+                      case "providerMode":
+                        Get.offAllNamed(ConsRoutes.homeProvider);
+                        break;
+                      default:
+                    }
                   },
                   child: Column(
                     children: [
@@ -74,7 +88,18 @@ class LangugeChange extends GetView<LocalizationController> {
                 InkWell(
                   onTap: () {
                     controller.changeLanguage("ar");
-                    Get.toNamed(ConsRoutes.onBoarding);
+                    switch (mode) {
+                      case "":
+                        Get.offAllNamed(ConsRoutes.homeGuest);
+                        break;
+                      case "userMode":
+                        Get.offAllNamed(ConsRoutes.homeUser);
+                        break;
+                      case "providerMode":
+                        Get.offAllNamed(ConsRoutes.homeProvider);
+                        break;
+                      default:
+                    }
                   },
                   child: Column(
                     children: [

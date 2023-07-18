@@ -58,18 +58,19 @@ class BookingMessage extends StatelessWidget {
                       child: ListView(
                         children: [
                           Container(
-                            padding: const EdgeInsets.all(20),
+                            padding: EdgeInsets.all(20),
                             child: Image.asset(
                               'assets/screens/bookingMessage/Completed.png', // Replace with your image asset path
                               fit: BoxFit.contain,
                               height: 280,
                             ),
                           ),
-                          const Text(
-                            'Your request has been received successfully, and has been sent to the service provider \n You will receive a response very soon',
-                            style: TextStyle(
+                          Text(
+                            'Your request has been received successfully, and sent to the service provider \n You will receive a response very soon'
+                                .tr,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 16,
                                 //color: Color.fromARGB(255, 2, 148, 39)),
                                 color: ConsColors.blue),
                             textAlign: TextAlign.center,
@@ -77,9 +78,10 @@ class BookingMessage extends StatelessWidget {
                           const SizedBox(
                             height: 30,
                           ),
-                          const Text(
-                            'In the event that the response is more than 30 min late, you can cancel the request and re-select another service provider',
-                            style: TextStyle(
+                          Text(
+                            'If the response takes more than 30 minutes, you can cancel the request and choose a different service provider.'
+                                .tr,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
@@ -92,7 +94,7 @@ class BookingMessage extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 left: 50.0, right: 50, top: 20, bottom: 15),
                             child: CustomButton(
-                              text: "Go Home",
+                              text: "Go Home".tr,
                               onPressed: () {
                                 Get.offAllNamed(ConsRoutes.homeProvider,
                                     arguments: {});

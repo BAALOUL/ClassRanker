@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:ecommerce_store/view/screen/booking/components/imagesZone.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,8 +39,8 @@ class ProblemDescriptionScreen extends GetView<BookingControllerImp> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'Problem Description',
+                        decoration: InputDecoration(
+                          hintText: "Problem Description".tr,
                           border: InputBorder.none,
                         ),
                         onChanged: (value) {
@@ -62,7 +63,7 @@ class ProblemDescriptionScreen extends GetView<BookingControllerImp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: CustomButton(
-                  text: "Continue",
+                  text: "Continue".tr,
                   onPressed: () {
                     controller.goToBookinSummary();
                   },

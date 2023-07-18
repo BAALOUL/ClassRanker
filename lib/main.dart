@@ -2,7 +2,7 @@ import 'package:ecommerce_store/bindings/initialBinding.dart';
 import 'package:ecommerce_store/controller/localController.dart';
 import 'package:ecommerce_store/core/localization/localization.dart';
 import 'package:ecommerce_store/core/localization/localizationController.dart';
-import 'package:ecommerce_store/view/theme.dart';
+import 'package:ecommerce_store/view/screen/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: InitialBinding(),
       getPages: routes,
+      home: const SplashScreen(),
     );
   }
 }

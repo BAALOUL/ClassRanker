@@ -37,6 +37,7 @@ class BookingControllerImp extends BookingController {
   var currentStreet = ''.obs;
 
   late String serviceName;
+  late String serviceNameAr;
   late String userId;
   late String provId;
   late String provName;
@@ -77,6 +78,7 @@ class BookingControllerImp extends BookingController {
     provId = providerModel.providerid!;
     provName = providerModel.providername!;
     serviceName = Get.arguments['serviceName'];
+    serviceNameAr = Get.arguments['serviceNameAr'] ?? "";
     servId = Get.arguments['serviceId'];
     status = "pending";
   }
@@ -138,24 +140,30 @@ class BookingControllerImp extends BookingController {
     itemSelected = text;
     switch (itemSelected) {
       case "Today":
+      case "اليوم":
         i = 0;
         break;
       case "Tommorow":
+      case "غدًا":
         i = 1;
         break;
       case "This week":
+      case "هذا الأسبوع":
         i = 7;
         break;
       case "Next week":
+      case "الأسبوع القادم":
         i = 14;
         break;
       case "Next month":
+      case "الشهر القادم":
         i = 30;
         break;
       default:
         i = 0; // Default value if none of the cases match
         break;
     }
+
     DateTime currentDate = DateTime.now();
     dateSelected =
         DateFormat('dd/MM/yyyy').format(currentDate.add(Duration(days: i)));

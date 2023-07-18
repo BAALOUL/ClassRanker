@@ -24,7 +24,12 @@ class LoginScreenControllerIMP extends LoginScreenController {
 
   @override
   toOTPscreen(String ph) {
-    Get.offAllNamed(ConsRoutes.otpScreen, arguments: {'phone': ph});
+    String lastFourDigits = ph.substring(ph.length - 4);
+    print(lastFourDigits);
+    Get.offAllNamed(
+      ConsRoutes.otpScreen,
+      arguments: {'phone': lastFourDigits},
+    );
   }
 
   @override
@@ -32,7 +37,8 @@ class LoginScreenControllerIMP extends LoginScreenController {
     statusRequest = StatusRequest.loading;
     update();
     print(phoneNumberController.text);
-    var response = await signUpOTPData.postOTP(phoneNumberController.text);
+    var response = await signUpOTPData.postOTP(phoneNumberController.text
+        .substring(phoneNumberController.text.length - 4));
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       toOTPscreen(phoneNumberController.text);

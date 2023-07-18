@@ -81,8 +81,8 @@ class ImageHandlerImp extends ImageHandler {
           firstRowController.initData();
           print("S5 finish ");
           Get.snackbar(
-            "Image Update",
-            "The image has been updated successfully",
+            "Image Update".tr,
+            "The image has been updated successfully".tr,
             backgroundColor: Colors.lime,
             snackPosition: SnackPosition.BOTTOM,
           );
@@ -109,7 +109,7 @@ class ImageHandlerImp extends ImageHandler {
   @override
   initData() {
     providerId = myServices.sharedPreferences.get('providerId').toString();
-    print("from initial image Handler provider Id is :$providerId");
+    print("from initial image Handler provider Id is :".tr + "$providerId");
     update();
   }
 

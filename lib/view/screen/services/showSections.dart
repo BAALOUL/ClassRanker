@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/services/sectionController.dart';
+import '../../../core/services/services.dart';
 import '../../../links.dart';
 
 class ShowSections extends GetView<SectionsControllerImp> {
@@ -10,6 +11,8 @@ class ShowSections extends GetView<SectionsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
     return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
@@ -32,6 +35,7 @@ class ShowSections extends GetView<SectionsControllerImp> {
                 controller.goToServices(
                   controller.sectionsList[index]['section_id'],
                   controller.sectionsList[index]['section_name'],
+                  controller.sectionsList[index]['section_name_ar'],
                 );
               },
               child: Container(
@@ -58,7 +62,9 @@ class ShowSections extends GetView<SectionsControllerImp> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "${controller.sectionsList[index]['section_name']}",
+                      savedLang == "en"
+                          ? "${controller.sectionsList[index]['section_name']}"
+                          : "${controller.sectionsList[index]['section_name_ar']}",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 16,

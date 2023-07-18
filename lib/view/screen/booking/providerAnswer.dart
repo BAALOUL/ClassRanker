@@ -49,10 +49,20 @@ class ProviderAnswer extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     onPressed: () {
                       if (controller.demandStatus == 'pending') {
-                        Get.offAndToNamed(ConsRoutes.providerContactsView);
+                        Get.offAndToNamed(
+                          ConsRoutes.providerContactsView,
+                          arguments: {
+                            'ProviderId': controller.bookingProviderId
+                          },
+                        );
                       }
                       if (controller.demandStatus == 'current') {
-                        Get.toNamed(ConsRoutes.providerContactsView);
+                        Get.toNamed(
+                          ConsRoutes.providerContactsView,
+                          arguments: {
+                            'ProviderId': controller.bookingProviderId
+                          },
+                        );
                       }
                       if (controller.demandStatus == 'rejected' ||
                           controller.demandStatus == 'canceled') {
@@ -158,7 +168,7 @@ class ProviderAnswerController extends GetxController {
         case 'pending':
           answer = 'Pending';
           answerDetail = 'Pending';
-          buttonText = 'Pending';
+          buttonText = 'Pending'.tr;
           break;
         case 'current':
           answer = 'Current';
@@ -167,18 +177,18 @@ class ProviderAnswerController extends GetxController {
           break;
         case 'rejected':
           answer = 'Rejected';
-          answerDetail = 'Your demand has been $answer';
-          buttonText = 'Choose an other provider';
+          answerDetail = "Your demand has been".tr + answer;
+          buttonText = 'Choose an other provider'.tr;
           break;
         case 'canceled':
           answer = 'Canceled';
-          answerDetail = 'Your demand has been $answer';
-          buttonText = 'Choose an other provider';
+          answerDetail = "Your demand has been".tr + answer;
+          buttonText = 'Choose an other provider'.tr;
           break;
         case 'completed':
           answer = 'Completed';
-          answerDetail = 'Your demand has been $answer';
-          buttonText = 'you could leave your review';
+          answerDetail = 'Your demand has been'.tr + answer;
+          buttonText = 'you could leave your review'.tr;
           break;
         default:
           break;

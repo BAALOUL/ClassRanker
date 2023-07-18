@@ -1,10 +1,11 @@
 import 'package:ecommerce_store/core/class/handlingDataView.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
+import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/constant/consColors.dart';
-import '../../widgets/sections/firstRowBackArrow.dart';
 import 'controllers/providerInfosController.dart';
 
 class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
@@ -31,8 +32,8 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 color: ConsColors.blueWhite,
                 height: 150,
-                child: const TitleCustomBig(
-                  title: "Provider Informations",
+                child: TitleCustomBig(
+                  title: "Provider Informations".tr,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -53,8 +54,8 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const TitleCustomBig(
-                              title: "Arabic name",
+                            TitleCustomBig(
+                              title: "Arabic name".tr,
                               size: 18,
                             ),
                             Container(
@@ -73,8 +74,8 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                                 ),
                               ),
                             ),
-                            const TitleCustomBig(
-                              title: "Name",
+                            TitleCustomBig(
+                              title: "Name".tr,
                               size: 18,
                             ),
                             Container(
@@ -93,8 +94,8 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                                 ),
                               ),
                             ),
-                            const TitleCustomBig(
-                              title: "Whatsapp",
+                            TitleCustomBig(
+                              title: "Whatsapp".tr,
                               size: 18,
                             ),
                             Container(
@@ -113,8 +114,8 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                                 ),
                               ),
                             ),
-                            const TitleCustomBig(
-                              title: "Website",
+                            TitleCustomBig(
+                              title: "Website".tr,
                               size: 18,
                             ),
                             Container(
@@ -140,7 +141,7 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CustomButton(
-                                  text: "Save ",
+                                  text: "Save".tr,
                                   onPressed: () {
                                     print("I am here");
                                     controller.saveProviderInformation();
@@ -151,7 +152,7 @@ class ProviderInfosScreen extends GetView<ProviderInfosControllerImp> {
                             Obx(() {
                               // Show error message if form is invalid
                               if (controller.showErrorMessage.value) {
-                                return Text('Please fill all fields.');
+                                return Text('Please fill all fields.'.tr);
                               }
                               return SizedBox.shrink();
                             }),

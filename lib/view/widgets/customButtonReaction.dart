@@ -1,5 +1,6 @@
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CustomButtonReaction extends StatelessWidget {
@@ -30,19 +31,19 @@ class CustomButtonReaction extends StatelessWidget {
     if (status == "cancel") {
       borderColor = ConsColors.yellow;
       backgroundColor = Colors.white;
-      text = "canceled";
+      text = "Cancel".tr;
     } else if (status == "complete") {
       borderColor = ConsColors.yellow;
       backgroundColor = ConsColors.yellow;
-      text = "Complete";
+      text = "Complete".tr;
     } else if (status == "accept") {
       borderColor = Colors.green;
       backgroundColor = Color.fromARGB(255, 152, 236, 87);
-      text = "Accept";
+      text = "Accept".tr;
     } else if (status == "reject") {
       borderColor = Colors.red;
       backgroundColor = Colors.white;
-      text = "Reject";
+      text = "Reject".tr;
     }
 
     return Container(

@@ -8,10 +8,12 @@
 import 'package:ecommerce_store/controller/booking/bookingController.dart';
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:ecommerce_store/view/screen/booking/components/radiusSimpleText.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/services/services.dart';
 import '../../widgets/auth/customButton.dart';
 import '../../widgets/titleCustomBig.dart';
 
@@ -23,6 +25,8 @@ class BookingSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
     Get.put(BookingControllerImp());
     return Scaffold(
       appBar: AppBar(
@@ -46,16 +50,16 @@ class BookingSummary extends StatelessWidget {
                       height: 150,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           SizedBox(height: 8),
                           Text(
-                            'Booking summary',
-                            style: TextStyle(
+                            'Booking summary'.tr,
+                            style: const TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                                 color: ConsColors.blue),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                         ],
                       ),
                     ),
@@ -72,38 +76,41 @@ class BookingSummary extends StatelessWidget {
                     ),
                     child: ListView(
                       children: [
-                        const TitleCustomBig(
-                          title: "Service",
+                        TitleCustomBig(
+                          title: "Service".tr,
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        RadiusSimpleText(text: controller.serviceName),
-                        const TitleCustomBig(
-                          title: "Provider",
+                        RadiusSimpleText(
+                            text: savedLang == "en"
+                                ? controller.serviceName
+                                : controller.serviceNameAr),
+                        TitleCustomBig(
+                          title: "Provider".tr,
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
                         RadiusSimpleText(text: controller.provName),
-                        const TitleCustomBig(
-                          title: "Customer",
+                        TitleCustomBig(
+                          title: "Customer".tr,
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
                         RadiusSimpleText(text: controller.customerName),
-                        const TitleCustomBig(
-                          title: "Date",
+                        TitleCustomBig(
+                          title: "Date".tr,
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
                         RadiusSimpleText(text: controller.dateSelected),
-                        const TitleCustomBig(
-                          title: "Location",
+                        TitleCustomBig(
+                          title: "Location".tr,
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
                         RadiusSimpleText(text: controller.adress),
-                        const TitleCustomBig(
-                          title: "Problem description",
+                        TitleCustomBig(
+                          title: "Problem description".tr,
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -115,7 +122,7 @@ class BookingSummary extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 50.0, right: 50, top: 20, bottom: 15),
                           child: CustomButton(
-                            text: "Submit",
+                            text: "Submit".tr,
                             onPressed: () {
                               controller.booking();
                             },

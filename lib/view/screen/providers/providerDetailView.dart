@@ -6,17 +6,19 @@
 
 // ignore_for_file: unnecessary_string_escapes
 import 'package:ecommerce_store/controller/providers/providerByIDController.dart';
-import 'package:ecommerce_store/view/screen/home/titleCustom.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/ourServices.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/ratingSection.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/reviews.dart';
 import 'package:ecommerce_store/view/screen/providers/widgets/servicesStatics.dart';
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
+import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/consColors.dart';
+import '../../../core/services/services.dart';
 import '../../../links.dart';
 import '../../widgets/spacingBar.dart';
 
@@ -31,10 +33,12 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
   @override
   Widget build(BuildContext context) {
     Get.put(ProviderByIdControllerImp());
+    MyServices myServices = Get.find();
+    String? savedLang = myServices.sharedPreferences.getString("lang");
 
-    return SafeArea(
-      child: Scaffold(
-        body: GetBuilder<ProviderByIdControllerImp>(
+    return Scaffold(
+      body: SafeArea(
+        child: GetBuilder<ProviderByIdControllerImp>(
             builder: (controller) => Container(
                   padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: Stack(
@@ -53,14 +57,16 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
                               const FirstRowBackArrow(),
                               SizedBox(
                                 width: Get.size.width * 0.5,
-                                child: TitleCustom(
-                                  title:
-                                      "${controller.providerModel.providername} ", /*- ${controller.providerModel.providernamear}*/
+                                child: TitleCustomBig(
+                                  title: savedLang == "en"
+                                      ? "${controller.providerModel.providername} "
+                                      : "${controller.providerModel.providernamear} ",
+                                  size: 22, fontWeight: FontWeight.bold,
                                   //title: "Provider Details",
                                 ),
                               ),
-                              const Text(
-                                "Provider",
+                              Text(
+                                "Provider".tr,
                                 style: TextStyle(fontSize: 20),
                               ),
                             ],
@@ -80,36 +86,40 @@ class ProviderDetailsView extends GetView<ProviderByIdControllerImp> {
                         child: ListView(
                           children: [
                             const SizedBox(
-                              height: 20,
+                              height: 60,
                             ),
-                            const OurServices(),
+                            // const OurServices(),
                             CustomButton(
-                              text: "Book Now",
+                              text: "Book Now".tr,
                               onPressed: () {
-                                controller.goToBooking(controller.serviceName,
+                                controller.goToBooking(
+                                    controller.serviceName,
+                                    controller.serviceNameAr,
                                     controller.serviceId);
                               },
                               size: 20,
                               fontWeight: FontWeight.bold,
                             ),
                             const SpacingBar(),
-                            controller.providerModel.providerrating == "0"
-                                ? const Text("This customer has not rated yet.")
+                            // controller.providerModel.providerrating == "0"
+                            controller.reviewsList.isEmpty
+                                ? Text("This customer has not rated yet.".tr)
                                 : const RatingSection(),
                             const SpacingBar(),
                             const ServiceStatics(),
                             const SpacingBar(),
                             controller.reviewsList.isEmpty
-                                ? const Center(
-                                    child: Text("No reviews currently"))
+                                ? Center(child: Text("No reviews currently".tr))
                                 : const Reviews()
                           ],
                         ),
                       ),
                       Positioned(
-                        top: 60,
-                        left: Get.size.width - 175,
-                        right: 30,
+                        top: 70,
+                        left: savedLang == "en"
+                            ? Get.size.width - 175
+                            : Get.size.width - 360,
+                        right: savedLang == "en" ? 30 : 200,
                         child: Container(
                           padding: const EdgeInsets.all(1),
                           decoration: BoxDecoration(

@@ -4,24 +4,30 @@ import 'package:ecommerce_store/core/functions/handingDataController.dart';
 import 'package:ecommerce_store/data/remote/services/servicesCatViewData.dart';
 import 'package:get/get.dart';
 
+import '../../core/services/services.dart';
+
 abstract class ServicesController extends GetxController {
   initData();
   getData(String sect);
   //goToDetails(PropertiesModel propertiesModel);
-  geToProviders(String servID, String serviceName);
+  geToProviders(String servID, String serviceName, String serviceNameAr);
 }
 
 class ServicesControllerImp extends ServicesController {
+  MyServices myServices = Get.find();
+  late String mode;
   ServiceCatViewData servicesCatViewData = ServiceCatViewData(Get.find());
   late StatusRequest statusRequest;
   List servicesList = [];
   late String serviceName;
   late String sectid;
   late String sectionName;
+  late String sectionNameAr;
   @override
   initData() {
     sectid = Get.arguments['sectionId'];
     sectionName = Get.arguments['sectionName'];
+    sectionNameAr = Get.arguments['sectionNameAr'];
     getData(sectid);
   }
 
@@ -52,8 +58,23 @@ class ServicesControllerImp extends ServicesController {
   }
 
   @override
-  geToProviders(servID, serviceName) {
-    Get.toNamed(ConsRoutes.providersView,
-        arguments: {"serviceID": servID, "serviceName": serviceName});
+  geToProviders(servID, serviceName, serviceNameAr) {
+    Get.toNamed(ConsRoutes.providersView, arguments: {
+      "serviceID": servID,
+      "serviceName": serviceName,
+      "serviceNameAr": serviceNameAr
+    });
+
+    /* geToProviders(servID, serviceName, serviceNameAr) {
+    if (mode == "" || mode == "guestMode") {
+      Get.toNamed(ConsRoutes.loginScrren);
+    } else {
+      Get.toNamed(ConsRoutes.providersView, arguments: {
+        "serviceID": servID,
+        "serviceName": serviceName,
+        "serviceNameAr": serviceNameAr
+      });
+    }
+  }*/
   }
 }

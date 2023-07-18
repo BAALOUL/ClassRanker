@@ -29,8 +29,8 @@ class BookingCompleted extends StatelessWidget {
                 ),
                 Text(
                   controller.accepted
-                      ? 'The provider have accepted your demand'
-                      : "The provider dosen't accept your demand",
+                      ? 'The provider have accepted your demand'.tr
+                      : "The provider dosen't accept your demand".tr,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 20),
                 ),

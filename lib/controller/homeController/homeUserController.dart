@@ -39,10 +39,10 @@ class HomeUserControllerImp extends HomeUserController {
   ];
 
   List<String> buttonBottomAppBar = [
-    "Home",
-    "Bookings",
-    "Messages",
-    "Settings"
+    "Home".tr,
+    "Bookings".tr,
+    "Messages".tr,
+    "Settings".tr
   ];
   List<IconData> listIconBottomAppBar = [
     Icons.home,

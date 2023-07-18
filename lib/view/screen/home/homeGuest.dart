@@ -2,19 +2,17 @@ import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:ecommerce_store/view/screen/home/buttonForBottomBar.dart';
 import 'package:ecommerce_store/view/screen/providers/controllers/providerInfosController.dart';
 import 'package:ecommerce_store/view/screen/providers/providerInfosScreen.dart';
-import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/homeController/homeUserController.dart';
+import '../../../controller/homeController/homeGuestController.dart';
 import '../../widgets/firstRow.dart';
 
-class HomeUser extends StatelessWidget {
-  const HomeUser({super.key});
+class HomeGuest extends StatelessWidget {
+  const HomeGuest({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeUserControllerImp());
+    Get.put(HomeGuestControllerImp());
     return Scaffold(
       appBar: AppBar(
         title: const FirstRow(),
@@ -22,7 +20,7 @@ class HomeUser extends StatelessWidget {
         elevation: 0.0,
         automaticallyImplyLeading: false,
       ),
-      body: GetBuilder<HomeUserControllerImp>(
+      body: GetBuilder<HomeGuestControllerImp>(
           builder: (controller) => Scaffold(
               floatingActionButton: FloatingActionButton(
                 backgroundColor: ConsColors.blueWhite,

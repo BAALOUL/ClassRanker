@@ -1,12 +1,13 @@
 import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
 import 'package:ecommerce_store/view/widgets/auth/customTextFormField.dart';
+import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 
 import '../../../controller/reviews/addReviewController.dart';
 import '../../../core/constant/consColors.dart';
-import '../../widgets/sections/firstRowBackArrow.dart';
+import '../../widgets/firstRow.dart';
 import '../../widgets/titleCustomBig.dart';
 
 class AddReviewScreen extends StatelessWidget {
@@ -34,8 +35,8 @@ class AddReviewScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 color: ConsColors.blueWhite,
                 height: 150,
-                child: const TitleCustomBig(
-                  title: "Add your review",
+                child: TitleCustomBig(
+                  title: "Add your review".tr,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -51,20 +52,21 @@ class AddReviewScreen extends StatelessWidget {
                   ),
                 ),
                 child: RatingDialog(
-                    title: const Text(
-                      'Rating Dialog',
+                    title: Text(
+                      'Rating Dialog'.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    message: const Text(
-                      'Tap a star to set your rating. Add more description here if you want.',
+                    message: Text(
+                      'Tap a star to set your rating. Add more description here if you want.'
+                          .tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 15),
                     ),
-                    submitButtonText: "Submit",
+                    submitButtonText: "Submit".tr,
                     onSubmitted: (response) {
                       reviewController.submitReview(
                           response.rating, response.comment);
