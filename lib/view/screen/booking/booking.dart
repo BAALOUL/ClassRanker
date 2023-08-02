@@ -103,7 +103,10 @@ class BookingView extends StatelessWidget {
                       CustomButton(
                         text: "Continue".tr,
                         onPressed: () {
-                          controller.goToProblemDescription();
+                          controller.latitude == ""
+                              ? Get.snackbar("Location".tr,
+                                  "You have to select the location.".tr)
+                              : controller.goToProblemDescription();
                         },
                         size: 20,
                         fontWeight: FontWeight.bold,

@@ -118,15 +118,16 @@ class guestMode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleCustomBig(
-          title: "Please register to benefit from the application's services.",
+        TitleCustomBig(
+          title:
+              "Please register to benefit from the application's services.".tr,
           size: 15,
         ),
         const SizedBox(
           height: 20,
         ),
         CustomButton(
-          text: "Create your account",
+          text: "Create your account".tr,
           width: 300,
           onPressed: () {
             Get.toNamed(ConsRoutes.loginScrren);
@@ -146,16 +147,17 @@ class userMode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleCustomBig(
+        TitleCustomBig(
           title:
-              'You have not a provider account.\n do you want to create it now ?',
+              'You have not a provider account.\n do you want to create it now ?'
+                  .tr,
           size: 15,
         ),
         const SizedBox(
           height: 20,
         ),
         CustomButton(
-          text: "Create provider account",
+          text: "Create provider account".tr,
           width: 300,
           onPressed: () {
             Get.toNamed(ConsRoutes.providerAcountWelcome);
@@ -175,15 +177,15 @@ class providerMode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleCustomBig(
-          title: ' do you want to update \n your provider profile now ?',
+        TitleCustomBig(
+          title: 'do you want to update your provider profile now'.tr,
           size: 15,
         ),
         const SizedBox(
           height: 20,
         ),
         CustomButton(
-          text: "Update your personal",
+          text: "Update your personal".tr,
           width: 270,
           height: 40,
           size: 16,
@@ -194,7 +196,7 @@ class providerMode extends StatelessWidget {
         ),
         const SpacingBar(),
         CustomButton(
-          text: "Update your photo",
+          text: "Update your photo".tr,
           width: 270,
           height: 40,
           size: 16,
@@ -205,7 +207,7 @@ class providerMode extends StatelessWidget {
         ),
         const SpacingBar(),
         CustomButton(
-          text: "Update your services",
+          text: "Update your services".tr,
           width: 270,
           height: 40,
           size: 16,

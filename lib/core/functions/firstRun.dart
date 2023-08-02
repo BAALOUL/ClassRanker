@@ -15,6 +15,5 @@ Future logout() async {
     language = Locale(Get.deviceLocale!.languageCode);
   }
 
-  myServices.sharedPreferences.setString("mode", "");
   //Get.offAllNamed(ConsRoutes.profileType);
 }

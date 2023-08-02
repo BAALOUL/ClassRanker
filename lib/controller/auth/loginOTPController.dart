@@ -114,19 +114,11 @@ class LoginOTPControllerIMP extends GetxController
     if (StatusRequest.success == statusRequest) {
       print("step 1 response : $response");
       if (response['status'] == "success") {
-        //print(response);
-        myServices.sharedPreferences
-            .setString("userId", response['data']['id']);
-        myServices.sharedPreferences
-            .setString("username", response['data']['username']);
-        myServices.sharedPreferences
-            .setString("email", response['data']['email']);
-        myServices.sharedPreferences
-            .setString("phone", response['data']['phone']);
+        registerUserInfos(response);
 
         await getProviderId(response['data']['id']);
+
         await initShared(providerid);
-        print("step 4 going to home screen");
         testController.printToken('Hi Ali BAALOUL');
         Get.offNamed(ConsRoutes.homeProvider);
       } else {
@@ -134,6 +126,14 @@ class LoginOTPControllerIMP extends GetxController
       }
     }
     update();
+  }
+
+  void registerUserInfos(response) {
+    myServices.sharedPreferences.setString("userId", response['data']['id']);
+    myServices.sharedPreferences
+        .setString("username", response['data']['username']);
+    myServices.sharedPreferences.setString("email", response['data']['email']);
+    myServices.sharedPreferences.setString("phone", response['data']['phone']);
   }
 
   @override

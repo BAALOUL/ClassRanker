@@ -44,29 +44,8 @@ class ProfileTypeControllerImp extends ProfileTypeController {
 
   @override
   void onInit() {
-    /*mode = myServices.sharedPreferences.get('mode').toString();
-    switch (mode) {
-      case "gestMode":
-        print("guest");
-        break;
-      case "userMode":
-        print("user mode");
-        WidgetsBinding.instance?.addPostFrameCallback((_) {
-          Get.toNamed(ConsRoutes.homeUser);
-        });
-        break;
-      case "providerMode":
-        print("provider mode");
-        WidgetsBinding.instance?.addPostFrameCallback((_) {
-          Get.toNamed(ConsRoutes.homeProvider);
-        });
-        break;
-      default:
-        myServices.sharedPreferences.setString("mode", "");
-        mode = "";
-        print("no mode $mode");
-    }
-*/
+    mode = myServices.sharedPreferences.get('mode').toString();
+
     super.onInit();
   }
 }

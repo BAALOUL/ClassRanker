@@ -1,15 +1,11 @@
-import 'dart:io';
 import 'package:ecommerce_store/core/constant/consColors.dart';
 import 'package:ecommerce_store/view/screen/booking/components/imagesZone.dart';
-import 'package:ecommerce_store/view/widgets/firstRow.dart';
 import 'package:ecommerce_store/view/widgets/sections/firstRowBackArrow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../../controller/booking/bookingController.dart';
+import '../../../controller/booking/problemDescriptionController.dart';
 import '../../widgets/auth/customButton.dart';
-import 'bookingButton.dart';
 
 class ProblemDescriptionScreen extends GetView<BookingControllerImp> {
   const ProblemDescriptionScreen({Key? key}) : super(key: key);
@@ -66,6 +62,7 @@ class ProblemDescriptionScreen extends GetView<BookingControllerImp> {
                   text: "Continue".tr,
                   onPressed: () {
                     controller.goToBookinSummary();
+                    //controller.uploadPhotosToApi("242");
                   },
                   size: 20,
                   fontWeight: FontWeight.bold,

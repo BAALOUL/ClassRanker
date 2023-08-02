@@ -47,6 +47,7 @@ class Links {
   static const String bookingByUser = "$server/booking/bookingsByUser.php";
   static const String bookingStatusUpdate =
       "$server/booking/bookingStatusUpdate.php";
+  static const String bookingImages = "$server/booking/problemImages.php";
 
   // orders
   static const String ordersByProvider = "$server/orders/ordersByProvider.php";

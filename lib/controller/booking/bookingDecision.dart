@@ -36,14 +36,14 @@ class BookingDecisionControllerImp extends BookingDecisionController {
       if (response['status'] == "success") {
         if (status == 'current') {
           Get.snackbar(
-            'Service demand accepted',
-            'The service demand has been accepted.',
+            'Service demand accepted'.tr,
+            'The service demand has been accepted.'.tr,
             backgroundColor: const Color.fromARGB(255, 62, 185, 84),
           );
         } else if (status == 'rejected') {
           Get.snackbar(
             'Service demand rejected',
-            'The service demand has been rejected.',
+            'The service demand has been rejected.'.tr,
             backgroundColor: const Color.fromARGB(255, 185, 62, 62),
           );
         }

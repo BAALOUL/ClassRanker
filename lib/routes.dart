@@ -133,4 +133,6 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: ConsRoutes.splash, page: () => const SplashScreen()),
 
   GetPage(name: ConsRoutes.homeGuest, page: () => const HomeGuest()),
+
+  //GetPage(name: ConsRoutes.ocrView, page: () => OcrView()),
 ];

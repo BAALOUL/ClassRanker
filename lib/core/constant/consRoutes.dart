@@ -58,4 +58,6 @@ class ConsRoutes {
   static const String otpScreen = "/otpscreen";
   static const String splash = "/splashscreen";
   static const String homeGuest = "/homeguest";
+
+  static const String ocrView = "/ocrview";
 }

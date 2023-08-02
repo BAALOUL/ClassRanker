@@ -185,6 +185,25 @@ class MyLocalization extends Translations {
           "Rejected": "Rejected",
           "Completed": "Completed",
           "My orders": "My orders",
+          "You have not a provider account.\n do you want to create it now ?":
+              "You have not a provider account.\n do you want to create it now ?",
+          "Create provider account": "Create provider account",
+          "do you want to update \n your provider profile now ?":
+              "do you want to update \n your provider profile now ?",
+          "Update your personal": "Update your personal",
+          "Update your photo": "Update your photo",
+          "Update your services": "Update your services",
+          "Please register to benefit from the application's services.":
+              "Please register to benefit from the application's services.",
+          "Create your account": "Create your account",
+          "Service demand accepted": "Service demand accepted",
+          "The service demand has been accepted.":
+              "The service demand has been accepted.",
+          "Service demand rejected": "Service demand rejected",
+          "The service demand has been rejected.":
+              "The service demand has been rejected.",
+          "You have to select the location.":
+              "You have to select the location.",
         },
         "ar": {
           "1": " اهلا ",
@@ -364,6 +383,24 @@ class MyLocalization extends Translations {
           "Rejected": "ملغاة",
           "Completed": "مكتملة",
           "My orders": "طلبات العملاء",
+          "You have not a provider account.\n do you want to create it now ?":
+              "لا تملك حساب مقدم خدمة.\n هل تريد انشاءه الآن",
+          "Create provider account": "أنشء حساب مقدم خدمة",
+          "do you want to update your provider profile now":
+              "هل تريد تعديل \n حساب مقدم الخدمة الخاص بك ?",
+          "Update your personal": "عدل على معلوماتك الشخصية",
+          "Update your photo": "عدل على صورتك",
+          "Update your services": "عدل خدماتك",
+          "Please register to benefit from the application's services.":
+              "من فضلك سجل للاستفادة من خدمات التطبيق",
+          "Create your account": "أنشء حسابك",
+          "Service demand accepted": "رد مقدم الخدمة",
+          "The service demand has been accepted.": "تم قبول طلب خدمتك",
+          "Service demand rejected": "رد مقدم الخدمة",
+          "The service demand has been rejected.":
+              "لم يتم الموافقة على طلب خدمتكم",
+          "You have to select the location.":
+              "يجب اختيار الموقع للاستمرار في الحجز",
         },
       };
 }

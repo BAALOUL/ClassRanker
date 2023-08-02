@@ -21,6 +21,8 @@ class LocalizationController extends GetxController {
       changeLanguage("en");
     } else {
       language = Locale(Get.deviceLocale!.languageCode);
+      myServices.sharedPreferences
+          .setString("lang", Get.deviceLocale!.languageCode);
     }
 
     super.onInit();

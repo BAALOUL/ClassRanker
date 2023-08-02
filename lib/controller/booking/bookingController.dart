@@ -6,13 +6,18 @@ import 'package:ecommerce_store/data/model/providerModel.dart';
 import 'package:ecommerce_store/data/remote/booking/bookingUp.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import '../../core/services/services.dart';
-
 import '../../core/functions/handingDataController.dart';
+import '../../links.dart';
 import 'maScreen.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'dart:typed_data';
+import 'package:path_provider/path_provider.dart';
 
 abstract class BookingController extends GetxController {
   initData();
@@ -58,14 +63,125 @@ class BookingControllerImp extends BookingController {
 
   List bookData = [];
 
-  void addPhoto(File photo) {
-    selectedPhotos.add(photo);
-    update();
-  }
-
   void deletePhoto(int index) {
     selectedPhotos.removeAt(index);
     update();
+  }
+
+  void addPhoto(XFile? photo) async {
+    if (photo != null) {
+      // Create a new copy of the temporary file for each selected image
+      File resizedPhoto = await copyXFile(photo);
+
+      selectedPhotos.add(resizedPhoto);
+
+      update();
+    } else {
+      // Handle the case where the photo is null
+      print('Error: Photo is null');
+    }
+  }
+
+  Future<File> copyXFile(XFile xfile) async {
+    // Get the temporary directory
+    Directory tempDir = await getTemporaryDirectory();
+    // Create a new unique file name
+    String tempFileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
+    // Copy the XFile to the temporary directory with the new file name
+    File tempFile = File('${tempDir.path}/$tempFileName');
+    await tempFile.writeAsBytes(await xfile.readAsBytes());
+    return tempFile;
+  }
+
+  void selectImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.getImage(source: source);
+
+    if (pickedFile != null) {
+      XFile? xFile = XFile(pickedFile.path);
+      // Resize the image before adding it to the controller's selectedPhotos list
+      XFile? resizedPhoto = await resizeImages(xFile);
+
+      if (resizedPhoto != null) {
+        addPhoto(resizedPhoto);
+        // No need to manually trigger an update since GetX's Obx widget will take care of it
+      } else {
+        // Handle the case when resizing fails
+        print('Error resizing the image');
+      }
+    }
+  }
+
+  Future<XFile?> resizeImages(XFile? imageFile) async {
+    if (imageFile == null) return null;
+
+    final rawImage = await imageFile.readAsBytes();
+    final bytes = await FlutterImageCompress.compressWithList(
+      rawImage,
+      minHeight: 150,
+    );
+
+    if (bytes != null) {
+      // Save the resized image to a temporary file
+      final tempDir = await getTemporaryDirectory();
+      final tempFile = File('${tempDir.path}/temp_image.jpg');
+      await tempFile.writeAsBytes(bytes);
+
+      return XFile(tempFile.path); // Return the resized image as XFile
+    } else {
+      return null;
+    }
+  }
+
+  /* Future<XFile?> compressImage(XFile? imageFile) async {
+    if (imageFile == null) return null;
+
+    // You can adjust the compression quality as needed (0 to 100)
+    int quality = 70;
+
+    try {
+      final result = await FlutterImageCompress.compressAndGetFile(
+        imageFile.path ?? '',
+        imageFile.path ?? '',
+        quality: quality,
+      );
+      return XFile(result?.path ?? '');
+    } catch (e) {
+      print('Compression error: $e');
+      return null;
+    }
+  }*/
+
+  // Method to send selectedPhotos to the API
+  Future<void> uploadPhotosToApi(String booking_id) async {
+    String apiUrl = Links.bookingImages;
+    print("the selected photos are :  $selectedPhotos \n");
+
+    try {
+      var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+      print("the number of photos is : ${selectedPhotos.length}");
+      for (int i = 0; i < selectedPhotos.length; i++) {
+        var photo = selectedPhotos[i];
+        // Get the file name from the path and use it as the name
+        String fileName = photo.path.split('/').last;
+        request.files.add(
+          await http.MultipartFile.fromPath('booking_images[]', photo.path,
+              filename: fileName),
+        );
+      }
+
+      request.fields['booking_id'] = booking_id;
+
+      var response = await request.send();
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        print('Photos uploaded successfully');
+      } else {
+        print('Failed to upload photos: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      print('Error uploading photos: $e');
+    }
   }
 
   @override
@@ -102,7 +218,7 @@ class BookingControllerImp extends BookingController {
     if (latitude != null) {
       statusRequest = StatusRequest.loading;
       update();
-      ////print(username);
+      print("sending...........");
 
       var response = await bookingUp.postBooking(
           userId,
@@ -123,7 +239,24 @@ class BookingControllerImp extends BookingController {
       ////print('the suer id is: $userId and the provider id is: $provId');
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          goToBookingMessage();
+          String bookingId;
+          // Replace the print statement with this updated code
+          print("s1 the response is :::::::: ${response['booking_id']}");
+          if (response['booking_id'] != null) {
+            String bookingId = response['booking_id'];
+            print("booking id is : $bookingId");
+          } else {
+            print("booking id is null or does not exist in the response");
+          }
+
+          if (response != null && response['booking_id'] != null) {
+            bookingId = response['booking_id'];
+
+            print("\n s2 uploading");
+
+            await uploadPhotosToApi(bookingId);
+            goToBookingMessage();
+          } else {}
         } else {
           statusRequest = StatusRequest.failure;
         }

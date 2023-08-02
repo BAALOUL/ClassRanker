@@ -43,7 +43,7 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                   },
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 45,
                         backgroundColor: ConsColors.yellow,
                         child: Icon(
@@ -53,10 +53,10 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Text(
                           "Customer".tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -71,7 +71,7 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
                   },
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 45,
                         backgroundColor: ConsColors.blue,
                         child: Icon(
