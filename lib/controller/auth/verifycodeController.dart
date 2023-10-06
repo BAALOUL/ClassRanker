@@ -1,8 +1,8 @@
 // ignore: file_names
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/functions/handingDataController.dart';
-import 'package:ecommerce_store/data/remote/auth/verifyCodeSignup.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/functions/handingDataController.dart';
+import 'package:classRanker/data/remote/auth/verifyCodeSignup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +15,7 @@ class VerifyCodeControllerImp extends VerifyCodeController {
   VerifyCodeData verifyCodeData = VerifyCodeData(Get.find());
   late TextEditingController verifycode;
   String? email = Get.arguments['email'];
+  String? role = Get.arguments['role'];
   StatusRequest? statusRequest;
 
   @override
@@ -26,7 +27,7 @@ class VerifyCodeControllerImp extends VerifyCodeController {
     statusRequest = handingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        Get.offNamed(ConsRoutes.successSignUp);
+        Get.offNamed(ConsRoutes.successSignUp, arguments: {"role": role});
       } else {
         Get.defaultDialog(
             title: "ُWarning", middleText: "Verify Code Not Correct");

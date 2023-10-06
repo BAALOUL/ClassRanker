@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/functions/checkInternet.dart';
+import 'package:classRanker/core/functions/checkInternet.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 

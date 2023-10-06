@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/constant/consColors.dart';
+import 'package:classRanker/core/constant/consColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

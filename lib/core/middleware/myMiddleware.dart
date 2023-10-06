@@ -1,5 +1,5 @@
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/services/services.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class MyMiddleWare extends GetMiddleware {
     }
 
     if (myServices.sharedPreferences.getString("step") == "1") {
-      return const RouteSettings(name: ConsRoutes.profileType);
+      return const RouteSettings(name: ConsRoutes.signUp);
     }
   }
 }

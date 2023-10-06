@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/functions/checkInternet.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/functions/checkInternet.dart';
 import 'package:http/http.dart' as http;
 
 class Crud {

@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +20,7 @@ class ProfileTypeControllerImp extends ProfileTypeController {
     mode == ""
         ? Get.toNamed(ConsRoutes.loginScrren)
         : WidgetsBinding.instance?.addPostFrameCallback((_) {
-            Get.toNamed(ConsRoutes.homeProvider);
+            //Get.toNamed(ConsRoutes.homeProvider);
           });
   }
 
@@ -31,7 +31,7 @@ class ProfileTypeControllerImp extends ProfileTypeController {
       Get.toNamed(ConsRoutes.loginScrren);
     } else {
       WidgetsBinding.instance?.addPostFrameCallback((_) {
-        Get.toNamed(ConsRoutes.homeUser);
+        // Get.toNamed(ConsRoutes.homeUser);
       });
     }
   }
@@ -39,7 +39,7 @@ class ProfileTypeControllerImp extends ProfileTypeController {
   @override
   goToGuestTrack() {
     //myServices.sharedPreferences.setString("mode", "guestMode");
-    Get.toNamed(ConsRoutes.homeGuest);
+    // Get.toNamed(ConsRoutes.homeGuest);
   }
 
   @override

@@ -6,18 +6,18 @@
     "configurations": [
         {
             "program": "lib/main.dart",
-            "name": "ecommerce_store",
+            "name": "classRanker",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "ecommerce_store (profile mode)",
+            "name": "classRanker (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "ecommerce_store (release mode)",
+            "name": "classRanker (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

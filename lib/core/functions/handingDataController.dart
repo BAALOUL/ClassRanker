@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/class/statusRequest.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
 
 handingData(response) {
   if (response is StatusRequest) {

@@ -1,7 +1,7 @@
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/functions/handingDataController.dart';
-import 'package:ecommerce_store/data/remote/auth/signupUser.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/functions/handingDataController.dart';
+import 'package:classRanker/data/remote/auth/signupUser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -16,12 +16,14 @@ class SinUpControllerImp extends SignUpController {
 
   SignupUser signupuser = SignupUser(Get.find());
   late TextEditingController username;
+  late TextEditingController fullname;
   late TextEditingController phone;
   late TextEditingController email;
   late TextEditingController password;
   StatusRequest? statusRequest;
 
   List data = [];
+  String role = "Student";
 
   @override
   login() {}
@@ -34,6 +36,7 @@ class SinUpControllerImp extends SignUpController {
   @override
   void onInit() {
     username = TextEditingController();
+    fullname = TextEditingController();
     phone = TextEditingController();
     email = TextEditingController();
     password = TextEditingController();
@@ -43,6 +46,7 @@ class SinUpControllerImp extends SignUpController {
   @override
   void dispose() {
     username.dispose();
+    fullname.dispose();
     phone.dispose();
     email.dispose();
     password.dispose();
@@ -55,13 +59,14 @@ class SinUpControllerImp extends SignUpController {
       statusRequest = StatusRequest.loading;
       update();
       //print(username);
-      var response = await signupuser.postuser(
-          username.text, password.text, email.text, phone.text);
+      var response = await signupuser.postuser(username.text, fullname.text,
+          password.text, email.text, phone.text, role);
       statusRequest = handingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           //data.addAll(response['data']);
-          Get.offNamed(ConsRoutes.verefyCode, arguments: {"email": email.text});
+          Get.offNamed(ConsRoutes.verefyCode,
+              arguments: {"email": email.text, "role": role});
           //Get.offNamed(ConsRoutes.verefyCode);
         } else {
           statusRequest = StatusRequest.failure;
@@ -69,5 +74,11 @@ class SinUpControllerImp extends SignUpController {
       }
       update();
     } else {}
+  }
+
+  // Update the className when the selectedItem changes
+  void updateRole(String selectedItem) {
+    role = selectedItem;
+    //getData(className);
   }
 }

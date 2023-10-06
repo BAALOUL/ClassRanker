@@ -1,8 +1,8 @@
-import 'package:ecommerce_store/bindings/initialBinding.dart';
-import 'package:ecommerce_store/controller/localController.dart';
-import 'package:ecommerce_store/core/localization/localization.dart';
-import 'package:ecommerce_store/core/localization/localizationController.dart';
-import 'package:ecommerce_store/view/screen/home/splash.dart';
+import 'package:classRanker/bindings/initialBinding.dart';
+import 'package:classRanker/controller/localController.dart';
+import 'package:classRanker/core/localization/localization.dart';
+import 'package:classRanker/core/localization/localizationController.dart';
+import 'package:classRanker/view/screen/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

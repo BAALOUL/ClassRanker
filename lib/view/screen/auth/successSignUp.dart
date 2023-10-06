@@ -1,6 +1,6 @@
-import 'package:ecommerce_store/controller/auth/successSignUpController.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:classRanker/controller/auth/successSignUpController.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +40,11 @@ class SuccessSignUp extends StatelessWidget {
           const Spacer(),
           SizedBox(
             width: double.infinity,
-            child: CustomButton(text: "31".tr, onPressed: () {}),
+            child: CustomButton(
+                text: "Continue".tr,
+                onPressed: () {
+                  controller.goToProfile();
+                }),
           ),
           const SizedBox(height: 30)
         ]),

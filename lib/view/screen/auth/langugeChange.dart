@@ -1,6 +1,6 @@
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/localization/localizationController.dart';
-import 'package:ecommerce_store/core/services/services.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/localization/localizationController.dart';
+import 'package:classRanker/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,13 +34,13 @@ class LangugeChange extends GetView<LocalizationController> {
                     controller.changeLanguage("en");
                     switch (mode) {
                       case "":
-                        Get.offAllNamed(ConsRoutes.homeGuest);
+                        //Get.offAllNamed(ConsRoutes.homeGuest);
                         break;
                       case "userMode":
-                        Get.offAllNamed(ConsRoutes.homeUser);
+                        // Get.offAllNamed(ConsRoutes.homeUser);
                         break;
                       case "providerMode":
-                        Get.offAllNamed(ConsRoutes.homeProvider);
+                        // Get.offAllNamed(ConsRoutes.homeProvider);
                         break;
                       default:
                     }
@@ -90,13 +90,13 @@ class LangugeChange extends GetView<LocalizationController> {
                     controller.changeLanguage("ar");
                     switch (mode) {
                       case "":
-                        Get.offAllNamed(ConsRoutes.homeGuest);
+                        // Get.offAllNamed(ConsRoutes.homeGuest);
                         break;
                       case "userMode":
-                        Get.offAllNamed(ConsRoutes.homeUser);
+                        //Get.offAllNamed(ConsRoutes.homeUser);
                         break;
                       case "providerMode":
-                        Get.offAllNamed(ConsRoutes.homeProvider);
+                        // Get.offAllNamed(ConsRoutes.homeProvider);
                         break;
                       default:
                     }

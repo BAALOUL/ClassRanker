@@ -1,10 +1,10 @@
-import 'package:ecommerce_store/controller/auth/signInController.dart';
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/functions/validinput.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
-import 'package:ecommerce_store/view/widgets/auth/customForgetPassword.dart';
-import 'package:ecommerce_store/view/widgets/auth/customTextSignUp.dart';
+import 'package:classRanker/controller/auth/signInController.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/core/functions/validinput.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
+import 'package:classRanker/view/widgets/auth/customForgetPassword.dart';
+import 'package:classRanker/view/widgets/auth/customTextSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +40,7 @@ class Login extends StatelessWidget {
         body: GetBuilder<SinInControllerImp>(
           builder: (controller) =>
               controller.statusRequest == StatusRequest.loading
-                  ? controller.toHome()
+                  ? const Text("loading")
                   : Container(
                       padding: const EdgeInsets.all(25),
                       child: Form(
@@ -98,7 +98,7 @@ class Login extends StatelessWidget {
                             CustomButton(
                                 text: "Continue",
                                 onPressed: () {
-                                  controller.toHome();
+                                  controller.login();
                                 }),
                             const SizedBox(
                               height: 20,

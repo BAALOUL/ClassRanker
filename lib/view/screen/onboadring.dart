@@ -1,10 +1,9 @@
-import 'package:ecommerce_store/view/widgets/onBoarding/pageViewer.dart';
+import 'package:classRanker/view/widgets/onBoarding/pageViewer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/onBoardingController.dart';
 import '../widgets/auth/customButton.dart';
-import '../widgets/onBoarding/buttonCustom.dart';
 import '../widgets/onBoarding/dotOnBoarding.dart';
 
 class Onboarding extends StatelessWidget {

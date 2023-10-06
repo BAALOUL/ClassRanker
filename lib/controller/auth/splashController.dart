@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
 import 'package:get/get.dart';
 
 import '../../core/services/services.dart';
@@ -14,12 +14,12 @@ class SplashControllerImp extends SplashController {
 
   @override
   goToProviderTrack() {
-    Get.toNamed(ConsRoutes.homeProvider);
+    Get.toNamed(ConsRoutes.getstudentsListScreen);
   }
 
   @override
   goToCustomerTrack() {
-    Get.toNamed(ConsRoutes.homeUser);
+    Get.toNamed(ConsRoutes.getstudentsListScreen);
   }
 
   @override

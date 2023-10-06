@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/functions/logout.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/core/functions/logout.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

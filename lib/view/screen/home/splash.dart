@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/constant/consColors.dart';
+import 'package:classRanker/core/constant/consColors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +43,7 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       navigateToNextScreen();
     });
     update();
@@ -51,24 +51,7 @@ class SplashController extends GetxController {
 
   void navigateToNextScreen() {
     mode = myServices.sharedPreferences.get('mode').toString();
-    switch (mode) {
-      case "guestMode":
-        print("guest");
-        break;
-      case "userMode":
-        print("user mode");
-        Get.toNamed(ConsRoutes.homeUser);
-        break;
-      case "providerMode":
-        print("provider mode");
-        Get.toNamed(ConsRoutes.homeProvider);
-        break;
-      default:
-        myServices.sharedPreferences.setString("mode", "");
-        mode = "";
-        print("no mode $mode");
-        Get.toNamed(ConsRoutes.profileType);
-    }
+    Get.toNamed(ConsRoutes.onBoarding);
   }
 
   // Add any other methods or variables needed for the controller

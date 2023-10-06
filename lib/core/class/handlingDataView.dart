@@ -1,6 +1,6 @@
-import 'package:ecommerce_store/controller/testDataController.dart';
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consImageAssets.dart';
+import 'package:classRanker/controller/testDataController.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consImageAssets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

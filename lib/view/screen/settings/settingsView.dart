@@ -1,5 +1,5 @@
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/functions/logout.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/core/functions/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,7 +94,7 @@ class SettingsView extends StatelessWidget {
                     height: 32,
                   ),
                   'Privacy Policy'.tr, () {
-                // Handle tile tap
+                Get.offAllNamed(ConsRoutes.getstudentsListScreen);
               }),
               /* const Divider(),
             _buildTile(
@@ -118,9 +118,8 @@ class SettingsView extends StatelessWidget {
                     width: 32,
                     height: 32,
                   ),
-                  'OCR'.tr, () {
-                Get.offAllNamed(ConsRoutes.ocrView);
-              }),
+                  'OCR'.tr,
+                  () {}),
               const Divider(),
               _buildTile(
                   Image.asset(

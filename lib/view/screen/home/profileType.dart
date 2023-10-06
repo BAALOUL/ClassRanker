@@ -1,7 +1,7 @@
-import 'package:ecommerce_store/controller/profileTypeController.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:classRanker/controller/profileTypeController.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -104,9 +104,7 @@ class ProfileTypeScreen extends GetView<ProfileTypeControllerImp> {
               height: 40,
               width: 170,
               fontWeight: FontWeight.bold,
-              onPressed: () {
-                Get.offAllNamed(ConsRoutes.homeGuest);
-              },
+              onPressed: () {},
             )
           ],
         ),

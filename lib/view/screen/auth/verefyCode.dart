@@ -1,8 +1,8 @@
-import 'package:ecommerce_store/controller/auth/verifycodeController.dart';
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
-import 'package:ecommerce_store/view/widgets/auth/customTextSignUp.dart';
+import 'package:classRanker/controller/auth/verifycodeController.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
+import 'package:classRanker/view/widgets/auth/customTextSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';

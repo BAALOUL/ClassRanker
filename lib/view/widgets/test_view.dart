@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/controller/testDataController.dart';
+import 'package:classRanker/controller/testDataController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
-import 'package:ecommerce_store/core/functions/fcmConfig.dart';
-import 'package:ecommerce_store/core/services/services.dart';
+import 'package:classRanker/core/functions/fcmConfig.dart';
+import 'package:classRanker/core/services/services.dart';
 import 'package:get/get.dart';
 
 import '../core/functions/getLocalizationPermession.dart';

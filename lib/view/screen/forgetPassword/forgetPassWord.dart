@@ -1,7 +1,7 @@
-import 'package:ecommerce_store/controller/forgetPassword/forgetPasswordController.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/functions/validinput.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
+import 'package:classRanker/controller/forgetPassword/forgetPasswordController.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/core/functions/validinput.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

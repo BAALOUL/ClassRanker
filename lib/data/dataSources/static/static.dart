@@ -1,18 +1,17 @@
-import 'package:ecommerce_store/core/constant/consImageAssets.dart';
-import 'package:ecommerce_store/data/model/onboardingModel.dart';
+import 'package:classRanker/core/constant/consImageAssets.dart';
+import 'package:classRanker/data/model/onboardingModel.dart';
 
 List<OnboardingModel> onboardingList = [
   OnboardingModel(
-      title:
-          'أطلب مني منصة تربط بين العملاء ومقدمي الخدمات \n  يتيح للمستخدمين طلب الخدمات وتوظيفها بأفضل الأسعار',
+      title: 'Welcome to ClassRank! \n Your gateway to academic excellence.',
       image: ConsImageAssets.OnBoardingOne,
-      content: 'المنصة'),
+      content: 'Elevate your classroom experience'),
   OnboardingModel(
-      title: 'نوفر للعملاء حل مريح، مفيدوسريع\n لطلب وإنجاز خدماتهم',
+      title: 'Achieve organization and track student \n progress effortlessly.',
       image: ConsImageAssets.OnBoardingTwo,
-      content: 'العملاء'),
+      content: 'Empower educators like you'),
   OnboardingModel(
-      title: 'توسيع قاعدة العملاء \n وعرض الخبرة',
+      title: "Unlock the potential of ClassRank \n for insightful teaching.",
       image: ConsImageAssets.OnBoardingThree,
-      content: 'مقدمي الخدمات')
+      content: 'Inspire educational success')
 ];

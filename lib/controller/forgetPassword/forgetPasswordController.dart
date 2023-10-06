@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 {
-    "name": "ecommerce_store",
-    "short_name": "ecommerce_store",
+    "name": "classRanker",
+    "short_name": "classRanker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

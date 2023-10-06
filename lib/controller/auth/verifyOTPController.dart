@@ -1,8 +1,8 @@
 // ignore: file_names
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/functions/handingDataController.dart';
-import 'package:ecommerce_store/data/remote/auth/verifyCodeSignup.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/functions/handingDataController.dart';
+import 'package:classRanker/data/remote/auth/verifyCodeSignup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

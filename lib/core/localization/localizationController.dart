@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/core/services/services.dart';
+import 'package:classRanker/core/services/services.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
 

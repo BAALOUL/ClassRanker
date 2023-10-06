@@ -1,10 +1,12 @@
-import 'package:ecommerce_store/controller/auth/signUpController.dart';
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/core/functions/alertExitApp.dart';
-import 'package:ecommerce_store/core/functions/validinput.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
-import 'package:ecommerce_store/view/widgets/auth/customTextSignUp.dart';
+import 'package:classRanker/controller/auth/signUpController.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/functions/alertExitApp.dart';
+import 'package:classRanker/core/functions/validinput.dart';
+import 'package:classRanker/view/students/components/selectRole.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
+import 'package:classRanker/view/widgets/auth/customTextSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -76,7 +78,17 @@ class SignUp extends StatelessWidget {
                               mycontroller: controller.username,
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
+                            ),
+                            CustomTextFormField(
+                              isNumber: false,
+                              hintText: 'Enter your full name',
+                              labelText: "Full name",
+                              iconData: Icons.person_outline,
+                              mycontroller: controller.fullname,
+                            ),
+                            const SizedBox(
+                              height: 10,
                             ),
                             CustomTextFormField(
                               isNumber: true,
@@ -89,7 +101,7 @@ class SignUp extends StatelessWidget {
                               mycontroller: controller.phone,
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             CustomTextFormField(
                               isNumber: false,
@@ -102,7 +114,7 @@ class SignUp extends StatelessWidget {
                               mycontroller: controller.email,
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             CustomTextFormField(
                               isNumber: false,
@@ -114,6 +126,10 @@ class SignUp extends StatelessWidget {
                               iconData: Icons.lock_outline,
                               mycontroller: controller.password,
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const SelectRole(),
 
                             //const CustomForgetPassword(text: "Forget your password ?"),
                             const SizedBox(
@@ -132,6 +148,13 @@ class SignUp extends StatelessWidget {
                               text2: "  Sign In",
                               ontap: () {
                                 controller.toSignIn();
+                              },
+                            ),
+                            CustomTextSignUp(
+                              text1: "  Go to student   ",
+                              text2: "  admin dashboard ",
+                              ontap: () {
+                                Get.toNamed(ConsRoutes.getstudentsListScreen);
                               },
                             )
                             //CustomTextFormField(hintText: 'Enter your email', labelText: "Email",iconData: Icons.email_outlined,mycontroller: ,)

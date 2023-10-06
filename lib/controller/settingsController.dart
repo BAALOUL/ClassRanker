@@ -1,5 +1,5 @@
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/services/services.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/services/services.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 

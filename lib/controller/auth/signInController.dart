@@ -1,8 +1,8 @@
-import 'package:ecommerce_store/core/class/statusRequest.dart';
-import 'package:ecommerce_store/core/constant/consRoutes.dart';
-import 'package:ecommerce_store/core/functions/handingDataController.dart';
-import 'package:ecommerce_store/core/services/services.dart';
-import 'package:ecommerce_store/data/remote/auth/loginData.dart';
+import 'package:classRanker/core/class/statusRequest.dart';
+import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/core/functions/handingDataController.dart';
+import 'package:classRanker/core/services/services.dart';
+import 'package:classRanker/data/remote/auth/loginData.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -22,6 +22,8 @@ class SinInControllerImp extends SignInController {
   late TextEditingController email;
   late TextEditingController password;
 
+  late String role;
+
   StatusRequest? statusRequest;
   List data = [];
 
@@ -32,19 +34,29 @@ class SinInControllerImp extends SignInController {
       update();
       //print(username);
       var response = await loginData.postuser(email.text, password.text);
+      print(response);
       statusRequest = handingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          myServices.sharedPreferences.setString("id", response['data']['id']);
           myServices.sharedPreferences
-              .setString("username", response['data']['username']);
-          myServices.sharedPreferences
-              .setString("email", response['data']['email']);
-          myServices.sharedPreferences
-              .setString("phone", response['data']['phone']);
+              .setString("user_id", response['data']['user_id']);
+          role = response['data']['role'];
+          myServices.sharedPreferences.setString("role", role);
+
+          if (role == "student") {
+            myServices.sharedPreferences
+                .setString("student_id", response['data']['student_id']);
+            myServices.sharedPreferences
+                .setString("username", response['data']['username']);
+            myServices.sharedPreferences
+                .setString("email", response['data']['email']);
+            myServices.sharedPreferences
+                .setString("phone", response['data']['phone']);
+          }
+
           myServices.sharedPreferences.setString("step", "2");
           //data.addAll(response['data']);
-          Get.offNamed(ConsRoutes.home);
+          toHome();
           //Get.offNamed(ConsRoutes.verefyCode);
         } else {
           statusRequest = StatusRequest.failure;
@@ -85,6 +97,10 @@ class SinInControllerImp extends SignInController {
 
   @override
   toHome() {
-    Get.offAllNamed(ConsRoutes.homeProvider);
+    if (role == "student") {
+      Get.offAllNamed(ConsRoutes.studentHomeScreen);
+    } else if (role == "admin") {
+      Get.offAllNamed(ConsRoutes.getstudentsListScreen);
+    }
   }
 }

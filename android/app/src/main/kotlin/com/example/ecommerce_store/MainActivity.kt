@@ -1,4 +1,4 @@
-package com.example.ecommerce_store
+package com.example.classRanker
 
 import io.flutter.embedding.android.FlutterActivity
 

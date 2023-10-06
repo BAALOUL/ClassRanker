@@ -1,9 +1,8 @@
-import 'package:dropdown_search/dropdown_search.dart';
-import 'package:ecommerce_store/core/constant/consColors.dart';
-import 'package:ecommerce_store/view/widgets/auth/customButton.dart';
-import 'package:ecommerce_store/view/widgets/sections/firstRowController.dart';
-import 'package:ecommerce_store/view/widgets/spacingBar.dart';
-import 'package:ecommerce_store/view/widgets/titleCustomBig.dart';
+import 'package:classRanker/core/constant/consColors.dart';
+import 'package:classRanker/view/widgets/auth/customButton.dart';
+import 'package:classRanker/view/widgets/appBar/firstRowController.dart';
+import 'package:classRanker/view/widgets/spacingBar.dart';
+import 'package:classRanker/view/widgets/titleCustomBig.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -160,7 +159,7 @@ class userMode extends StatelessWidget {
           text: "Create provider account".tr,
           width: 300,
           onPressed: () {
-            Get.toNamed(ConsRoutes.providerAcountWelcome);
+            // Get.toNamed(ConsRoutes.providerAcountWelcome);
           },
         )
       ],
@@ -191,7 +190,7 @@ class providerMode extends StatelessWidget {
           size: 16,
           iconAssetPath: 'assets/screens/sections/infosUpdate.png',
           onPressed: () {
-            Get.toNamed(ConsRoutes.providerInfosScreen, arguments: {});
+            // Get.toNamed(ConsRoutes.providerInfosScreen, arguments: {});
           },
         ),
         const SpacingBar(),
@@ -202,7 +201,7 @@ class providerMode extends StatelessWidget {
           size: 16,
           iconAssetPath: 'assets/screens/sections/photoUpdate.png',
           onPressed: () {
-            Get.toNamed(ConsRoutes.providerImageZoneScreen, arguments: {});
+            // Get.toNamed(ConsRoutes.providerImageZoneScreen, arguments: {});
           },
         ),
         const SpacingBar(),
@@ -213,7 +212,7 @@ class providerMode extends StatelessWidget {
           size: 16,
           iconAssetPath: 'assets/screens/sections/servicesUpdate.png',
           onPressed: () {
-            Get.toNamed(ConsRoutes.providerServicesUpdateScreen, arguments: {});
+            // Get.toNamed(ConsRoutes.providerServicesUpdateScreen, arguments: {});
           },
         )
       ],

@@ -1,4 +1,4 @@
-import 'package:ecommerce_store/controller/onBoardingController.dart';
+import 'package:classRanker/controller/onBoardingController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

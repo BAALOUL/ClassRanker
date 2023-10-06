@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_store/view/size_config.dart';
+import 'package:classRanker/view/size_config.dart';
 
 const kPrimaryYellowColor = Color(0xFFfec107);
 const kPrimaryBlueColor = Color(0xFF0c3469);

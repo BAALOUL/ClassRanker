@@ -1,4 +1,0 @@
-CREATE VIEW service_provider_list AS
-SELECT providers.provider_id, providers.provider_name, providers.provider_name_ar, providers.provider_image
-FROM service_provider
-INNER JOIN providers ON service_provider.provider = providers.provider_id;
