@@ -16,8 +16,5 @@ class Links {
   static const String updateStudent = "$server/Admins/updateStudent.php";
   static const String createStudent = "$server/Admins/createStudent.php";
   static const String getRank = "$server/Students/getRank.php";
-
-  // Upload
-  static const String imagesUploaded = "https://baalsoft.com/ecommerce/upload";
-  static const String providers = "$imagesUploaded/providers";
+  static const String searchStudent = "$server/Admins/selectStudents.php";
 }

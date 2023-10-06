@@ -32,4 +32,5 @@ class ConsRoutes {
   static const String studentDetailScreen = "/studentdetailscreen";
   static const String editStudentScreen = "/editStudentScreen";
   static const String createStudentScreen = "/createStudentScreen";
+  static const String searchStudentScreen = "/searchStudentScreen";
 }

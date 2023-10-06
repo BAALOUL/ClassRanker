@@ -24,11 +24,19 @@ class StudentDetailControllerImp extends StudentDetailController {
   }
 
   @override
-  initData() {
-    studentModel = Get.arguments['student_model'];
-    print("detail controller init");
-    print(studentModel.fullName);
-    update();
+  initData() async {
+    final studentModel = Get.arguments?["student_model"] as StudentModel?;
+    if (studentModel != null) {
+      print("id is : ${studentModel.studentid}");
+      print("detail controller init");
+      print(studentModel.fullname);
+      // Assign the studentModel to the controller's property
+      this.studentModel = studentModel;
+      update();
+    } else {
+      // Handle the case when the argument is null
+      print("student_model argument is null");
+    }
   }
 
   @override
@@ -45,8 +53,6 @@ class StudentDetailControllerImp extends StudentDetailController {
     print(studentId);
     print(response);
     if (response == "success") {
-      Get.back();
-      Get.back();
     } else {
       // Handle error or display a message
     }

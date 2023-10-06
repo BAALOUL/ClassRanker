@@ -1,53 +1,65 @@
+/* 
+// Example Usage
+Map<String, dynamic> map = jsonDecode(<myJSONString>);
+var myRootNode = Root.fromJson(map);
+*/
 class StudentModel {
-  String? id;
+  String? userid;
   String? username;
+  String? email;
   String? password;
-  String? fullName; // Renamed to camelCase
-  String? className; // Renamed to camelCase
+  String? phone;
+  String? role;
+  String? fullname;
+  String? studentid;
+  String? classname;
   String? rank;
-  String? grade; // Added grade field
-  String? attendance; // Added attendance field
-  String? email; // Added email field
-  String? phone; // Added phone field
+  String? grade;
+  String? attendance;
 
-  StudentModel({
-    this.id,
-    this.username,
-    this.password,
-    this.fullName,
-    this.className,
-    this.rank,
-    this.grade, // Added grade field
-    this.attendance, // Added attendance field
-    this.email, // Added email field
-    this.phone, // Added phone field
-  });
+  StudentModel(
+      {this.userid,
+      this.username,
+      this.email,
+      this.password,
+      this.phone,
+      this.role,
+      this.fullname,
+      this.studentid,
+      this.classname,
+      this.rank,
+      this.grade,
+      this.attendance});
 
   StudentModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    userid = json['user_id'];
     username = json['username'];
+    email = json['email'];
     password = json['password'];
-    fullName = json['full_name'];
-    className = json['class_name'];
+    phone = json['phone'];
+    role = json['role'];
+    fullname = json['full_name'];
+    studentid = json['student_id'];
+    classname = json['class_name'];
     rank = json['rank'];
-    grade = json['grade']; // Added grade field
-    attendance = json['attendance']; // Added attendance field
-    email = json['email']; // Added email field
-    phone = json['phone']; // Added phone field
+    grade = json['grade'];
+    attendance = json['attendance'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['user_id'] = userid;
     data['username'] = username;
+    data['email'] = email;
     data['password'] = password;
-    data['full_name'] = fullName;
-    data['class_name'] = className;
+    data['phone'] = phone;
+    data['role'] = role;
+    data['full_name'] = fullname;
+    data['student_id'] = studentid;
+    data['class_name'] = classname;
     data['rank'] = rank;
-    data['grade'] = grade; // Added grade field
-    data['attendance'] = attendance; // Added attendance field
-    data['email'] = email; // Added email field
-    data['phone'] = phone; // Added phone field
+    data['grade'] = grade;
+    data['attendance'] = attendance;
     return data;
   }
 }

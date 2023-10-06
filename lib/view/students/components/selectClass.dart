@@ -34,7 +34,7 @@ class SelectClass extends GetView<GetStudentsByClassControllerImp> {
         ],
         popupItemDisabled: (String s) => s.startsWith('I'),
         onChanged: (selectedItem) {
-          controller.updateDate(selectedItem!);
+          controller.updateClass(selectedItem!);
           controller.update(); // Manually trigger the update
         },
         selectedItem: controller.className,

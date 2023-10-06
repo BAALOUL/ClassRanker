@@ -69,7 +69,7 @@ class GetStudentsByClassControllerImp extends GetStudentsByClassController {
   }
 
   // Update the className when the selectedItem changes
-  void updateDate(String selectedItem) {
+  void updateClass(String selectedItem) {
     className = selectedItem;
     getData(className);
   }

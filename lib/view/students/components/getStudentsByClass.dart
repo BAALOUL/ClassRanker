@@ -86,10 +86,10 @@ class GetStudentsListScreen extends StatelessWidget {
                                         controller.goToStudentDetails(
                                             student); // Pass the StudentModel to the detail screen
                                       },
-                                      title: Text(student.fullName),
+                                      title: Text(student.fullname),
                                       subtitle: Row(
                                         children: [
-                                          Text(student.className),
+                                          Text(student.classname),
                                           const Spacer(),
                                           Text(student.rank),
                                         ],

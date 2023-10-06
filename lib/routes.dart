@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_types_as_parameter_names
 
-import 'package:classRanker/controller/students/studentsHomeScreen.dart';
+import 'package:classRanker/view/students/searchStudentsScreen.dart';
+import 'package:classRanker/view/students/studentsHomeScreen.dart';
 import 'package:classRanker/core/middleware/myMiddleware.dart';
 import 'package:classRanker/test.dart';
 import 'package:classRanker/view/screen/home/splash.dart';
@@ -70,4 +71,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: ConsRoutes.createStudentScreen,
       page: () => const CreateStudentScreen()),
+
+  GetPage(
+      name: ConsRoutes.searchStudentScreen, page: () => SearchStudentScreen()),
 ];

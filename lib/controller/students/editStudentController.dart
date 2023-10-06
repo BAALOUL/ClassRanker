@@ -22,6 +22,7 @@ class EditStudentControllerImp extends EditStudentController {
   final attendanceController = TextEditingController();
 
   late StudentModel studentModel;
+  late String studentId;
   late StatusRequest statusRequest;
 
   @override
@@ -45,8 +46,10 @@ class EditStudentControllerImp extends EditStudentController {
   initData() {
     studentModel = Get.arguments['student_model'];
     // Populate the text controllers with studentModel data
-    fullNameController.text = studentModel.fullName ?? '';
-    classNameController.text = studentModel.className ?? '';
+    print("init edit st, the id is: ${studentModel.studentid}");
+    studentId = studentModel.studentid!;
+    fullNameController.text = studentModel.fullname ?? '';
+    classNameController.text = studentModel.classname ?? '';
     rankController.text = studentModel.rank ?? '';
     gradeController.text = studentModel.grade ?? '';
     attendanceController.text = studentModel.attendance?.toString() ?? '';
@@ -64,26 +67,32 @@ class EditStudentControllerImp extends EditStudentController {
       final rank = int.parse(rankController.text);
       final grade = gradeController.text;
       final attendance = int.parse(attendanceController.text);
-      var response = await updateStudentData.postUpdateStudentData(
-        studentModel.id!,
-        fullName,
-        className,
-        rank.toString(),
-        grade,
-        attendance.toString(),
-      );
-      print(response);
-      statusRequest = handingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          update();
-        } else {
-          statusRequest = StatusRequest.failure;
-        }
-      }
-      update();
 
-      Get.back();
+      if (studentModel != null) {
+        // Check if studentModel is not null
+        var response = await updateStudentData.postUpdateStudentData(
+          studentModel.studentid ??
+              "", // Use the null-aware operator ?? to provide a default value
+          fullName,
+          className,
+          rank.toString(),
+          grade,
+          attendance.toString(),
+        );
+
+        print(response);
+        statusRequest = handingData(response);
+        if (StatusRequest.success == statusRequest) {
+          if (response['status'] == "success") {
+            update();
+          } else {
+            statusRequest = StatusRequest.failure;
+          }
+        }
+        update();
+
+        Get.back();
+      }
     }
   }
 }

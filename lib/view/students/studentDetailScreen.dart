@@ -78,7 +78,7 @@ class StudentDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Full Name: ${student.fullName}",
+                                "Full Name: ${student.fullname}",
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class StudentDetailScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                "Class Name: ${student.className}",
+                                "Class Name: ${student.classname}",
                                 style: const TextStyle(fontSize: 16),
                               ),
                               const SizedBox(height: 10),
@@ -142,8 +142,9 @@ class StudentDetailScreen extends StatelessWidget {
                                                   // Call the deleteStudent method and assert that student.id is not null
                                                   await controller
                                                       .deleteStudent(
-                                                          student.id!);
-                                                  //Get.toNamed(ConsRoutes.getstudentsListScreen);
+                                                          student.studentid!);
+                                                  Get.offAllNamed(ConsRoutes
+                                                      .getstudentsListScreen);
                                                 },
                                               ),
                                             ],

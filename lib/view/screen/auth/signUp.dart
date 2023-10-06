@@ -65,7 +65,7 @@ class SignUp extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(
-                              height: 40.0,
+                              height: 30.0,
                             ),
                             CustomTextFormField(
                               isNumber: false,
@@ -77,9 +77,7 @@ class SignUp extends StatelessWidget {
                               iconData: Icons.person_outline,
                               mycontroller: controller.username,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+
                             CustomTextFormField(
                               isNumber: false,
                               hintText: 'Enter your full name',
@@ -87,9 +85,7 @@ class SignUp extends StatelessWidget {
                               iconData: Icons.person_outline,
                               mycontroller: controller.fullname,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+
                             CustomTextFormField(
                               isNumber: true,
                               valid: (val) {
@@ -100,9 +96,7 @@ class SignUp extends StatelessWidget {
                               iconData: Icons.phone_outlined,
                               mycontroller: controller.phone,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+
                             CustomTextFormField(
                               isNumber: false,
                               valid: (val) {
@@ -113,9 +107,7 @@ class SignUp extends StatelessWidget {
                               iconData: Icons.email_outlined,
                               mycontroller: controller.email,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+
                             CustomTextFormField(
                               isNumber: false,
                               valid: (val) {
@@ -126,14 +118,12 @@ class SignUp extends StatelessWidget {
                               iconData: Icons.lock_outline,
                               mycontroller: controller.password,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+
                             const SelectRole(),
 
                             //const CustomForgetPassword(text: "Forget your password ?"),
                             const SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
                             CustomButton(
                                 text: "Continue",
@@ -150,13 +140,13 @@ class SignUp extends StatelessWidget {
                                 controller.toSignIn();
                               },
                             ),
-                            CustomTextSignUp(
+                            /*CustomTextSignUp(
                               text1: "  Go to student   ",
                               text2: "  admin dashboard ",
                               ontap: () {
                                 Get.toNamed(ConsRoutes.getstudentsListScreen);
                               },
-                            )
+                            )*/
                             //CustomTextFormField(hintText: 'Enter your email', labelText: "Email",iconData: Icons.email_outlined,mycontroller: ,)
                           ],
                         ),

@@ -7,7 +7,9 @@ import 'package:classRanker/view/widgets/auth/customForgetPassword.dart';
 import 'package:classRanker/view/widgets/auth/customTextSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../core/constant/consImageAssets.dart';
 import '../../widgets/auth/customTextFormField.dart';
 
 class Login extends StatelessWidget {
@@ -40,7 +42,10 @@ class Login extends StatelessWidget {
         body: GetBuilder<SinInControllerImp>(
           builder: (controller) =>
               controller.statusRequest == StatusRequest.loading
-                  ? const Text("loading")
+                  ? Center(
+                      child: Lottie.asset(ConsImageAssets.loading,
+                          width: 300, height: 300),
+                    )
                   : Container(
                       padding: const EdgeInsets.all(25),
                       child: Form(

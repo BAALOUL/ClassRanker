@@ -126,9 +126,6 @@ flutter:
     - assets/lottie/
     - assets/icons/
     - assets/screens/sections/
-    - assets/screens/services/
-    - assets/screens/booking/
-    - assets/screens/description/
     - assets/screens/bookingMessage/
     - assets/screens/settings/
     - assets/logo/
