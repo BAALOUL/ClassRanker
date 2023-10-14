@@ -7,6 +7,7 @@ class Links {
   static const String login = "$server/auth/login.php";
   static const String verifycodeSignUp = "$server/auth/verfiycode.php";
   static const String tokenUpdate = "$server/auth/tokenUpdate.php";
+  static const String getStudentsList = "https://reqres.in/api/users?page=1";
 
   //Students
   static const String selectStudentById = "$server/auth/signup.php";

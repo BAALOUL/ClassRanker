@@ -38,8 +38,6 @@ class SinInControllerImp extends SignInController {
       statusRequest = handingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          myServices.sharedPreferences
-              .setString("user_id", response['data']['user_id']);
           role = response['data']['role'];
           myServices.sharedPreferences.setString("role", role);
 

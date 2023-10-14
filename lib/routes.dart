@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_types_as_parameter_names
 
+import 'package:classRanker/view/students/getStudentsList.dart';
 import 'package:classRanker/view/students/searchStudentsScreen.dart';
 import 'package:classRanker/view/students/studentsHomeScreen.dart';
 import 'package:classRanker/core/middleware/myMiddleware.dart';
@@ -16,7 +17,7 @@ import 'package:classRanker/view/screen/home/profileType.dart';
 import 'package:classRanker/view/screen/onboadring.dart';
 import 'package:classRanker/view/screen/settings/contactUsScreen.dart';
 import 'package:classRanker/view/screen/settings/settingsView.dart';
-import 'package:classRanker/view/students/components/getStudentsByClass.dart';
+import 'package:classRanker/view/students/getStudentsByClass.dart';
 import 'package:classRanker/view/students/createStudentScreen.dart';
 import 'package:classRanker/view/students/editStudentScreen.dart';
 import 'package:classRanker/view/students/studentDetailScreen.dart';
@@ -74,4 +75,6 @@ List<GetPage<dynamic>>? routes = [
 
   GetPage(
       name: ConsRoutes.searchStudentScreen, page: () => SearchStudentScreen()),
+
+  GetPage(name: ConsRoutes.getStudentsList, page: () => GetStudentList()),
 ];

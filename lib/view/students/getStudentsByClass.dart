@@ -1,14 +1,16 @@
 import 'package:classRanker/core/class/handlingDataView.dart';
 import 'package:classRanker/core/constant/consRoutes.dart';
+import 'package:classRanker/view/screen/home/titleCustom.dart';
 import 'package:classRanker/view/students/components/selectClass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/students/getStudentsByClassController.dart';
-import '../../../core/class/statusRequest.dart';
-import '../../../core/constant/consColors.dart';
-import '../../widgets/appBar/firstRowBackArrow.dart';
-import '../../widgets/titleCustomBig.dart';
+import '../../controller/students/getStudentsByClassController.dart';
+import '../../core/class/statusRequest.dart';
+import '../../core/constant/consColors.dart';
+import '../widgets/appBar/firstRowBackArrow.dart';
+import '../widgets/auth/customButton.dart';
+import '../widgets/titleCustomBig.dart';
 
 class GetStudentsListScreen extends StatelessWidget {
   const GetStudentsListScreen({super.key});
@@ -78,9 +80,7 @@ class GetStudentsListScreen extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   final student = controller.studentList[index];
                                   return InkWell(
-                                    onTap: () {
-                                      controller.goToStudentDetails(student);
-                                    },
+                                    onTap: () {},
                                     child: ListTile(
                                       onTap: () {
                                         controller.goToStudentDetails(
@@ -112,6 +112,15 @@ class GetStudentsListScreen extends StatelessWidget {
                             ConsColors.blue, // Change the color here
                         child: Icon(Icons.add),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomButton(
+                      text: "Get Students list",
+                      onPressed: () {
+                        Get.toNamed(ConsRoutes.getStudentsList);
+                      },
                     ),
                   ],
                 ),
