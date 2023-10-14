@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/students/getStudentsListController.dart';
 import '../../core/class/statusRequest.dart';
+import '../../data/model/newModel.dart'; // Import the correct model
 
 class GetStudentList extends StatelessWidget {
-  const GetStudentList({super.key});
+  const GetStudentList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +21,18 @@ class GetStudentList extends StatelessWidget {
             case StatusRequest.loading:
               return const Center(child: CircularProgressIndicator());
             case StatusRequest.success:
-              if (controller.studentList.isEmpty) {
+              if (controller.usersList.isEmpty) {
                 return const Center(child: Text('No students available.'));
               }
               return ListView.builder(
-                itemCount: controller.studentList.length,
+                itemCount: controller.usersList.length,
                 itemBuilder: (context, index) {
-                  final student = controller.studentList[index];
+                  final user = controller.usersList[index];
                   return ListTile(
-                    title: Text(student.id),
+                    leading: Image.network(user.avatar), // Display the avatar
+                    title: Text(
+                        'Name: ${user.firstName} ${user.lastName}'), // Display the full name
+                    subtitle: Text('Email: ${user.email}'), // Display the email
                   );
                 },
               );

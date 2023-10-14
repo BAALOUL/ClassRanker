@@ -5,8 +5,8 @@ class GetStudentsListData {
   Crud crud;
   GetStudentsListData(this.crud);
 
-  getstudentListData() async {
-    var response = await crud.postData(Links.getStudentsList, {});
+  getstudentListData(String page) async {
+    var response = await crud.postData(Links.getStudentsList, {"page": page});
     return response.fold((l) => l, (r) => r);
   }
 }
