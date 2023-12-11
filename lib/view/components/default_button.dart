@@ -1,7 +1,7 @@
+import 'package:classRanker/config.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constant/consColors.dart';
-import '../size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
@@ -16,10 +16,10 @@ class DefaultButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: getProportionateScreenHeight(56),
+      height: Config.getProportionateScreenHeight(56),
       child: TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Colors.white,
+          foregroundColor: Colors.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           backgroundColor: ConsColors.yellow,
@@ -28,7 +28,7 @@ class DefaultButton extends StatelessWidget {
         child: Text(
           text!,
           style: TextStyle(
-            fontSize: getProportionateScreenWidth(18),
+            fontSize: Config.getProportionateScreenWidth(18),
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),

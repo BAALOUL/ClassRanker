@@ -16,7 +16,6 @@ class ProfileTypeControllerImp extends ProfileTypeController {
 
   @override
   goToProviderTrack() {
-    print("mode is : $mode");
     mode == ""
         ? Get.toNamed(ConsRoutes.loginScrren)
         : WidgetsBinding.instance?.addPostFrameCallback((_) {
@@ -26,7 +25,6 @@ class ProfileTypeControllerImp extends ProfileTypeController {
 
   @override
   goToCustomerTrack() {
-    print("mode is : $mode");
     if (mode == "") {
       Get.toNamed(ConsRoutes.loginScrren);
     } else {

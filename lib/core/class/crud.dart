@@ -11,7 +11,6 @@ class Crud {
       try {
         var response = await http.post(Uri.parse(linkurl), body: data);
         if (response.statusCode == 200 || response.statusCode == 201) {
-          ////print('Response body: ${response.body}');
           Map responsebody = jsonDecode(response.body);
           return right(responsebody);
         } else {
@@ -19,7 +18,6 @@ class Crud {
         }
       } catch (e) {
         // Handle specific exceptions or log the error for debugging
-        ////print('Exception occurred: $e');
         return const Left(StatusRequest.serverfailure);
       }
     } else {

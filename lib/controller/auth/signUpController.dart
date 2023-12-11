@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:classRanker/controller/auth/authController.dart';
 import 'package:classRanker/core/class/statusRequest.dart';
 import 'package:classRanker/core/constant/consRoutes.dart';
 import 'package:classRanker/core/functions/handingDataController.dart';
 import 'package:classRanker/data/remote/auth/signupUser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class SignUpController extends GetxController {
   login();
@@ -13,17 +17,13 @@ abstract class SignUpController extends GetxController {
 
 class SinUpControllerImp extends SignUpController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
+  AuthController authController = Get.put(AuthController());
 
   SignupUser signupuser = SignupUser(Get.find());
   late TextEditingController username;
-  late TextEditingController fullname;
-  late TextEditingController phone;
   late TextEditingController email;
   late TextEditingController password;
   StatusRequest? statusRequest;
-
-  List data = [];
-  String role = "Student";
 
   @override
   login() {}
@@ -36,8 +36,6 @@ class SinUpControllerImp extends SignUpController {
   @override
   void onInit() {
     username = TextEditingController();
-    fullname = TextEditingController();
-    phone = TextEditingController();
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();
@@ -46,8 +44,6 @@ class SinUpControllerImp extends SignUpController {
   @override
   void dispose() {
     username.dispose();
-    fullname.dispose();
-    phone.dispose();
     email.dispose();
     password.dispose();
     super.dispose();
@@ -58,27 +54,44 @@ class SinUpControllerImp extends SignUpController {
     if (formstate.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      //print(username);
-      var response = await signupuser.postuser(username.text, fullname.text,
-          password.text, email.text, phone.text, role);
+      var response =
+          await signupuser.postuser(username.text, email.text, password.text);
       statusRequest = handingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          //data.addAll(response['data']);
-          Get.offNamed(ConsRoutes.verefyCode,
-              arguments: {"email": email.text, "role": role});
-          //Get.offNamed(ConsRoutes.verefyCode);
-        } else {
-          statusRequest = StatusRequest.failure;
-        }
-      }
-      update();
-    } else {}
-  }
+      if (response.isNotEmpty) {
+        final token = await authController.getToken(email.text, password.text);
 
-  // Update the className when the selectedItem changes
-  void updateRole(String selectedItem) {
-    role = selectedItem;
-    //getData(className);
+        if (token) {
+          //grab user data here
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          final tokenValue = prefs.getString('token') ?? '';
+
+          if (tokenValue.isNotEmpty && tokenValue != '') {
+            //get user data
+            final response = await authController.getUserToken(tokenValue);
+            if (response != null) {
+              //json decode
+              Map<String, dynamic> appointment = {};
+              final user = json.decode(response);
+
+              //check if any appointment today
+              for (var doctorData in user['doctor']) {
+                //if there is appointment return for today
+
+                if (doctorData['appointments'] != null) {
+                  appointment = doctorData;
+                }
+              }
+
+              authController.loginSuccess(user, appointment);
+              Get.toNamed(ConsRoutes.mainLayout);
+            }
+          }
+        }
+
+        //Get.offNamed(ConsRoutes.verefyCode);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
   }
 }

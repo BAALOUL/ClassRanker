@@ -18,13 +18,8 @@ requestPermessionNotification() async {
 fcmController() {
   FirebaseMessaging.onMessage.listen((message) {
     if (message.notification != null) {
-      print("Title: ${message.notification!.title}");
-      print("Body: ${message.notification!.body}");
-
       FlutterRingtonePlayer.playNotification();
       Get.snackbar(message.notification!.title!, message.notification!.body!);
-    } else {
-      print("Data Message: ${message.data}");
-    }
+    } else {}
   });
 }

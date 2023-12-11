@@ -1,5 +1,4 @@
 import 'package:classRanker/core/constant/consColors.dart';
-import 'package:classRanker/core/functions/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,7 +93,7 @@ class SettingsView extends StatelessWidget {
                     height: 32,
                   ),
                   'Privacy Policy'.tr, () {
-                Get.offAllNamed(ConsRoutes.getstudentsListScreen);
+                // Get.offAllNamed(ConsRoutes.getstudentsListScreen);
               }),
               /* const Divider(),
             _buildTile(
@@ -121,16 +120,6 @@ class SettingsView extends StatelessWidget {
                   'OCR'.tr,
                   () {}),
               const Divider(),
-              _buildTile(
-                  Image.asset(
-                    'assets/screens/settings/logout.png',
-                    width: 32,
-                    height: 32,
-                  ),
-                  'Logout'.tr, () async {
-                await logout();
-                Get.offAllNamed(ConsRoutes.profileType);
-              }),
             ],
           ),
         ),

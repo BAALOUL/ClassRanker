@@ -1,21 +1,15 @@
 class Links {
-  static const String server = "https://baalsoft.com/ClassRanker";
+  static const String server = "https://baalsoft.com/doctor/api";
   static const String test = "$server/test.php";
 
   //auth
-  static const String signup = "$server/auth/signup.php";
-  static const String login = "$server/auth/login.php";
-  static const String verifycodeSignUp = "$server/auth/verfiycode.php";
-  static const String tokenUpdate = "$server/auth/tokenUpdate.php";
-  static const String getStudentsList = "https://reqres.in/api/users";
+  static const String signup = "$server/register";
+  static const String login = "$server/login";
+  static const String getUser = "$server/user";
+  static const String appointments = "$server/appointments";
+  static const String book = "$server/book";
+  static const String logout = "$server/logout";
+  static const String fav = "$server/fav";
 
-  //Students
-  static const String selectStudentById = "$server/auth/signup.php";
-  static const String selectStudentsByClass =
-      "$server/Admins/getStudentsByClass.php";
-  static const String deleteStudent = "$server/Admins/deleteStudent.php";
-  static const String updateStudent = "$server/Admins/updateStudent.php";
-  static const String createStudent = "$server/Admins/createStudent.php";
-  static const String getRank = "$server/Students/getRank.php";
-  static const String searchStudent = "$server/Admins/selectStudents.php";
+  static const String storage = "https://baalsoft.com/doctor";
 }

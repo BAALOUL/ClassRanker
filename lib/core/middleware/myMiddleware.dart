@@ -15,7 +15,7 @@ class MyMiddleWare extends GetMiddleware {
     }
 
     if (myServices.sharedPreferences.getString("step") == "1") {
-      return const RouteSettings(name: ConsRoutes.signUp);
+      return const RouteSettings(name: ConsRoutes.login);
     }
   }
 }

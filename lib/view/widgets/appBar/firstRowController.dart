@@ -14,9 +14,7 @@ class FirstRowControllerImp extends FirstRowController {
   initData() {
     providerImg = myServices.sharedPreferences.get('providerImg').toString();
     mode = myServices.sharedPreferences.get('mode').toString();
-    print("S5 the mode is: $mode");
     update();
-    print("In the FirstRow the image is : $providerImg");
   }
 
   @override

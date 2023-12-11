@@ -94,6 +94,8 @@ dependencies:
   flutter_image_compress: ^2.0.0
   fast_image_resizer: ^0.0.2
   firebase_core: ^1.24.0
+  dio: ^4.0.6
+  table_calendar: ^3.0.8
   #url_launcher: ^6.0.12
   #stripe_payment: ^1.1.4
   #dropdown_search: ^5.0.6
@@ -122,6 +124,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/images/
     - assets/lottie/
     - assets/icons/

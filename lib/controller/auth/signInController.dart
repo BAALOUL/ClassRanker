@@ -1,11 +1,19 @@
+import 'dart:convert';
+
+import 'package:classRanker/controller/auth/authController.dart';
 import 'package:classRanker/core/class/statusRequest.dart';
 import 'package:classRanker/core/constant/consRoutes.dart';
 import 'package:classRanker/core/functions/handingDataController.dart';
 import 'package:classRanker/core/services/services.dart';
 import 'package:classRanker/data/remote/auth/loginData.dart';
+import 'package:classRanker/view/screen/home/homePage.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../links.dart';
 
 abstract class SignInController extends GetxController {
   login();
@@ -17,11 +25,14 @@ abstract class SignInController extends GetxController {
 class SinInControllerImp extends SignInController {
   GlobalKey<FormState> formstatelogin = GlobalKey<FormState>();
   LoginData loginData = LoginData(Get.find());
+  AuthController auth = Get.put(AuthController());
 
   MyServices myServices = Get.find();
   late TextEditingController email;
   late TextEditingController password;
 
+  final String defaultEmail = 'user@gmail.com';
+  final String defaultPassword = '12345678';
   late String role;
 
   StatusRequest? statusRequest;
@@ -29,39 +40,36 @@ class SinInControllerImp extends SignInController {
 
   @override
   login() async {
-    if (formstatelogin.currentState!.validate()) {
-      statusRequest = StatusRequest.loading;
-      update();
-      //print(username);
-      var response = await loginData.postuser(email.text, password.text);
-      print(response);
-      statusRequest = handingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          role = response['data']['role'];
-          myServices.sharedPreferences.setString("role", role);
+    //login here
+    final token = await auth.getToken(email.text, password.text);
 
-          if (role == "student") {
-            myServices.sharedPreferences
-                .setString("student_id", response['data']['student_id']);
-            myServices.sharedPreferences
-                .setString("username", response['data']['username']);
-            myServices.sharedPreferences
-                .setString("email", response['data']['email']);
-            myServices.sharedPreferences
-                .setString("phone", response['data']['phone']);
+    if (token) {
+      //grab user data here
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final tokenValue = prefs.getString('token') ?? '';
+
+      if (tokenValue.isNotEmpty && tokenValue != '') {
+        //get user data
+        final response = await auth.getUserToken(tokenValue);
+        if (response != null) {
+          //json decode
+          Map<String, dynamic> appointment = {};
+          final user = json.decode(response);
+
+          //check if any appointment today
+          for (var doctorData in user['doctor']) {
+            //if there is appointment return for today
+
+            if (doctorData['appointments'] != null) {
+              appointment = doctorData;
+            }
           }
 
-          myServices.sharedPreferences.setString("step", "2");
-          //data.addAll(response['data']);
-          toHome();
-          //Get.offNamed(ConsRoutes.verefyCode);
-        } else {
-          statusRequest = StatusRequest.failure;
+          auth.loginSuccess(user, appointment);
+          Get.toNamed(ConsRoutes.mainLayout);
         }
       }
-      update();
-    } else {}
+    }
   }
 
   @override
@@ -76,13 +84,8 @@ class SinInControllerImp extends SignInController {
 
   @override
   void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      print(value);
-      String? tocken = value;
-    });
-
-    email = TextEditingController();
-    password = TextEditingController();
+    email = TextEditingController(text: defaultEmail);
+    password = TextEditingController(text: defaultPassword);
     super.onInit();
   }
 
@@ -94,11 +97,5 @@ class SinInControllerImp extends SignInController {
   }
 
   @override
-  toHome() {
-    if (role == "student") {
-      Get.offAllNamed(ConsRoutes.studentHomeScreen);
-    } else if (role == "admin") {
-      Get.offAllNamed(ConsRoutes.getstudentsListScreen);
-    }
-  }
+  toHome() {}
 }

@@ -22,16 +22,11 @@ class ConsRoutes {
 
   static const String contactUsScreen = "/contactusscreen";
 
-  static const String splash = "/splashscreen";
-
-  //students
-  //static const String studentDashboard = "/studentsashboard";
-  //static const String adminDashboardView = "/adminDashboardView";
-  static const String getstudentsListScreen = "/getstudentsListScreen";
-  static const String studentHomeScreen = "/studentHomeScreen";
-  static const String studentDetailScreen = "/studentdetailscreen";
-  static const String editStudentScreen = "/editStudentScreen";
-  static const String createStudentScreen = "/createStudentScreen";
-  static const String searchStudentScreen = "/searchStudentScreen";
-  static const String getStudentsList = "/getStudentsList";
+  static const String homePage = "/homepage";
+  static const String doctorDetails = "/doctordetails";
+  static const String mainLayout = "/mainlayout";
+  static const String favoritePage = "/favoritepage";
+  static const String bookingPage = "/BookingPage";
+  static const String successBooking = "/SuccessBooking";
+  static const String profilePage = "/profilePage";
 }

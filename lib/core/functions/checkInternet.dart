@@ -6,9 +6,7 @@ Future<bool> checkInternet() async {
     if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
       return true;
     }
-  } on SocketException catch (e) {
-    print('Error: ${e.message}');
-  }
+  } on SocketException catch (e) {}
   return false;
 }
 

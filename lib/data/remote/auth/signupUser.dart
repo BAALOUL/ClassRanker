@@ -5,15 +5,11 @@ class SignupUser {
   Crud crud;
   SignupUser(this.crud);
 
-  postuser(String username, String fullname, String password, String email,
-      String phone, String role) async {
+  postuser(String username, String email, String password) async {
     var response = await crud.postData(Links.signup, {
-      "username": username,
-      "fullname": fullname,
-      "password": password,
+      "name": username,
       "email": email,
-      "phone": phone,
-      "role": role,
+      "password": password,
     });
     return response.fold((l) => l, (r) => r);
   }

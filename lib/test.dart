@@ -13,7 +13,6 @@ class _TestState extends State<Test> {
   var res;
   initialData() async {
     res = await checkInternet();
-    print(res);
   }
 
   @override

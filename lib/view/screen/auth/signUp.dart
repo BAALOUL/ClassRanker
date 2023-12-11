@@ -4,7 +4,6 @@ import 'package:classRanker/core/constant/consColors.dart';
 import 'package:classRanker/core/constant/consRoutes.dart';
 import 'package:classRanker/core/functions/alertExitApp.dart';
 import 'package:classRanker/core/functions/validinput.dart';
-import 'package:classRanker/view/students/components/selectRole.dart';
 import 'package:classRanker/view/widgets/auth/customButton.dart';
 import 'package:classRanker/view/widgets/auth/customTextSignUp.dart';
 import 'package:flutter/material.dart';
@@ -80,25 +79,6 @@ class SignUp extends StatelessWidget {
 
                             CustomTextFormField(
                               isNumber: false,
-                              hintText: 'Enter your full name',
-                              labelText: "Full name",
-                              iconData: Icons.person_outline,
-                              mycontroller: controller.fullname,
-                            ),
-
-                            CustomTextFormField(
-                              isNumber: true,
-                              valid: (val) {
-                                return validInput(val!, 4, 12, "phone");
-                              },
-                              hintText: 'Enter your phone',
-                              labelText: "phone",
-                              iconData: Icons.phone_outlined,
-                              mycontroller: controller.phone,
-                            ),
-
-                            CustomTextFormField(
-                              isNumber: false,
                               valid: (val) {
                                 return validInput(val!, 5, 30, "email");
                               },
@@ -119,8 +99,6 @@ class SignUp extends StatelessWidget {
                               mycontroller: controller.password,
                             ),
 
-                            const SelectRole(),
-
                             //const CustomForgetPassword(text: "Forget your password ?"),
                             const SizedBox(
                               height: 20,
@@ -140,13 +118,6 @@ class SignUp extends StatelessWidget {
                                 controller.toSignIn();
                               },
                             ),
-                            /*CustomTextSignUp(
-                              text1: "  Go to student   ",
-                              text2: "  admin dashboard ",
-                              ontap: () {
-                                Get.toNamed(ConsRoutes.getstudentsListScreen);
-                              },
-                            )*/
                             //CustomTextFormField(hintText: 'Enter your email', labelText: "Email",iconData: Icons.email_outlined,mycontroller: ,)
                           ],
                         ),

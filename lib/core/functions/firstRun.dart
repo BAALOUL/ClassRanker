@@ -8,7 +8,6 @@ Future logout() async {
   String? savedLang = myServices.sharedPreferences.getString("lang");
   myServices.sharedPreferences.clear();
   myServices.sharedPreferences.setString("step", "1");
-  print("the current language is: $savedLang");
   if (savedLang != null && savedLang != "") {
     myServices.sharedPreferences.setString("lang", savedLang!);
   } else {
